@@ -40,7 +40,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 				//SoundEffectsHelper.Instance.MakeMachineGunSound();
 
 				//BulletText.text = true;
-				BulletText.text = ("Bullets: " + bulletAmount);
+				BulletText.text = ("Bullets: " + (int)bulletAmount);
 
 				bulletAmount -= Time.deltaTime;
 				//Debug.Log(timer);

@@ -182,7 +182,7 @@ public class HealthScript : MonoBehaviour
 		}
 
 		//If Player crashes with Enemy, enemies dies without hurting me with the laser collision
-		else if(collider.gameObject.tag == "Enemy" && collider.gameObject.tag == "Laser")//Laser collision fix
+		if(collider.gameObject.tag == "Enemy" && collider.gameObject.tag == "Laser")//Laser collision fix
 		{
 			Destroy(collider.gameObject);
 			//hp--;
@@ -197,7 +197,7 @@ public class HealthScript : MonoBehaviour
 			Destroy(collider.gameObject);
 		}
 
-		else if (collider.gameObject.tag == "Coin") 
+		if (collider.gameObject.tag == "Coin") 
 		{
 			points++;
 			myCoins++;
@@ -207,7 +207,7 @@ public class HealthScript : MonoBehaviour
 		if (shot != null)
 		{
 			//Enemy shot
-			if (shot.isEnemyShot != isEnemy || hp <= 0)
+			if (shot.isEnemyShot != isEnemy || hp == 1)//0 will make it -1
 			{
 
 				hp -= shot.damage;
