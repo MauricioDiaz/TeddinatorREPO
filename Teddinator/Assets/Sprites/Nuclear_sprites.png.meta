@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: be4725eb7bf4eb142bbc09455e9579f7
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Nuclear_sprites_0
+    21300002: Nuclear_sprites_1
+    21300004: Nuclear_sprites_2
+    21300006: Nuclear_sprites_3
+    21300008: Nuclear_sprites_4
+    21300010: Nuclear_sprites_5
+    21300012: Nuclear_sprites_6
+    21300014: Nuclear_sprites_7
+    21300016: Nuclear_sprites_8
+    21300018: Nuclear_sprites_9
+    21300020: Nuclear_sprites_10
+    21300022: Nuclear_sprites_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Nuclear_sprites_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 89
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 88
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 88
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_3
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 87
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 54
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_5
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 54
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_6
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 55
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_7
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 54
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 19
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_9
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 19
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_10
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 19
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Nuclear_sprites_11
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 19
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

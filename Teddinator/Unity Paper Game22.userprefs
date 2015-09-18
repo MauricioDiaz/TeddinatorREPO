@@ -1,0 +1,19 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\MenuScript.cs">
+    <Files>
+      <File FileName="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\TimerCountDown.cs" Line="26" Column="18" />
+      <File FileName="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\playsound.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\MenuUI.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\MenuScript.cs" Line="23" Column="2" />
+      <File FileName="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\map_select.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\A1Selection.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\A1.cs" Line="145" Column="1" />
+      <File FileName="..\..\..\Users\Mauricio\Documents\GitHub\braintrainer\Assets\Scripts\selectScript.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
