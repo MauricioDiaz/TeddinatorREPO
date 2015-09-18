@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour 
 {
-	public bool toggle = false;
+	public bool shieldToggle = false;
 	public bool isEnemy = true;
 	public bool startTimer = false;
 	public static float timer = 5;
@@ -46,7 +46,7 @@ public class HealthScript : MonoBehaviour
 		//this.gameObject.SetActive (true);
 		speed = new Vector2 (SpeedLimit, SpeedLimit);
 		GetComponent<AudioSource>().clip = sound;
-		toggle = false;
+		shieldToggle = false;
 
 	}
 
@@ -57,19 +57,19 @@ public class HealthScript : MonoBehaviour
 			GetComponent<Rigidbody2D> ().velocity = movement;
 		
 			//			//Shield Bool
-			if (toggle == true)
+			if (shieldToggle == true)
 			{
 				timer -= Time.deltaTime;
 				GetComponent<CircleCollider2D>().enabled = true;
 				GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = true;
 				if(timer <= 0)
 				{
-					toggle = false;
+					shieldToggle = false;
 					timer = shieldTimer;
 				}
 				
 			}
-			else if (toggle == false){
+			else if (shieldToggle == false){
 				GetComponent<CircleCollider2D>().enabled = false;
 				GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = false;
 				
@@ -148,7 +148,7 @@ public class HealthScript : MonoBehaviour
 		LivesText.text = ("Health: " + hp);
 
 
-		if(toggle == true)
+		if(shieldToggle == true)
 		{
 			if (collider.gameObject.tag == "EnemyBullet")
 			{
@@ -168,7 +168,7 @@ public class HealthScript : MonoBehaviour
 			}
 		}
 
-		else if(toggle == false)
+		else if(shieldToggle == false)
 		{
 			//If Player crashes with Enemy, enemies dies  if crash with shield
 			if (collider.gameObject.tag == "Enemy")
@@ -193,7 +193,7 @@ public class HealthScript : MonoBehaviour
 		//Shield
 		if (collider.gameObject.tag == "ShieldUpgrade") 
 		{
-			toggle = true;
+			shieldToggle = true;
 			Destroy(collider.gameObject);
 		}
 
