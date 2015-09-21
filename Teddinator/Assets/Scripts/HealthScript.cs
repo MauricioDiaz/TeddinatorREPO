@@ -237,8 +237,7 @@ public class HealthScript : MonoBehaviour
 	}
 
 	void OnDead(){
-		//transform.parent.gameObject.AddComponent<GameOverScript>();// Calls the gameover buttons, gets parented to parent because player gets disabled
-		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;
+		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
 
 	}
 
