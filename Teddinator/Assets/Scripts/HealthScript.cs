@@ -7,7 +7,7 @@ public class HealthScript : MonoBehaviour
 	public static HealthScript instance;
 
 	public bool shieldToggle = false;
-	bool isEnemy = true;
+	bool isEnemy = false;
 	bool startTimer = false;
 	public static float timer = 5;
 	public float shieldTimer;
