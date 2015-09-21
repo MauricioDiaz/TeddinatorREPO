@@ -4,29 +4,20 @@ using UnityEngine.UI;
 
 public class StoreScript : MBSingleton<StoreScript> {
 	public Text Coins;
-	public Text Cash;
-	public static int myCoins;
-	public int myCash;
+	public int myCoins;
+
 	public static float SpeedLimit = 20;
 	public static float timer = 5;
-	
-//	// Use this for initialization
-	void Awake () {
-		DontDestroyOnLoad (gameObject);
-		Coins.text = ("Score: " + myCoins);
-		Text myS = GetComponent<Text> ();
+
+
+
+	void Awake()
+	{
+		myCoins += HealthScript.instance.points;
 	}
 
 	void Update(){
 		Coins.text = ("COINS " + myCoins);
-		Cash.text = ("CASH ");
-	}
-
-
-	void FixedUpdate () {
-		Coins.text = ("COINS " + myCoins);
-		Cash.text = ("CASH ");
-		Debug.Log (myCoins);
 	}
 
 	public void Play()
