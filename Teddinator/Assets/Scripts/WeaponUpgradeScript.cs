@@ -72,7 +72,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 			Upgrade.transform.localScale = new Vector3(7, 7, 7);
 			//newParent.transform = Upgrade.transform.parent;
 			Upgrade1 = true;
-			bulletAmount = 2;
+			bulletAmount = 50;
 			SoundEffectsHelper.Instance.MakeReloadGunSound();
 			GameObject ParticleEffect = (Instantiate(particleEffect, this.gameObject.transform.position,transform.rotation)) as GameObject;
 	
