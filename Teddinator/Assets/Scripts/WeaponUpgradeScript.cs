@@ -29,7 +29,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 		if(Upgrade1 == true)//creates the bullets, starts bullet timer
 		{
 			BulletText.enabled = true;
-			if(Input.GetButton ("Fire2")&& !GetComponent<AudioSource>().isPlaying)
+			if(Input.GetButton ("Fire2"))
 			{
 				//GameObject newParent = GameObject.Find ("UpgradeWeaponLocation");
 				Rigidbody2D shoot = (Instantiate(bullet, bullet2Location.transform.position, transform.rotation)) as Rigidbody2D;
@@ -60,7 +60,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 
 
 
-	void OnTriggerEnter2D(Collider2D col)//trigger to create machinegun,destroy floating obj, and reset the timer
+	void OnTriggerEnter2D(Collider2D col)//trigger to create machinegun,destroy floating obj, and reset the bullets
 	{
 		if(col.gameObject.tag == "Weapon")
 		{
