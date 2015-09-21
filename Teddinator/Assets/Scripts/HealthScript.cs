@@ -122,9 +122,9 @@ public class HealthScript : MonoBehaviour
 			} else {
 				
 				//player movement
-				float inputX = Input.GetAxis ("Horizontal");
-				float inputY = Input.GetAxis ("Vertical");
-				movement = new Vector2 (speed.x * inputX, speed.y * inputY);
+//				float inputX = Input.GetAxis ("Horizontal");
+//				float inputY = Input.GetAxis ("Vertical");
+//				movement = new Vector2 (speed.x * inputX, speed.y * inputY);
 
 
 				//Coins.text = ("Score: " + myCoins);
@@ -236,87 +236,87 @@ public class HealthScript : MonoBehaviour
 		}
 	}
 
-	void OnDead(){
+	void OnDead()
+	{
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
-
 	}
 
-	public void ButtonPressed(){
-		if (gameObject.name == "Button1") 
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//	public void ButtonPressed(){
+//		if (gameObject.name == "Button1") 
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//
+//			//checks to see if you have enough coins
+//			if(myCoins >= 100){
+//
+//				SpeedLimit += 10;
+//				myCoins -= 100;
+//				Debug.Log ("Speed-------------------------------: " + SpeedLimit );
+//			}
+//			else if(myCoins <= 100)
+//			{
+//				Debug.Log("Not Enough Coins Available");
+//			}
+//		}
+//		else if(gameObject.name == "Button2")
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//			Debug.Log("Button 2 Pressed");
+//		}
+//		else if(gameObject.name == "Button3")
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//			Debug.Log("Button 3 Pressed");
+//		}
+//		else if(gameObject.name == "Button4")
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//			Debug.Log("Button 4 Pressed");
+//		}
+//		else if(gameObject.name == "Button5")
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//			Debug.Log("Button 5 Pressed");
+//		}
+//		else if(gameObject.name == "Button6")
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//			Debug.Log("Button 6 Pressed");
+//		}
+//		else if(gameObject.name == "Button7")
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//
+//			//checks to see if you have enough coins
+//			if(myCoins >= 50){
+//				
+//				timer += 5;
+//				myCoins -= 50;
+//
+//			}
+//			else if(myCoins <= 50)
+//			{
+//				Debug.Log("Not Enough Coins Available");
+//			}
+//			Debug.Log("Button 7 Pressed");
+//		}
+//		else if(gameObject.name == "Button8")
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//			Debug.Log("Button 8 Pressed");
+//		}
+//		else if(gameObject.gameObject.name == "Play")
+//		{
+//			SoundEffectsHelper.Instance.MakeStoreButtonSound();
+//			Application.LoadLevel("Teddy_Animation_Test_6");
+//		}
+//		else if(gameObject.gameObject.name == "Add")
+//		{
+//			myCoins += 20;
+//		}
+//	}
 
-			//checks to see if you have enough coins
-			if(myCoins >= 100){
-
-				SpeedLimit += 10;
-				myCoins -= 100;
-				Debug.Log ("Speed-------------------------------: " + SpeedLimit );
-			}
-			else if(myCoins <= 100)
-			{
-				Debug.Log("Not Enough Coins Available");
-			}
-		}
-		else if(gameObject.name == "Button2")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 2 Pressed");
-		}
-		else if(gameObject.name == "Button3")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 3 Pressed");
-		}
-		else if(gameObject.name == "Button4")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 4 Pressed");
-		}
-		else if(gameObject.name == "Button5")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 5 Pressed");
-		}
-		else if(gameObject.name == "Button6")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 6 Pressed");
-		}
-		else if(gameObject.name == "Button7")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-
-			//checks to see if you have enough coins
-			if(myCoins >= 50){
-				
-				timer += 5;
-				myCoins -= 50;
-
-			}
-			else if(myCoins <= 50)
-			{
-				Debug.Log("Not Enough Coins Available");
-			}
-			Debug.Log("Button 7 Pressed");
-		}
-		else if(gameObject.name == "Button8")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 8 Pressed");
-		}
-		else if(gameObject.gameObject.name == "Play")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Application.LoadLevel("Teddy_Animation_Test_6");
-		}
-		else if(gameObject.gameObject.name == "Add")
-		{
-			myCoins += 20;
-		}
-	}
-
-	public bool isMobile
+	public bool isMobile//bool to set controls for mobile
 	{
 		get
 		{

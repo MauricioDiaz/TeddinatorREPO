@@ -92,6 +92,7 @@
      <Compile Include="Assets\Scripts\WeaponScript.cs" />
      <Compile Include="Assets\Scripts\WeaponUpgradeScript.cs" />
      <Compile Include="Assets\Scripts\WindowManager.cs" />
+     <Compile Include="Assets\Scripts\_Generic\MBSingleton.cs" />
      <Compile Include="Assets\SimpleParticlePack\Scripts\ParticleTester.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
