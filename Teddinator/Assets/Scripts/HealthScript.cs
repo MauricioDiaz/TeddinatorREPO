@@ -9,13 +9,13 @@ public class HealthScript : MonoBehaviour
 	public bool shieldToggle = false;
 	bool isEnemy = false;
 	bool startTimer = false;
-	public static float timer = 5;
+
 	public float shieldTimer;
 	public GameObject particleEffect;
 
 	public CNAbstractController CNcont;
 
-	public int hp = 5;
+	public int hp;
 	public int points;
 	public static int pointsTracked;
 	
@@ -23,28 +23,26 @@ public class HealthScript : MonoBehaviour
 	public Text ScoreText;
 	public Text LivesText;
 
-	public static float SpeedLimit = 20;
+	public static float speedLimit = 20;
 	public Vector2 speed;
 	public Vector2 movement;
-	//public GameObject blastLocation;
-	//public GameObject LaserBlast;
 	public AudioClip sound;
 
 	private GameObject ParticleEffect;
 
 	void Awake(){
 		instance = this;
-		//DontDestroyOnLoad (this.gameObject);
 	}
 
 
 	void Start(){
-		//this.gameObject.SetActive (true);
-		speed = new Vector2 (SpeedLimit, SpeedLimit);
-		GetComponent<AudioSource>().clip = sound;
 		shieldToggle = false;
 		points = 0;
-
+		hp += StoreScript.Instance._hp;
+		speedLimit += StoreScript.Instance._speed;
+		shieldTimer += StoreScript.Instance._shieldTimer;
+		speed = new Vector2 (speedLimit, speedLimit);
+		GetComponent<AudioSource>().clip = sound;
 	}
 
 	void Update()
@@ -55,13 +53,12 @@ public class HealthScript : MonoBehaviour
 		//			//Shield Bool
 		if (shieldToggle == true)
 		{
-			timer -= Time.deltaTime;
+			shieldTimer -= Time.deltaTime;
 			GetComponent<CircleCollider2D>().enabled = true;
 			GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = true;
-			if(timer <= 0)
+			if(shieldTimer <= 0)
 			{
 				shieldToggle = false;
-				timer = shieldTimer;
 			}
 			
 		}
