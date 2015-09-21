@@ -113,6 +113,7 @@ Assets/Scripts/ShotMachineGunScript.cs
 Assets/Scripts/ShotScript.cs
 Assets/Scripts/SoundEffectsHelper.cs
 Assets/Scripts/SpecialEffectsHelper.cs
+Assets/Scripts/StoreManager.cs
 Assets/Scripts/StoreScript.cs
 Assets/Scripts/TranslateLeftScript.cs
 Assets/Scripts/TranslateRightScript.cs
