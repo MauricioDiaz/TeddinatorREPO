@@ -7,9 +7,19 @@ public class StoreManager : MonoBehaviour {
 	public delegate void OnStoreScene();
 	public static event OnStoreScene onStoreScene;
 
+
+
 	public Button storeButton;
 	
 	public void GoToStore () //called in inspector
+	{
+		if(onStoreScene != null)
+		{
+			onStoreScene();
+		}
+	}
+
+	public void PlayAgain()
 	{
 		if(onStoreScene != null)
 		{
