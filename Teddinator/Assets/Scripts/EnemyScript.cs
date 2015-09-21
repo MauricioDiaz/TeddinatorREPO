@@ -29,8 +29,7 @@ public class EnemyScript : MonoBehaviour
 		// -- collider
 		GetComponent<Collider2D>().enabled = false;
 		// -- Moving
-		if(moveScript != null)
-			moveScript.enabled = false;
+		moveScript.enabled = false;
 		// -- Shooting
 		foreach (WeaponScript weapon in weapons)
 		{
