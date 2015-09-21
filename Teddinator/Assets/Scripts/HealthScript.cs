@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour 
 {
+	public static HealthScript instance;
+
 	public bool shieldToggle = false;
 	public bool isEnemy = true;
 	public bool startTimer = false;
@@ -15,15 +17,11 @@ public class HealthScript : MonoBehaviour
 
 	public int hp = 5;
 	public int points;
-	public static int myCoins;
+	public static int pointsTracked;
 	
 	//public TextMesh scoreText;
 	public Text ScoreText;
 	public Text LivesText;
-
-	public Text Coins;
-	public Text Cash;
-	public int myCash;
 
 	public static float SpeedLimit = 20;
 	public Vector2 speed;
@@ -35,10 +33,8 @@ public class HealthScript : MonoBehaviour
 	private GameObject ParticleEffect;
 
 	void Awake(){
-
-		//Coins.text = ("Score: " + myCoins);
-		Text myS = GetComponent<Text> ();
-		//DontDestroyOnLoad (gameObject);
+		instance = this;
+		//DontDestroyOnLoad (this.gameObject);
 	}
 
 
@@ -47,93 +43,66 @@ public class HealthScript : MonoBehaviour
 		speed = new Vector2 (SpeedLimit, SpeedLimit);
 		GetComponent<AudioSource>().clip = sound;
 		shieldToggle = false;
+		points = 0;
 
 	}
 
 	void Update()
 	{
+		points = pointsTracked;
 		//checks to see if we are in the correct level
-		if (Application.loadedLevelName == "Teddy_Animation_Test_6") {
-			GetComponent<Rigidbody2D> ().velocity = movement;
-		
-			//			//Shield Bool
-			if (shieldToggle == true)
-			{
-				timer -= Time.deltaTime;
-				GetComponent<CircleCollider2D>().enabled = true;
-				GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = true;
-				if(timer <= 0)
-				{
-					shieldToggle = false;
-					timer = shieldTimer;
-				}
-				
-			}
-			else if (shieldToggle == false){
-				GetComponent<CircleCollider2D>().enabled = false;
-				GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = false;
-				
-			}
-			
-			
-			//Debug.Log (speed);
-			if (hp < 0) {
-				//Hides the player
-				gameObject.SetActive (false);
-				OnDead ();
-			}
 
-			if (isMobile == true) {
-				float inputX = CNcont.GetAxis ("Horizontal");
-				float inputY = CNcont.GetAxis ("Vertical");
-				movement = new Vector2 (speed.x * inputX, speed.y * inputY);
-			
-				//Coins.text = ("Score: " + myCoins);
-				//Coins.text = ("COINS " + myCoins);
-				//Cash.text = ("CASH ");
-				ScoreText.text = ("Score: " + points);
-				LivesText.text = ("Health: " + hp);
-			} else {
-
-				//player movement
-				float inputX = Input.GetAxis ("Horizontal");
-				float inputY = Input.GetAxis ("Vertical");
-				movement = new Vector2 (speed.x * inputX, speed.y * inputY);
-
-				//Coins.text = ("Score: " + myCoins);
-				//Coins.text = ("COINS " + myCoins);
-				//Cash.text = ("CASH ");
-				ScoreText.text = ("Score: " + points);
-				LivesText.text = ("Health: " + hp);
-			}
-		}
-		else if (Application.loadedLevelName == "Store")
+		GetComponent<Rigidbody2D> ().velocity = movement;
+	
+		//			//Shield Bool
+		if (shieldToggle == true)
 		{
-			if (isMobile == true) {
-				float inputX = CNcont.GetAxis ("Horizontal");
-				float inputY = CNcont.GetAxis ("Vertical");
-				movement = new Vector2 (speed.x * inputX, speed.y * inputY);
-				
-				//Coins.text = ("Score: " + myCoins);
-				Coins.text = ("COINS " + myCoins);
-				//Cash.text = ("CASH ");
-				//ScoreText.text = ("Score: " + points);
-				//LivesText.text = ("Health: " + hp);
-			} else {
-				
-				//player movement
-				float inputX = Input.GetAxis ("Horizontal");
-				float inputY = Input.GetAxis ("Vertical");
-				movement = new Vector2 (speed.x * inputX, speed.y * inputY);
-
-
-				//Coins.text = ("Score: " + myCoins);
-				Coins.text = ("COINS " + myCoins);
-				//Cash.text = ("CASH ");
-				//ScoreText.text = ("Score: " + points);
-				//LivesText.text = ("Health: " + hp);
+			timer -= Time.deltaTime;
+			GetComponent<CircleCollider2D>().enabled = true;
+			GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = true;
+			if(timer <= 0)
+			{
+				shieldToggle = false;
+				timer = shieldTimer;
 			}
+			
 		}
+		else if (shieldToggle == false){
+			GetComponent<CircleCollider2D>().enabled = false;
+			GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = false;
+			
+		}
+		
+		
+		//Debug.Log (speed);
+		if (hp < 0) {
+			//Hides the player
+			gameObject.SetActive (false);
+			OnDead ();
+		}
+
+		if (isMobile == true) {
+			float inputX = CNcont.GetAxis ("Horizontal");
+			float inputY = CNcont.GetAxis ("Vertical");
+			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
+		
+			ScoreText.text = ("Score: " + points);
+			LivesText.text = ("Health: " + hp);
+
+			StoreScript.Instance.myCoins = points;
+		} else {
+
+			//player movement
+			float inputX = Input.GetAxis ("Horizontal");
+			float inputY = Input.GetAxis ("Vertical");
+			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
+
+			ScoreText.text = ("Score: " + points);
+			LivesText.text = ("Health: " + hp);
+
+			StoreScript.Instance.myCoins = points;
+		}
+		
 	}
 
 
@@ -200,7 +169,7 @@ public class HealthScript : MonoBehaviour
 		if (collider.gameObject.tag == "Coin") 
 		{
 			points++;
-			myCoins++;
+			pointsTracked++;
 			GetComponent<AudioSource>().PlayOneShot(sound);
 		}
 
@@ -236,88 +205,12 @@ public class HealthScript : MonoBehaviour
 		}
 	}
 
-	void OnDead(){
-		//transform.parent.gameObject.AddComponent<GameOverScript>();// Calls the gameover buttons, gets parented to parent because player gets disabled
-		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;
-
+	void OnDead()
+	{
+		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
 	}
-
-	public void ButtonPressed(){
-		if (gameObject.name == "Button1") 
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-
-			//checks to see if you have enough coins
-			if(myCoins >= 100){
-
-				SpeedLimit += 10;
-				myCoins -= 100;
-				Debug.Log ("Speed-------------------------------: " + SpeedLimit );
-			}
-			else if(myCoins <= 100)
-			{
-				Debug.Log("Not Enough Coins Available");
-			}
-		}
-		else if(gameObject.name == "Button2")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 2 Pressed");
-		}
-		else if(gameObject.name == "Button3")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 3 Pressed");
-		}
-		else if(gameObject.name == "Button4")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 4 Pressed");
-		}
-		else if(gameObject.name == "Button5")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 5 Pressed");
-		}
-		else if(gameObject.name == "Button6")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 6 Pressed");
-		}
-		else if(gameObject.name == "Button7")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-
-			//checks to see if you have enough coins
-			if(myCoins >= 50){
-				
-				timer += 5;
-				myCoins -= 50;
-
-			}
-			else if(myCoins <= 50)
-			{
-				Debug.Log("Not Enough Coins Available");
-			}
-			Debug.Log("Button 7 Pressed");
-		}
-		else if(gameObject.name == "Button8")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Debug.Log("Button 8 Pressed");
-		}
-		else if(gameObject.gameObject.name == "Play")
-		{
-			SoundEffectsHelper.Instance.MakeStoreButtonSound();
-			Application.LoadLevel("Teddy_Animation_Test_6");
-		}
-		else if(gameObject.gameObject.name == "Add")
-		{
-			myCoins += 20;
-		}
-	}
-
-	public bool isMobile
+	
+	public bool isMobile//bool to set controls for mobile
 	{
 		get
 		{
