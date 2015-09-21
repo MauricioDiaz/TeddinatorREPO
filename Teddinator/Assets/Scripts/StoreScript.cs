@@ -15,12 +15,16 @@ public class StoreScript : MBSingleton<StoreScript> {
 	public static float ShieldTimer;
 	public float _shieldTimer;
 
+	public static int MachineAmmo;
+	public int _ammo;
+
 	void Awake()
 	{
-		myCoins += HealthScript.instance.points;
+		myCoins += PlayerControl.instance.points;
 		_hp = UpgradedHp;
 		_speed = SpeedLimit;
 		_shieldTimer = ShieldTimer;
+		_ammo = MachineAmmo;
 		UpgradedHp = 0;//resets hp to 5 when player looses again
 	}
 
@@ -59,7 +63,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 		//checks to see if you have enough coins
 		if(myCoins >= 50){
 			
-			ShieldTimer += 5;
+			ShieldTimer += 2.5f;
 			myCoins -= 50;
 			
 		}
@@ -76,6 +80,16 @@ public class StoreScript : MBSingleton<StoreScript> {
 		{	
 			UpgradedHp++;
 			myCoins   -= 100;
+		}
+	}
+
+	public void Ammo()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		if(myCoins >= 200)
+		{
+			MachineAmmo += 25;
+			myCoins -= 200;
 		}
 	}
 

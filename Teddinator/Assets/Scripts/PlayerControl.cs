@@ -2,13 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class HealthScript : MonoBehaviour 
+public class PlayerControl : MonoBehaviour 
 {
-	public static HealthScript instance;
+	public static PlayerControl instance;
 
 	public bool shieldToggle = false;
 	bool isEnemy = false;
-	bool startTimer = false;
 
 	public float shieldTimer;
 	public GameObject particleEffect;
