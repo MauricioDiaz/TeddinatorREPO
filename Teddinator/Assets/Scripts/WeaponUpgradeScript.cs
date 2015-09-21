@@ -13,7 +13,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 	public bool Upgrade1 = false;
 	private GameObject Upgrade;
 	//private GameObject ParticleEffect;
-	private float bulletAmount = 2;
+	private int bulletAmount = 50;
 	public Text BulletText;
 
 
@@ -40,9 +40,9 @@ public class WeaponUpgradeScript : MonoBehaviour {
 				//SoundEffectsHelper.Instance.MakeMachineGunSound();
 
 				//BulletText.text = true;
-				BulletText.text = ("Bullets: " + (int)bulletAmount);
+				BulletText.text = ("Bullets: " + bulletAmount);
 
-				bulletAmount -= Time.deltaTime;
+				bulletAmount--;
 				//Debug.Log(timer);
 				if(bulletAmount <= 0)
 				{
@@ -72,7 +72,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 			Upgrade.transform.localScale = new Vector3(7, 7, 7);
 			//newParent.transform = Upgrade.transform.parent;
 			Upgrade1 = true;
-			bulletAmount = 2;
+			bulletAmount = 50;
 			SoundEffectsHelper.Instance.MakeReloadGunSound();
 			GameObject ParticleEffect = (Instantiate(particleEffect, this.gameObject.transform.position,transform.rotation)) as GameObject;
 	

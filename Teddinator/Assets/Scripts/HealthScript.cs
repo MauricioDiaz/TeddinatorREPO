@@ -7,8 +7,8 @@ public class HealthScript : MonoBehaviour
 	public static HealthScript instance;
 
 	public bool shieldToggle = false;
-	public bool isEnemy = true;
-	public bool startTimer = false;
+	bool isEnemy = false;
+	bool startTimer = false;
 	public static float timer = 5;
 	public float shieldTimer;
 	public GameObject particleEffect;
@@ -49,9 +49,7 @@ public class HealthScript : MonoBehaviour
 
 	void Update()
 	{
-		points = pointsTracked;
-		//checks to see if we are in the correct level
-
+		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
 	
 		//			//Shield Bool
@@ -72,9 +70,7 @@ public class HealthScript : MonoBehaviour
 			GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = false;
 			
 		}
-		
-		
-		//Debug.Log (speed);
+
 		if (hp < 0) {
 			//Hides the player
 			gameObject.SetActive (false);
@@ -116,7 +112,7 @@ public class HealthScript : MonoBehaviour
 		ScoreText.text = ("Score: " + points);
 		LivesText.text = ("Health: " + hp);
 
-
+		//When Shield is active
 		if(shieldToggle == true)
 		{
 			if (collider.gameObject.tag == "EnemyBullet")
@@ -137,7 +133,7 @@ public class HealthScript : MonoBehaviour
 			}
 		}
 
-		else if(shieldToggle == false)
+		if(shieldToggle == false)
 		{
 			//If Player crashes with Enemy, enemies dies  if crash with shield
 			if (collider.gameObject.tag == "Enemy")
@@ -175,10 +171,9 @@ public class HealthScript : MonoBehaviour
 
 		if (shot != null)
 		{
-			//Enemy shot
-			if (shot.isEnemyShot != isEnemy || hp == 1)//0 will make it -1
+			//if enemy shot doesnt equal player
+			if (shot.isEnemyShot != isEnemy  || hp == 1)//0 will make it -1
 			{
-
 				hp -= shot.damage;
 				ScoreText.text = ("Score: " + points);
 				LivesText.text = ("Health: " + hp);
@@ -208,6 +203,7 @@ public class HealthScript : MonoBehaviour
 	void OnDead()
 	{
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
+		points = pointsTracked;
 	}
 	
 	public bool isMobile//bool to set controls for mobile
