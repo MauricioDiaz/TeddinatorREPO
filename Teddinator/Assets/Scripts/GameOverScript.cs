@@ -23,7 +23,7 @@ public class GameOverScript : MonoBehaviour
 
 	public void Retry()//called in inspector
 	{
-		Application.LoadLevel("Teddy_Animation_Test_6");
+		Application.LoadLevel("Level1");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
 	}
 

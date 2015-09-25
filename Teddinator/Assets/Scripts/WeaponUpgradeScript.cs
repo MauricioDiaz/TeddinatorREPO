@@ -13,7 +13,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 	public bool Upgrade1 = false;
 	private GameObject Upgrade;
 	//private GameObject ParticleEffect;
-	private int bulletAmount = 50;
+	public int bulletAmount = 50;
 	public Text BulletText;
 
 
@@ -21,6 +21,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 	void Start () {
 		//BulletText.text = false;
 		BulletText.enabled = false;
+		bulletAmount += StoreScript.Instance._ammo;
 
 	}
 
@@ -72,7 +73,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 			Upgrade.transform.localScale = new Vector3(7, 7, 7);
 			//newParent.transform = Upgrade.transform.parent;
 			Upgrade1 = true;
-			bulletAmount = 50;
+			bulletAmount = StoreScript.Instance._ammo;
 			SoundEffectsHelper.Instance.MakeReloadGunSound();
 			GameObject ParticleEffect = (Instantiate(particleEffect, this.gameObject.transform.position,transform.rotation)) as GameObject;
 	

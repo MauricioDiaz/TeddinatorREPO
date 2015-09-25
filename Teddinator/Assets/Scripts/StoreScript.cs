@@ -6,14 +6,26 @@ public class StoreScript : MBSingleton<StoreScript> {
 	public Text Coins;
 	public int myCoins;
 
-	public static float SpeedLimit = 20;
-	public static float timer = 5;
+	public static int UpgradedHp;
+	public int _hp;
 
+	public static float SpeedLimit;
+	public float _speed;
 
+	public static float ShieldTimer;
+	public float _shieldTimer;
+
+	public static int MachineAmmo;
+	public int _ammo;
 
 	void Awake()
 	{
-		myCoins += HealthScript.instance.points;
+		myCoins += PlayerControl.instance.points;
+		_hp = UpgradedHp;
+		_speed = SpeedLimit;
+		_shieldTimer = ShieldTimer;
+		_ammo = MachineAmmo;
+		UpgradedHp = 0;//resets hp to 5 when player looses again
 	}
 
 	void Update(){
@@ -24,7 +36,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 	{
 		Debug.Log("Play");
 		SoundEffectsHelper.Instance.MakeStoreButtonSound();
-		Application.LoadLevel("Teddy_Animation_Test_6");
+		Application.LoadLevel("Level1");
 	}
 
 	public void Speed()
@@ -35,9 +47,8 @@ public class StoreScript : MBSingleton<StoreScript> {
 		//checks to see if you have enough coins
 		if(myCoins >= 100){
 			
-			SpeedLimit += 10;
+			SpeedLimit += 2.5f;
 			myCoins -= 100;
-			Debug.Log ("Speed-------------------------------: " + SpeedLimit );
 		}
 		else if(myCoins <= 100)
 		{
@@ -52,13 +63,33 @@ public class StoreScript : MBSingleton<StoreScript> {
 		//checks to see if you have enough coins
 		if(myCoins >= 50){
 			
-			timer += 5;
+			ShieldTimer += 2.5f;
 			myCoins -= 50;
 			
 		}
 		else if(myCoins <= 50)
 		{
 			Debug.Log("Not Enough Coins Available");
+		}
+	}
+
+	public void LifeUp()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		if(myCoins >= 100)
+		{	
+			UpgradedHp++;
+			myCoins   -= 100;
+		}
+	}
+
+	public void Ammo()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		if(myCoins >= 200)
+		{
+			MachineAmmo += 25;
+			myCoins -= 200;
 		}
 	}
 

@@ -13,7 +13,7 @@ public class HealthPickUp : MonoBehaviour
 	
 	void OnTriggerEnter2D (Collider2D col)
 	{
-		HealthScript health = col.gameObject.GetComponent<HealthScript> ();
+		PlayerControl health = col.gameObject.GetComponent<PlayerControl> ();
 	
 		if(col.gameObject.tag == "Player")
 		{
