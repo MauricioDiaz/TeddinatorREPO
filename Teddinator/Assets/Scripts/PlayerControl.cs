@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
 	bool isEnemy = false;
 
 	public float shieldTimer;
+	public float shieldTimerReset;
 	public GameObject particleEffect;
 
 	public CNAbstractController CNcont;
@@ -42,6 +43,7 @@ public class PlayerControl : MonoBehaviour
 		shieldTimer += StoreScript.Instance._shieldTimer;
 		speed = new Vector2 (speedLimit, speedLimit);
 		GetComponent<AudioSource>().clip = sound;
+		shieldTimerReset = shieldTimer;
 	}
 
 	void Update()
@@ -49,19 +51,21 @@ public class PlayerControl : MonoBehaviour
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
 	
-		//			//Shield Bool
+		//Shield Bool
 		if (shieldToggle == true)
 		{
+			GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = true;
 			shieldTimer -= Time.deltaTime;
 			GetComponent<CircleCollider2D>().enabled = true;
-			GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = true;
 			if(shieldTimer <= 0)
 			{
 				shieldToggle = false;
+				shieldTimer = shieldTimerReset;
 			}
 			
 		}
-		else if (shieldToggle == false){
+		else if (shieldToggle == false)
+		{
 			GetComponent<CircleCollider2D>().enabled = false;
 			GameObject.FindGameObjectWithTag("Shield").GetComponent<Renderer>().enabled = false;
 			
@@ -114,8 +118,7 @@ public class PlayerControl : MonoBehaviour
 			if (collider.gameObject.tag == "EnemyBullet")
 			{
 				Destroy(collider.gameObject);
-				hp++;
-				//SpecialEffectsHelper.Instance.Explosion(transform.position);
+				hp++;//prevents player health to drop
 				SoundEffectsHelper.Instance.MakeExplosionSound();
 			}
 
@@ -129,10 +132,11 @@ public class PlayerControl : MonoBehaviour
 			}
 		}
 
+		//if Shiled is not acitve
 		if(shieldToggle == false)
 		{
 			//If Player crashes with Enemy, enemies dies  if crash with shield
-			if (collider.gameObject.tag == "Enemy")
+			if (collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "EnemyBullet")
 			{
 				Destroy(collider.gameObject);
 				hp--;

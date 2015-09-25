@@ -18,7 +18,7 @@ public class MenuScript : MonoBehaviour
 	{
 		if(gameObject.name == "Play")
 		{
-		Application.LoadLevel ("Teddy_Animation_Test_6");
+		Application.LoadLevel ("Level1");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
 		}
 		else if(gameObject.name == "HighScores")

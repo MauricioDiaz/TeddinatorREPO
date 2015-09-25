@@ -14,14 +14,15 @@ public class WeaponUpgradeScript : MonoBehaviour {
 	private GameObject Upgrade;
 	//private GameObject ParticleEffect;
 	public int bulletAmount = 50;
+	public int bulletAmountReset;
 	public Text BulletText;
 
 
 	// Use this for initialization
 	void Start () {
-		//BulletText.text = false;
 		BulletText.enabled = false;
 		bulletAmount += StoreScript.Instance._ammo;
+		bulletAmountReset = bulletAmount;
 
 	}
 
@@ -30,36 +31,25 @@ public class WeaponUpgradeScript : MonoBehaviour {
 		if(Upgrade1 == true)//creates the bullets, starts bullet timer
 		{
 			BulletText.enabled = true;
+			BulletText.text = ("Bullets: " + bulletAmount);
 			if(Input.GetButton ("Fire2"))
 			{
-				//GameObject newParent = GameObject.Find ("UpgradeWeaponLocation");
 				Rigidbody2D shoot = (Instantiate(bullet, bullet2Location.transform.position, transform.rotation)) as Rigidbody2D;
-				//bullet.transform.parent = newParent.transform;
 				//***************Laser is parented to player so when laser gets hit by enemy bullets, the player gets hurt!!!!
-
-				//shoot.transform.parent = turretLocation.transform;
 				//SoundEffectsHelper.Instance.MakeMachineGunSound();
 
-				//BulletText.text = true;
 				BulletText.text = ("Bullets: " + bulletAmount);
-
 				bulletAmount--;
-				//Debug.Log(timer);
 				if(bulletAmount <= 0)
 				{
 					Upgrade1 = false;
 					BulletText.enabled = false;
 					Destroy(Upgrade);
-
+					bulletAmount = bulletAmountReset;
 				}
-
-
 			}
 		}
-
 	}
-
-
 
 	void OnTriggerEnter2D(Collider2D col)//trigger to create machinegun,destroy floating obj, and reset the bullets
 	{
@@ -73,15 +63,9 @@ public class WeaponUpgradeScript : MonoBehaviour {
 			Upgrade.transform.localScale = new Vector3(7, 7, 7);
 			//newParent.transform = Upgrade.transform.parent;
 			Upgrade1 = true;
-			bulletAmount = StoreScript.Instance._ammo;
 			SoundEffectsHelper.Instance.MakeReloadGunSound();
 			GameObject ParticleEffect = (Instantiate(particleEffect, this.gameObject.transform.position,transform.rotation)) as GameObject;
 	
 		}
-
 	}
-
-
-
-
 }
