@@ -28,9 +28,11 @@ public class StoreScript : MBSingleton<StoreScript> {
 		UpgradedHp = 0;//resets hp to 5 when player looses again
 	}
 
-	void Update(){
+	void Start()
+	{
 		Coins.text = ("COINS " + myCoins);
 	}
+
 
 	public void Play()
 	{
@@ -49,6 +51,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 			
 			SpeedLimit += 2.5f;
 			myCoins -= 100;
+			Coins.text = ("COINS " + myCoins);
 		}
 		else if(myCoins <= 100)
 		{
@@ -65,7 +68,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 			
 			ShieldTimer += 2.5f;
 			myCoins -= 50;
-			
+			Coins.text = ("COINS " + myCoins);
 		}
 		else if(myCoins <= 50)
 		{
@@ -80,6 +83,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 		{	
 			UpgradedHp++;
 			myCoins   -= 100;
+			Coins.text = ("COINS " + myCoins);
 		}
 	}
 
@@ -90,12 +94,13 @@ public class StoreScript : MBSingleton<StoreScript> {
 		{
 			MachineAmmo += 25;
 			myCoins -= 200;
+			Coins.text = ("COINS " + myCoins);
 		}
 	}
 
 	public void DebugFunc()
 	{
 		myCoins += 100;
-		Debug.Log (myCoins);
+		Coins.text = ("COINS " + myCoins);
 	}
 }
