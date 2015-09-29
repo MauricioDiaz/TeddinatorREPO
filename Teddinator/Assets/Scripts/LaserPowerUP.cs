@@ -51,6 +51,4 @@ public class LaserPowerUP : MonoBehaviour {
 			isfalse = false;
 		}
 	}
-
-
 }
