@@ -13,8 +13,7 @@ public class LaserCollision : MonoBehaviour {
 
 		if(col.gameObject.tag == "Coin" || col.gameObject.tag == "Health" || col.gameObject.tag == "ShieldUpgrade" || col.gameObject.tag == "Weapon")
 		{
-			Physics2D.IgnoreCollision(this, col.gameObject, true);
-			Physics2D.IgnoreLayerCollision(1,2, true);
+			Physics2D.IgnoreLayerCollision(8,9, true);//Ignores laser and pickup layers
 		}
 	}
 }
