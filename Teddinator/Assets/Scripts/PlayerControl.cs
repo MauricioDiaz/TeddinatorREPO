@@ -18,8 +18,6 @@ public class PlayerControl : MonoBehaviour
 	public int hp;
 	public int points;
 	public static int pointsTracked;
-	
-	//public TextMesh scoreText;
 	public Text ScoreText;
 	public Text LivesText;
 
@@ -71,13 +69,15 @@ public class PlayerControl : MonoBehaviour
 			
 		}
 
-		if (hp < 0) {
+		if (hp < 0) 
+		{
 			//Hides the player
 			gameObject.SetActive (false);
 			OnDead ();
 		}
 
-		if (isMobile == true) {
+		if (isMobile == true)
+		{
 			float inputX = CNcont.GetAxis ("Horizontal");
 			float inputY = CNcont.GetAxis ("Vertical");
 			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
@@ -86,7 +86,9 @@ public class PlayerControl : MonoBehaviour
 			LivesText.text = ("Health: " + hp);
 
 			StoreScript.Instance.myCoins = points;
-		} else {
+		} 
+		else 
+		{
 
 			//player movement
 			float inputX = Input.GetAxis ("Horizontal");
@@ -112,6 +114,13 @@ public class PlayerControl : MonoBehaviour
 		ScoreText.text = ("Score: " + points);
 		LivesText.text = ("Health: " + hp);
 
+		//Shield
+		if (collider.gameObject.tag == "ShieldUpgrade") 
+		{
+			shieldToggle = true;
+			Destroy(collider.gameObject);
+		}
+
 		//When Shield is active
 		if(shieldToggle == true)
 		{
@@ -123,7 +132,7 @@ public class PlayerControl : MonoBehaviour
 			}
 
 			//If Player crashes with Enemy, enemies dies  if crash with shield
-			else if (collider.gameObject.tag == "Enemy")
+			if (collider.gameObject.tag == "Enemy")
 			{
 				Destroy(collider.gameObject);
 				//hp--;
@@ -146,22 +155,7 @@ public class PlayerControl : MonoBehaviour
 
 		}
 
-		//If Player crashes with Enemy, enemies dies without hurting me with the laser collision
-		if(collider.gameObject.tag == "Enemy" && collider.gameObject.tag == "Laser")//Laser collision fix
-		{
-			Destroy(collider.gameObject);
-			//hp--;
-			//SpecialEffectsHelper.Instance.Explosion(transform.position);
-			SoundEffectsHelper.Instance.MakeExplosionSound();
-		}
-
-		//Shield
-		if (collider.gameObject.tag == "ShieldUpgrade") 
-		{
-			shieldToggle = true;
-			Destroy(collider.gameObject);
-		}
-
+		//Coins
 		if (collider.gameObject.tag == "Coin") 
 		{
 			points++;
@@ -172,9 +166,8 @@ public class PlayerControl : MonoBehaviour
 		if (shot != null)
 		{
 			//if enemy shot doesnt equal player
-			if (shot.isEnemyShot != isEnemy  || hp == 1)//0 will make it -1
+			if (shot.isEnemyShot != isEnemy  || hp == 0)
 			{
-				hp -= shot.damage;
 				ScoreText.text = ("Score: " + points);
 				LivesText.text = ("Health: " + hp);
 				// Destroy the shot from the enemy

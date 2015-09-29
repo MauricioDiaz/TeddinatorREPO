@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\HealthPickUp.cs" />
+     <Compile Include="Assets\Scripts\LaserCollision.cs" />
      <Compile Include="Assets\Scripts\LaserPowerUP.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MoveScript.cs" />
