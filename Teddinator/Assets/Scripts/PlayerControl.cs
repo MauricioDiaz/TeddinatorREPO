@@ -160,31 +160,34 @@ public class PlayerControl : MonoBehaviour
 			GetComponent<AudioSource>().PlayOneShot(sound);
 		}
 
-//		if (shot != null)
-//		{
-			ScoreText.text = ("Score: " + points);
-			LivesText.text = ("Health: " + hp);
-			// Destroy the shot from the enemy
-			Destroy(shot.gameObject);
-
-			//Creates the explosion
-			GameObject newParent1 = GameObject.FindGameObjectWithTag("Player");
-			ParticleEffect = (Instantiate(particleEffect, collider.transform.position,transform.rotation)) as GameObject;
-			ParticleEffect.transform.SetParent(newParent1.transform, true);
-			SoundEffectsHelper.Instance.MakeExplosionSound();
-
-			if (hp <= 0)
+		if (shot != null)
+		{
+			//if enemy shot doesnt equal player
+			if (shot.isEnemyShot != isEnemy  || hp == 0)
 			{
-				SpecialEffectsHelper.Instance.Explosion(transform.position);
+				ScoreText.text = ("Score: " + points);
+				LivesText.text = ("Health: " + hp);
+				// Destroy the shot from the enemy
+				Destroy(shot.gameObject);
+
+				//Creates the explosion
+				GameObject newParent1 = GameObject.FindGameObjectWithTag("Player");
+				ParticleEffect = (Instantiate(particleEffect, collider.transform.position,transform.rotation)) as GameObject;
+				ParticleEffect.transform.SetParent(newParent1.transform, true);
 				SoundEffectsHelper.Instance.MakeExplosionSound();
 
-				//Hides the player
-				gameObject.SetActive(false);
-				OnDead();
-			}
-			
+				if (hp <= 0 && collider.gameObject.tag != "PlayerBullet")
+				{
+					SpecialEffectsHelper.Instance.Explosion(transform.position);
+					SoundEffectsHelper.Instance.MakeExplosionSound();
 
-//		}
+					//Hides the player
+					gameObject.SetActive(false);
+					OnDead();
+				}
+			
+			}
+		}
 	}
 
 	void OnDead()
