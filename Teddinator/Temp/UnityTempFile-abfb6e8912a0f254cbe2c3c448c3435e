@@ -92,7 +92,6 @@ Assets/Scripts/DestroyWallScript.cs
 Assets/Scripts/DestroyWallScript2.cs
 Assets/Scripts/DoubleShotScript.cs
 Assets/Scripts/EnemyHealthScript.cs
-Assets/Scripts/EnemyHealthScriptCOPY.cs
 Assets/Scripts/EnemyScript.cs
 Assets/Scripts/GameOverScript.cs
 Assets/Scripts/HealthPickUp.cs
