@@ -8,7 +8,6 @@ public class LaserCollision : MonoBehaviour {
 		if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "EnemyBullet")
 		{
 			Destroy(col.gameObject);
-			Debug.Log("HP aSD;KLFJSAL;DKJFSA;KLDJF;LSADKF;LKASFD;LK");
 			PlayerControl.instance.hp++;//prevents player from loosing hp
 			if(PlayerControl.instance.shieldToggle == true)
 			{

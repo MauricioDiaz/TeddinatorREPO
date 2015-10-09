@@ -1,12 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ShotScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LaserCollision.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerControl.cs" Line="208" Column="1" />
-      <File FileName="Assets\Scripts\WeaponUpgradeScript.cs" Line="72" Column="1" />
-      <File FileName="Assets\Scripts\Turret.cs" Line="22" Column="1" />
-      <File FileName="Assets\Scripts\EnemyHealthScriptCOPY.cs" Line="93" Column="1" />
-      <File FileName="Assets\Scripts\ShotScript.cs" Line="40" Column="3" />
+      <File FileName="Assets\Scripts\PlayerControl.cs" Line="16" Column="19" />
+      <File FileName="Assets\Scripts\LaserCollision.cs" Line="10" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
