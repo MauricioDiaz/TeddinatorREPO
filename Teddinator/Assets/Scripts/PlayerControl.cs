@@ -82,8 +82,8 @@ public class PlayerControl : MonoBehaviour
 			float inputY = CNcont.GetAxis ("Vertical");
 			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
 		
-			ScoreText.text = ("Score: " + points);
-			LivesText.text = ("Health: " + hp);
+			ScoreText.text = ("" + points);
+			LivesText.text = ("" + hp);
 
 			StoreScript.Instance.myCoins = points;
 		} 
@@ -95,8 +95,8 @@ public class PlayerControl : MonoBehaviour
 			float inputY = Input.GetAxis ("Vertical");
 			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
 
-			ScoreText.text = ("Score: " + points);
-			LivesText.text = ("Health: " + hp);
+			ScoreText.text = ("" + points);
+			LivesText.text = ("" + hp);
 
 			StoreScript.Instance.myCoins = points;
 		}
@@ -111,8 +111,8 @@ public class PlayerControl : MonoBehaviour
 		// Is this a shot?
 		ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
 		//EnemyHealthScriptCOPY points = collider.gameObject.GetComponent<EnemyHealthScriptCOPY> ();
-		ScoreText.text = ("Score: " + points);
-		LivesText.text = ("Health: " + hp);
+		ScoreText.text = ("" + points);
+		LivesText.text = ("" + hp);
 
 		//Shield
 		if (collider.gameObject.tag == "ShieldUpgrade") 
@@ -176,8 +176,8 @@ public class PlayerControl : MonoBehaviour
 			//if enemy shot doesnt equal player
 			if (shot.isEnemyShot != isEnemy  || hp == 0)
 			{
-				ScoreText.text = ("Score: " + points);
-				LivesText.text = ("Health: " + hp);
+				ScoreText.text = ("" + points);
+				LivesText.text = ("" + hp);
 				// Destroy the shot from the enemy
 				Destroy(shot.gameObject);
 
