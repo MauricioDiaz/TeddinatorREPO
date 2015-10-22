@@ -62,7 +62,6 @@
      <Compile Include="Assets\Scripts\DestroyWallScript2.cs" />
      <Compile Include="Assets\Scripts\DoubleShotScript.cs" />
      <Compile Include="Assets\Scripts\EnemyHealthScript.cs" />
-     <Compile Include="Assets\Scripts\EnemyHealthScriptCOPY.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\HealthPickUp.cs" />

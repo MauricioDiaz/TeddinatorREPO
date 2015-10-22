@@ -140,6 +140,7 @@ public class PlayerControl : MonoBehaviour
 	{
 		// Is this a shot?
 		ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
+
 		//EnemyHealthScriptCOPY points = collider.gameObject.GetComponent<EnemyHealthScriptCOPY> ();
 		ScoreText.text = ("" + points);
 		LivesText.text = ("" + hp);
@@ -157,7 +158,6 @@ public class PlayerControl : MonoBehaviour
 			if (collider.gameObject.tag == "EnemyBullet")
 			{
 				Destroy(collider.gameObject);
-				hp++;//prevents player health to drop
 				SoundEffectsHelper.Instance.MakeExplosionSound();
 			}
 
@@ -165,7 +165,6 @@ public class PlayerControl : MonoBehaviour
 			if (collider.gameObject.tag == "Enemy")
 			{
 				Destroy(collider.gameObject);
-				//hp--;
 				SpecialEffectsHelper.Instance.Explosion(collider.transform.position);
 				SoundEffectsHelper.Instance.MakeExplosionSound();
 			}
