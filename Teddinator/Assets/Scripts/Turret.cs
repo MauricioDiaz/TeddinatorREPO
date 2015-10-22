@@ -6,7 +6,10 @@ public class Turret : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetButtonDown("Fire1")) 
+		bool shoot = Input.GetButtonDown("Fire1");
+
+		
+		if (shoot) 
 		{
 			WeaponScript weapon = GetComponent<WeaponScript>();
 			if (weapon != null)

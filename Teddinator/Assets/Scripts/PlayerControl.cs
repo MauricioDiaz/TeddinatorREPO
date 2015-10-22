@@ -24,6 +24,10 @@ public class PlayerControl : MonoBehaviour
 	public static float speedLimit = 20;
 	public Vector2 speed;
 	public Vector2 movement;
+	public GameObject bulletLocation;
+	public GameObject bullet;
+	private float shootCooldown;
+	public float shootingRate;
 	public AudioClip sound;
 
 	private GameObject ParticleEffect;
@@ -48,6 +52,7 @@ public class PlayerControl : MonoBehaviour
 	{
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
+
 	
 		//Shield Bool
 		if (shieldToggle == true)
@@ -78,27 +83,52 @@ public class PlayerControl : MonoBehaviour
 
 		if (isMobile == true)
 		{
+			if (shootCooldown > 0) 
+			{
+				shootCooldown -= Time.deltaTime;
+			}
+			if (CanAttack)
+			{
+				shootCooldown = shootingRate;
+				if(Input.GetButton ("Fire1"))
+				{
+					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+				}
+			}
+
+			//On cellphone
 			float inputX = CNcont.GetAxis ("Horizontal");
 			float inputY = CNcont.GetAxis ("Vertical");
 			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
-		
-			ScoreText.text = ("Score: " + points);
-			LivesText.text = ("Health: " + hp);
 
-			StoreScript.Instance.myCoins = points;
+			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 		} 
 		else 
 		{
+
+			if (shootCooldown > 0) 
+			{
+				shootCooldown -= Time.deltaTime;
+			}
+			if (CanAttack)
+			{
+				shootCooldown = shootingRate;
+				if(Input.GetButton ("Fire1"))
+				{
+					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+				}
+			}
 
 			//player movement
 			float inputX = Input.GetAxis ("Horizontal");
 			float inputY = Input.GetAxis ("Vertical");
 			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
 
-			ScoreText.text = ("Score: " + points);
-			LivesText.text = ("Health: " + hp);
+			
+			//points += PointPopUps.instance._point;
+			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 
-			StoreScript.Instance.myCoins = points;
+
 		}
 		
 	}
@@ -110,8 +140,10 @@ public class PlayerControl : MonoBehaviour
 	{
 		// Is this a shot?
 		ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
-		ScoreText.text = ("Score: " + points);
-		LivesText.text = ("Health: " + hp);
+
+		//EnemyHealthScriptCOPY points = collider.gameObject.GetComponent<EnemyHealthScriptCOPY> ();
+		ScoreText.text = ("" + points);
+		LivesText.text = ("" + hp);
 
 		//Shield
 		if (collider.gameObject.tag == "ShieldUpgrade") 
@@ -152,6 +184,14 @@ public class PlayerControl : MonoBehaviour
 
 		}
 
+//		//Enemys
+//		if (collider.gameObject.tag == "Coin") 
+//		{
+//			points += 10;
+//			pointsTracked++;
+//			GetComponent<AudioSource>().PlayOneShot(sound);
+//		}
+
 		//Coins
 		if (collider.gameObject.tag == "Coin") 
 		{
@@ -165,8 +205,8 @@ public class PlayerControl : MonoBehaviour
 			//if enemy shot doesnt equal player
 			if (shot.isEnemyShot != isEnemy  || hp == 0)
 			{
-				ScoreText.text = ("Score: " + points);
-				LivesText.text = ("Health: " + hp);
+				ScoreText.text = ("" + points);
+				LivesText.text = ("" + hp);
 				// Destroy the shot from the enemy
 				Destroy(shot.gameObject);
 
@@ -201,6 +241,14 @@ public class PlayerControl : MonoBehaviour
 		get
 		{
 			return(Application.platform == RuntimePlatform.Android);
+		}
+	}
+
+	public bool CanAttack
+	{
+		get
+		{
+			return shootCooldown <= 0f;
 		}
 	}
 
