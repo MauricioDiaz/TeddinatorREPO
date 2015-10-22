@@ -31,14 +31,14 @@ public class WeaponUpgradeScript : MonoBehaviour {
 		if(Upgrade1 == true)//creates the bullets, starts bullet timer
 		{
 			BulletText.enabled = true;
-			BulletText.text = ("Bullets: " + bulletAmount);
+			BulletText.text = ("Ammo: " + bulletAmount);
 			if(Input.GetButton ("Fire2"))
 			{
 				Rigidbody2D shoot = (Instantiate(bullet, bullet2Location.transform.position, transform.rotation)) as Rigidbody2D;
 				//***************Laser is parented to player so when laser gets hit by enemy bullets, the player gets hurt!!!!
 				//SoundEffectsHelper.Instance.MakeMachineGunSound();
 
-				BulletText.text = ("Bullets: " + bulletAmount);
+				BulletText.text = ("Ammo: " + bulletAmount);
 				bulletAmount--;
 				if(bulletAmount <= 0)
 				{

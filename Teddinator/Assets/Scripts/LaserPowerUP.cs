@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LaserPowerUP : MonoBehaviour {
 
-	public float timer = 1;
+	public float timer = 0;
 	public float blastTimer; 
 	public float blastLength;
 	public Slider mySlider;
@@ -22,10 +22,10 @@ public class LaserPowerUP : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		mySlider.value = timer;
-		timer = timer - blastTimer;
+		timer = timer + blastTimer;
 		blastLength -= Time.deltaTime; 
 
-		if(timer <= 0.0f)
+		if(timer >= 1.0f)
 		{
 			isfalse = true;
 
@@ -40,7 +40,7 @@ public class LaserPowerUP : MonoBehaviour {
 			}
 			if(isFiring == true)
 			{
-				timer = 1;
+				timer = 0;
 				blastLength = 3;
 				Destroy(GameObject.Find("LaserPrefab(Clone)"), 3f);
 				isFiring = false;	
