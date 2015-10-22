@@ -1,14 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyHealthScriptCOPY.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameOverScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\PointPopUps.cs" Line="32" Column="31" />
-      <File FileName="Assets\Scripts\EnemyScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemyHealthScriptCOPY.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerControl.cs" Line="128" Column="6" />
+      <File FileName="Assets\Scripts\PointPopUps.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameOverScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets\Scripts\PointPopUps.cs" line="44" offsetX="469" offsetY="731" expression="_point" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

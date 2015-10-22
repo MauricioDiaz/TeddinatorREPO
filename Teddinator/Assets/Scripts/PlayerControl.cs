@@ -24,6 +24,10 @@ public class PlayerControl : MonoBehaviour
 	public static float speedLimit = 20;
 	public Vector2 speed;
 	public Vector2 movement;
+	public GameObject bulletLocation;
+	public GameObject bullet;
+	private float shootCooldown;
+	public float shootingRate;
 	public AudioClip sound;
 
 	private GameObject ParticleEffect;
@@ -48,6 +52,7 @@ public class PlayerControl : MonoBehaviour
 	{
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
+
 	
 		//Shield Bool
 		if (shieldToggle == true)
@@ -78,27 +83,52 @@ public class PlayerControl : MonoBehaviour
 
 		if (isMobile == true)
 		{
+			if (shootCooldown > 0) 
+			{
+				shootCooldown -= Time.deltaTime;
+			}
+			if (CanAttack)
+			{
+				shootCooldown = shootingRate;
+				if(Input.GetButton ("Fire1"))
+				{
+					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+				}
+			}
+
+			//On cellphone
 			float inputX = CNcont.GetAxis ("Horizontal");
 			float inputY = CNcont.GetAxis ("Vertical");
 			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
-		
-			ScoreText.text = ("" + points);
-			LivesText.text = ("" + hp);
 
-			StoreScript.Instance.myCoins = points;
+			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 		} 
 		else 
 		{
+
+			if (shootCooldown > 0) 
+			{
+				shootCooldown -= Time.deltaTime;
+			}
+			if (CanAttack)
+			{
+				shootCooldown = shootingRate;
+				if(Input.GetButton ("Fire1"))
+				{
+					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+				}
+			}
 
 			//player movement
 			float inputX = Input.GetAxis ("Horizontal");
 			float inputY = Input.GetAxis ("Vertical");
 			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
 
-			ScoreText.text = ("" + points);
-			LivesText.text = ("" + hp);
+			
+			//points += PointPopUps.instance._point;
+			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 
-			StoreScript.Instance.myCoins = points;
+
 		}
 		
 	}
@@ -212,6 +242,14 @@ public class PlayerControl : MonoBehaviour
 		get
 		{
 			return(Application.platform == RuntimePlatform.Android);
+		}
+	}
+
+	public bool CanAttack
+	{
+		get
+		{
+			return shootCooldown <= 0f;
 		}
 	}
 

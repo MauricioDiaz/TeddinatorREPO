@@ -4,11 +4,15 @@ using UnityEngine.UI;
 
 public class PointPopUps : MonoBehaviour {
 
+	public static PointPopUps instance;
+
 	public Text coinScore;
 	public Canvas PopUpCanvas;
+	public int _point;
 
 	void Awake()
 	{
+		instance = this;
 		coinScore = GameObject.Find ("PointPopUp").GetComponent<Text>();
 		PopUpCanvas = GameObject.Find ("PopUpCanvas").GetComponent<Canvas>();
 	}
@@ -35,15 +39,19 @@ public class PointPopUps : MonoBehaviour {
 			popUp.text = ("10");
 			popUp.color = new Color( Random.value,Random.value,Random.value);
 			Destroy(popUp,.3f);
+
+			_point = 10;
+			PlayerControl.instance.points += 10;
+			PlayerControl.instance.ScoreText.text = ("" + PlayerControl.instance.points);
 		}
-		if(col.gameObject.tag == "")
-		{
-			
-		}
-		if(col.gameObject.tag == "")
-		{
-			
-		}
+//		if(col.gameObject.tag == "")
+//		{
+//			
+//		}
+//		if(col.gameObject.tag == "")
+//		{
+//			
+//		}
 
 
 	}

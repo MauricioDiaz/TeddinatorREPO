@@ -87,6 +87,7 @@
      <Compile Include="Assets\Scripts\SpecialEffectsHelper.cs" />
      <Compile Include="Assets\Scripts\StoreManager.cs" />
      <Compile Include="Assets\Scripts\StoreScript.cs" />
+     <Compile Include="Assets\Scripts\TextColorFlash.cs" />
      <Compile Include="Assets\Scripts\TranslateLeftScript.cs" />
      <Compile Include="Assets\Scripts\TranslateRightScript.cs" />
      <Compile Include="Assets\Scripts\TranslateUpScript.cs" />
