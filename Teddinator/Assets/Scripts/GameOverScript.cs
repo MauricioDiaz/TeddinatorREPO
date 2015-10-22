@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 /// <summary>
@@ -6,17 +7,22 @@ using UnityEngine.UI;
 /// </summary>
 public class GameOverScript : MonoBehaviour
 {
+
+	public GameObject GOPanel;
+
 	public Button retry;
 	public Button goToStore;
 
-	public GameObject rbutton;
-	public GameObject gbutton;
-
 	void OnEnable()
 	{
-		rbutton.SetActive (true);
-		gbutton.SetActive (true);
+		StartCoroutine ("PanelON", .5);
+	}
 
+	IEnumerator PanelON(float time)
+	{
+		yield return new WaitForSeconds (time);
+		GOPanel.SetActive (true);
+		
 		retry = GameObject.Find ("Retry").GetComponent<Button>();
 		goToStore = GameObject.Find ("GoToStore").GetComponent<Button> ();
 	}
@@ -32,4 +38,5 @@ public class GameOverScript : MonoBehaviour
 		Application.LoadLevel ("Store");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
 	}
+
 }
