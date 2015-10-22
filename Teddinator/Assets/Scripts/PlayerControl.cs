@@ -155,6 +155,14 @@ public class PlayerControl : MonoBehaviour
 
 		}
 
+//		//Enemys
+//		if (collider.gameObject.tag == "Coin") 
+//		{
+//			points += 10;
+//			pointsTracked++;
+//			GetComponent<AudioSource>().PlayOneShot(sound);
+//		}
+
 		//Coins
 		if (collider.gameObject.tag == "Coin") 
 		{

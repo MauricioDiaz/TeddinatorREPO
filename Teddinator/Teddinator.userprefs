@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LaserCollision.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerControl.cs" Line="109" Column="23" />
-      <File FileName="Assets\Scripts\LaserPowerUP.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LaserCollision.cs" Line="6" Column="34" />
+      <File FileName="Assets\Scripts\PointPopUps.cs" Line="32" Column="31" />
+      <File FileName="Assets\Scripts\PlayerControl.cs" Line="158" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

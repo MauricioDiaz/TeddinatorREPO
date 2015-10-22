@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\PlayerScoreList.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\PointPopUps.cs" />
      <Compile Include="Assets\Scripts\RendererExtensions.cs.cs" />
      <Compile Include="Assets\Scripts\ScoreBoardManager.cs" />
      <Compile Include="Assets\Scripts\ScoreCount.cs" />
