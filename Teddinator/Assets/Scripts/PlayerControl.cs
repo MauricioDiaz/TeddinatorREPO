@@ -18,8 +18,11 @@ public class PlayerControl : MonoBehaviour
 	public int hp;
 	public int points;
 	public static int pointsTracked;
+	public int gameOverPoint;
 	public Text ScoreText;
 	public Text LivesText;
+	public Text currentScore;
+
 
 	public static float speedLimit = 20;
 	public Vector2 speed;
@@ -39,13 +42,16 @@ public class PlayerControl : MonoBehaviour
 
 	void Start(){
 		shieldToggle = false;
-		points = 0;
+		//points = 0;
 		hp += StoreScript.Instance._hp;
 		speedLimit += StoreScript.Instance._speed;
 		shieldTimer += StoreScript.Instance._shieldTimer;
 		speed = new Vector2 (speedLimit, speedLimit);
 		GetComponent<AudioSource>().clip = sound;
 		shieldTimerReset = shieldTimer;
+		gameOverPoint = 0;
+
+
 	}
 
 	void Update()
@@ -53,7 +59,9 @@ public class PlayerControl : MonoBehaviour
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
 
-	
+		Debug.Log ("POINTS: " + points);
+		Debug.Log ("POINTSTRACKED: " + pointsTracked);
+
 		//Shield Bool
 		if (shieldToggle == true)
 		{
@@ -102,6 +110,7 @@ public class PlayerControl : MonoBehaviour
 			movement = new Vector2 (speed.x * inputX, speed.y * inputY);
 
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
+
 		} 
 		else 
 		{
@@ -127,10 +136,10 @@ public class PlayerControl : MonoBehaviour
 			
 			//points += PointPopUps.instance._point;
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
-
+			//StoreScript.Instance.myCoins = pointsTracked;//tracks coins throughout game
 
 		}
-		
+
 	}
 
 
@@ -184,7 +193,7 @@ public class PlayerControl : MonoBehaviour
 
 		}
 
-//		//Enemys
+//		//Enemys *Try placing this code in shield
 //		if (collider.gameObject.tag == "Coin") 
 //		{
 //			points += 10;
@@ -195,9 +204,11 @@ public class PlayerControl : MonoBehaviour
 		//Coins
 		if (collider.gameObject.tag == "Coin") 
 		{
+
 			points++;
 			pointsTracked++;
 			GetComponent<AudioSource>().PlayOneShot(sound);
+
 		}
 
 		if (shot != null)
@@ -232,8 +243,12 @@ public class PlayerControl : MonoBehaviour
 
 	void OnDead()
 	{
-		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
 		points = pointsTracked;
+		//pointsTracked += gameOverPoint;
+
+		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
+
+
 	}
 	
 	public bool isMobile//bool to set controls for mobile
