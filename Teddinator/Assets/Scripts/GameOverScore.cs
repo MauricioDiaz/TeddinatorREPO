@@ -24,6 +24,8 @@ public class GameOverScore : MonoBehaviour {
 		scoreBool = true;
 		coinsBool = true;
 		SoundEffectsHelper.Instance.MakeErrorSound ();
+		StartCoroutine ("AddScore");
+		StartCoroutine ("AddCoins");
 
 	}
 
@@ -33,8 +35,7 @@ public class GameOverScore : MonoBehaviour {
 
 		if(scoreBool == true || coinsBool == true)
 		{
-			StartCoroutine ("AddScore", .001f);
-			StartCoroutine ("AddCoins", .001f);
+//			StartCoroutine ("AddCoins", .001f);
 			currentScore.text = ("+" + score);
 			coinScore.text = ("" + coins);
 		}
@@ -44,13 +45,12 @@ public class GameOverScore : MonoBehaviour {
 			currentScore.text = ("+" + score);
 			scoreBool = false;
 			StopCoroutine("AddScore");
-
 		}
 
 
 		if(coins >= PlayerControl.instance.points)//coins collected
 		{
-			coinScore.text = ("stop" + coins);
+			coinScore.text = ("" + coins);
 			coinsBool = false;
 			StopCoroutine("AddCoins");
 		}
@@ -60,12 +60,17 @@ public class GameOverScore : MonoBehaviour {
 	{
 		SoundEffectsHelper.Instance.MakeScoreSound();
 		score++;
-		yield break;
+		Debug.Log ("AddScore");
+		yield return new WaitForSeconds (.001f);
+		StartCoroutine ("AddScore");
 	}
 	IEnumerator AddCoins()
 	{
 		SoundEffectsHelper.Instance.MakeScoreSound();
 		coins++;
-		yield break;
+		Debug.Log ("AddCoins");
+		yield return new WaitForSeconds (.001f);
+		StartCoroutine ("AddCoins");
 	}
+
 }
