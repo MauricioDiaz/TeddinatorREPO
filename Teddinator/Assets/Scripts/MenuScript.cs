@@ -10,23 +10,25 @@ public class MenuScript : MonoBehaviour
 
 	void Start()
 	{
-	
 		SoundEffectsHelper.Instance.MakeMenuSongSound ();
 	}
 
-	public void ButtonPressed()
+	public void Play()
 	{
-		if(gameObject.name == "Play")
-		{
 		Application.LoadLevel ("Level1");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
-		}
-		else if(gameObject.name == "HighScores")
-		{
-			Application.LoadLevel ("ScoreBoard");
-			SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
-		}
+	}
 
+	public void Store()
+	{
+		Application.LoadLevel ("Store");
+		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+	}
+
+	public void ExitGame()
+	{
+		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+		Application.Quit();
 	}
 
 

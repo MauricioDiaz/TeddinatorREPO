@@ -15,7 +15,7 @@ public class GameOverScript : MonoBehaviour
 
 	void OnEnable()
 	{
-		StartCoroutine ("PanelON",.5);
+		StartCoroutine ("PanelON",.5f);
 	}
 
 	IEnumerator PanelON(float time)

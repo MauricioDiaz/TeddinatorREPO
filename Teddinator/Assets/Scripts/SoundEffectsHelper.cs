@@ -24,6 +24,8 @@ public class SoundEffectsHelper : MonoBehaviour
 	public AudioClip HealthPackSound;
 	public AudioClip StoreButtonSound;
 	public AudioClip LaserBlastSound;
+	public AudioClip ErrorSound;
+	public AudioClip ScoreSound;
 	
 	void Awake()
 	{
@@ -84,6 +86,16 @@ public class SoundEffectsHelper : MonoBehaviour
 	public void MakeLaserBlastSound()
 	{
 		MakeSound (LaserBlastSound);
+		
+	}
+	public void MakeErrorSound()
+	{
+		MakeSound (ErrorSound);
+		
+	}
+	public void MakeScoreSound()
+	{
+		MakeSound (ScoreSound);
 		
 	}
 	

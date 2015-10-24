@@ -8,7 +8,7 @@ public class PointPopUps : MonoBehaviour {
 
 	public Text coinScore;
 	public Canvas PopUpCanvas;
-	public int _point;
+	public int _point = 10;
 
 	void Awake()
 	{
@@ -19,19 +19,14 @@ public class PointPopUps : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D col)
 	{
-//		if(col.gameObject.tag == "Coin")
-//		{
-//			Text popUp;
-//			Vector3 pos = new Vector3(-2f, 1f, 0f);
-//			popUp = Instantiate(coinScore, col.transform.position + pos, Quaternion.identity)as Text;
-//			popUp.transform.parent = PopUpCanvas.transform;
-//			popUp.text = ("1");
-//			popUp.color = new Color( Random.value,Random.value,Random.value);
-//			Destroy(popUp,.3f);
-//		}
 
 		if(col.gameObject.tag == "Enemy")
 		{
+			//Displays and updates my score points when i shoot an enemy
+			PlayerControl.instance.points += _point;//adds 10
+			PlayerControl.instance.gameOverPoint += _point;//adds 10
+			PlayerControl.instance.ScoreText.text = ("" + PlayerControl.instance.points);
+
 			Text popUp;
 			Vector3 pos = new Vector3(0f, 1f, 0f);
 			popUp = Instantiate(coinScore, col.transform.position + pos, Quaternion.identity)as Text;
@@ -40,19 +35,7 @@ public class PointPopUps : MonoBehaviour {
 			popUp.color = new Color( Random.value,Random.value,Random.value);
 			Destroy(popUp,.3f);
 
-			_point = 10;
-			PlayerControl.instance.points += 10;
-			PlayerControl.instance.ScoreText.text = ("" + PlayerControl.instance.points);
+
 		}
-//		if(col.gameObject.tag == "")
-//		{
-//			
-//		}
-//		if(col.gameObject.tag == "")
-//		{
-//			
-//		}
-
-
 	}
 }
