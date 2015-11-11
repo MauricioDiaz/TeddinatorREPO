@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
 public class StoreScript : MBSingleton<StoreScript> {
 	public Text Coins;
@@ -38,6 +39,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 	{
 		Debug.Log("Play");
 		SoundEffectsHelper.Instance.MakeStoreButtonSound();
+		//Plays the add in inspector
 		Application.LoadLevel("Level1");
 	}
 

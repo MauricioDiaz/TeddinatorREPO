@@ -52,6 +52,7 @@
      <Compile Include="Assets\CNControls\Scripts\CNThrowableTouchpad.cs" />
      <Compile Include="Assets\CNControls\Scripts\CNTouchpad.cs" />
      <Compile Include="Assets\CreateIteamScript.cs" />
+     <Compile Include="Assets\Scripts\Ads.cs" />
      <Compile Include="Assets\Scripts\ButtonScript.cs" />
      <Compile Include="Assets\Scripts\CoinScripts.cs" />
      <Compile Include="Assets\Scripts\CreateCoinScript.cs" />
