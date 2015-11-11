@@ -38,6 +38,8 @@ public class StoreScript : MBSingleton<StoreScript> {
 	{
 		Debug.Log("Play");
 		SoundEffectsHelper.Instance.MakeStoreButtonSound();
+		//Plays the add
+		Ads.instance.PlayAd ();
 		Application.LoadLevel("Level1");
 	}
 
