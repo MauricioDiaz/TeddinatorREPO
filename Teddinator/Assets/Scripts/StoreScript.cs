@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
+[System.Serializable]
 public class StoreScript : MBSingleton<StoreScript> {
 	public Text Coins;
 	public int myCoins;

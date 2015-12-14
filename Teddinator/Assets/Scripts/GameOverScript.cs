@@ -16,6 +16,10 @@ public class GameOverScript : MonoBehaviour
 	void OnEnable()
 	{
 		StartCoroutine ("PanelON",.5f);
+
+		//SAVE
+		StoreNewPlayerInfo ();
+		SaveInformation.SaveAllInfo ();
 	}
 
 	IEnumerator PanelON(float time)
@@ -31,12 +35,31 @@ public class GameOverScript : MonoBehaviour
 	{
 		Application.LoadLevel("Level1");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+
+		//LOAD
+		LoadInformation.LoadAllInfo ();
+		Debug.Log ("Name " + GameInformation.PlayerName);
+		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+		Debug.Log ("Lives " + GameInformation.PlayerLives);
 	}
 
 	public void GoToStore()//called in inspector
 	{
 		Application.LoadLevel ("Store");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+
+		//LOAD
+		LoadInformation.LoadAllInfo ();
+		Debug.Log ("Name " + GameInformation.PlayerName);
+		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+		Debug.Log ("Lives " + GameInformation.PlayerLives);
+	}
+
+	private void StoreNewPlayerInfo()
+	{
+		GameInformation.PlayerName = "Mauricio";
+		GameInformation.PlayerCoins = PlayerControl.instance.points;
+		GameInformation.PlayerLives = PlayerControl.instance.hp;
 	}
 
 }
