@@ -61,7 +61,12 @@ public class StoreScript : MBSingleton<StoreScript> {
 			
 			SpeedLimit += 2.5f;
 			myCoins -= 100;
+			GameInformation.PlayerCoins -= 100;
 			Coins.text = ("" + myCoins);
+
+			//Save
+			SaveInformation.SaveAllInfo ();
+			Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
 		}
 		else if(myCoins <= 100)
 		{
@@ -78,7 +83,12 @@ public class StoreScript : MBSingleton<StoreScript> {
 			
 			ShieldTimer += 2.5f;
 			myCoins -= 50;
+			GameInformation.PlayerCoins -= 50;
 			Coins.text = ("" + myCoins);
+
+			//Save
+			SaveInformation.SaveAllInfo ();
+			Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
 		}
 		else if(myCoins <= 50)
 		{
@@ -92,8 +102,13 @@ public class StoreScript : MBSingleton<StoreScript> {
 		if(myCoins >= 100)
 		{	
 			UpgradedHp++;
-			myCoins   -= 100;
+			myCoins -= 100;
+			GameInformation.PlayerCoins -= 100;
 			Coins.text = ("" + myCoins);
+
+			//Save
+			SaveInformation.SaveAllInfo ();
+			Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
 		}
 	}
 
@@ -104,7 +119,12 @@ public class StoreScript : MBSingleton<StoreScript> {
 		{
 			MachineAmmo += 25;
 			myCoins -= 200;
+			GameInformation.PlayerCoins -= 200;
 			Coins.text = ("" + myCoins);
+
+			//Save
+			SaveInformation.SaveAllInfo ();
+			Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
 		}
 	}
 
