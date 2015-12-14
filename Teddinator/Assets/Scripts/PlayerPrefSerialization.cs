@@ -8,11 +8,11 @@ public class PlayerPrefSerialization{
 
 	public static BinaryFormatter binaryForm = new BinaryFormatter();
 
-	public static void Save(string saveTag, object obj)
+	public static void Save(string saveTag, object player)
 	{
 
 		MemoryStream memoryStream = new MemoryStream ();
-		binaryForm.Serialize (memoryStream, obj);
+		binaryForm.Serialize (memoryStream, player);
 		string temp = System.Convert.ToBase64String (memoryStream.ToArray ());
 
 		PlayerPrefs.SetString (saveTag, temp);

@@ -18,7 +18,7 @@ public class GameInformation : MonoBehaviour {
 		LoadInformation.LoadAllInfo ();
 		Debug.Log ("Name " + GameInformation.PlayerName);
 		Debug.Log ("Coins " + GameInformation.PlayerCoins);
-		Debug.Log ("Lives " + GameInformation.PlayerLives);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
 	}
 
 	void OnApplicationQuit()

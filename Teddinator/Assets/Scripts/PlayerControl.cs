@@ -50,6 +50,7 @@ public class PlayerControl : MonoBehaviour
 		GetComponent<AudioSource>().clip = sound;
 		shieldTimerReset = shieldTimer;
 		gameOverPoint = 0;
+		pointsTracked = 0;
 
 
 	}

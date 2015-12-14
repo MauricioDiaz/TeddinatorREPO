@@ -14,7 +14,7 @@ public class MenuScript : MonoBehaviour
 		LoadInformation.LoadAllInfo ();
 		Debug.Log ("Name " + GameInformation.PlayerName);
 		Debug.Log ("Coins " + GameInformation.PlayerCoins);
-		Debug.Log ("Lives " + GameInformation.PlayerLives);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
 
 		Application.LoadLevel ("Level1");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
@@ -27,7 +27,7 @@ public class MenuScript : MonoBehaviour
 		LoadInformation.LoadAllInfo ();
 		Debug.Log ("Name " + GameInformation.PlayerName);
 		Debug.Log ("Coins " + GameInformation.PlayerCoins);
-		Debug.Log ("Lives " + GameInformation.PlayerLives);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
 
 		Application.LoadLevel ("Store");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
