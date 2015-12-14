@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
+[System.Serializable]
 public class StoreScript : MBSingleton<StoreScript> {
 	public Text Coins;
 	public int myCoins;
@@ -21,7 +22,14 @@ public class StoreScript : MBSingleton<StoreScript> {
 
 	void Awake()
 	{
-		myCoins += PlayerControl.instance.points;
+		//LOAD
+		LoadInformation.LoadAllInfo ();
+		Debug.Log ("Name " + GameInformation.PlayerName);
+		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
+
+		//myCoins += PlayerControl.instance.points;
+		myCoins += GameInformation.PlayerCoins;
 		_hp = UpgradedHp;
 		_speed = SpeedLimit;
 		_shieldTimer = ShieldTimer;

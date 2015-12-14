@@ -13,9 +13,22 @@ public class GameOverScript : MonoBehaviour
 	public Button retry;
 	public Button goToStore;
 
+
+	//SAVED METHOD
+	private void StoreNewPlayerInfo()
+	{
+		GameInformation.PlayerName = "Mauricio";
+		GameInformation.PlayerCoins = PlayerControl.instance.points + GameInformation.PlayerCoins;
+		//GameInformation.PlayerLives = PlayerControl.instance.hp + GameInformation.PlayerLives;
+	}
+
 	void OnEnable()
 	{
 		StartCoroutine ("PanelON",.5f);
+
+		//SAVE
+		StoreNewPlayerInfo ();
+		SaveInformation.SaveAllInfo ();
 	}
 
 	IEnumerator PanelON(float time)
@@ -31,12 +44,24 @@ public class GameOverScript : MonoBehaviour
 	{
 		Application.LoadLevel("Level1");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+
+		//LOAD
+		LoadInformation.LoadAllInfo ();
+		Debug.Log ("Name " + GameInformation.PlayerName);
+		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
 	}
 
 	public void GoToStore()//called in inspector
 	{
 		Application.LoadLevel ("Store");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+
+		//LOAD
+		LoadInformation.LoadAllInfo ();
+		Debug.Log ("Name " + GameInformation.PlayerName);
+		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
 	}
 
 }

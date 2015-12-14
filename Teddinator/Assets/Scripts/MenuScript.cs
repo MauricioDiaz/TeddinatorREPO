@@ -7,20 +7,28 @@ using UnityEngine.UI;
 /// </summary>
 public class MenuScript : MonoBehaviour
 {
-
-	void Start()
-	{
-		SoundEffectsHelper.Instance.MakeMenuSongSound ();
-	}
-
 	public void Play()
 	{
+
+		//LOAD
+		LoadInformation.LoadAllInfo ();
+		Debug.Log ("Name " + GameInformation.PlayerName);
+		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
+
 		Application.LoadLevel ("Level1");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
 	}
 
 	public void Store()
 	{
+
+		//LOAD
+		LoadInformation.LoadAllInfo ();
+		Debug.Log ("Name " + GameInformation.PlayerName);
+		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
+
 		Application.LoadLevel ("Store");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
 	}
