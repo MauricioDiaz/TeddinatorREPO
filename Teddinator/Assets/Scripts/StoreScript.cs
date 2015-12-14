@@ -31,7 +31,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 
 	void Start()
 	{
-		Coins.text = ("COINS " + myCoins);
+		Coins.text = ("" + myCoins);
 	}
 
 
@@ -53,7 +53,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 			
 			SpeedLimit += 2.5f;
 			myCoins -= 100;
-			Coins.text = ("COINS " + myCoins);
+			Coins.text = ("" + myCoins);
 		}
 		else if(myCoins <= 100)
 		{
@@ -70,7 +70,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 			
 			ShieldTimer += 2.5f;
 			myCoins -= 50;
-			Coins.text = ("COINS " + myCoins);
+			Coins.text = ("" + myCoins);
 		}
 		else if(myCoins <= 50)
 		{
@@ -85,7 +85,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 		{	
 			UpgradedHp++;
 			myCoins   -= 100;
-			Coins.text = ("COINS " + myCoins);
+			Coins.text = ("" + myCoins);
 		}
 	}
 
@@ -96,13 +96,13 @@ public class StoreScript : MBSingleton<StoreScript> {
 		{
 			MachineAmmo += 25;
 			myCoins -= 200;
-			Coins.text = ("COINS " + myCoins);
+			Coins.text = ("" + myCoins);
 		}
 	}
 
 	public void DebugFunc()
 	{
 		myCoins += 100;
-		Coins.text = ("COINS " + myCoins);
+		Coins.text = ("" + myCoins);
 	}
 }
