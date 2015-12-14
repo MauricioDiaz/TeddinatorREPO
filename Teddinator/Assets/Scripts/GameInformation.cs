@@ -7,8 +7,6 @@ public class GameInformation : MonoBehaviour {
 	public static int PlayerCoins{ get; set; }
 	public static int PlayerLives{ get; set; }
 
-	public bool pause;
-
 	// Use this for initialization
 	void Awake () 
 	{
