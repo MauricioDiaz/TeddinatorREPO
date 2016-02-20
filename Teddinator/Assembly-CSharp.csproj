@@ -96,6 +96,7 @@
      <Compile Include="Assets\Scripts\TextColorFlash.cs" />
      <Compile Include="Assets\Scripts\TranslateLeftScript.cs" />
      <Compile Include="Assets\Scripts\TranslateRightScript.cs" />
+     <Compile Include="Assets\Scripts\TranslateUpDown.cs" />
      <Compile Include="Assets\Scripts\TranslateUpScript.cs" />
      <Compile Include="Assets\Scripts\Turret.cs" />
      <Compile Include="Assets\Scripts\WeaponScript.cs" />
