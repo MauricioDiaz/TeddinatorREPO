@@ -10,4 +10,17 @@ public class TutorialScript : MonoBehaviour {
 		//calls mecanim transition to close panel
 		panelClosingAnim.SetBool("ClosePanel",true);
 	}
+
+	public void Quit()
+	{
+		panelClosingAnim.SetBool("ClosePanel",true);
+
+		StartCoroutine ("LoadLevel", 3);
+	}
+
+	IEnumerator LoadLevel(float second)
+	{
+		yield return new WaitForSeconds (second);
+		Application.LoadLevel ("Start");
+	}
 }
