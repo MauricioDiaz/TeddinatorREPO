@@ -7,6 +7,7 @@ public class TutorialScript : MonoBehaviour {
 
 	public void CloseTutorialPanel()
 	{
-		//panelClosingAnim.Play ();
+		//calls mecanim transition to close panel
+		panelClosingAnim.SetBool("ClosePanel",true);
 	}
 }
