@@ -39,5 +39,17 @@ public class MenuScript : MonoBehaviour
 		Application.Quit();
 	}
 
+	public void Tutorial()
+	{
+		//LOAD
+		LoadInformation.LoadAllInfo ();
+		Debug.Log ("Name " + GameInformation.PlayerName);
+		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+		//Debug.Log ("Lives " + GameInformation.PlayerLives);
+		
+		Application.LoadLevel ("Tutorial");
+		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+	}
+
 
 }
