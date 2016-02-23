@@ -8,7 +8,8 @@ public class TutorialScript : MonoBehaviour {
 	public Animator teddyAnim;
 	public GameObject part1Panel;
 	public GameObject joyStick;
-
+	public GameObject part2Button;
+	public GameObject part3Button;
 
 
 	public void CloseTutorialPanel()
@@ -25,6 +26,20 @@ public class TutorialScript : MonoBehaviour {
 		StartCoroutine ("LoadLevel", 3);
 	}
 
+	public void Part2 ()
+	{
+		part1Panel.SetActive (false);
+		joyStick.SetActive (false);
+		part2Button.SetActive (false);
+		part3Button.SetActive (true);
+
+	}
+
+	public void Part3 ()
+	{
+		part3Button.SetActive (false);
+	}
+
 	IEnumerator LoadLevel(float second)
 	{
 		yield return new WaitForSeconds (second);
@@ -39,6 +54,7 @@ public class TutorialScript : MonoBehaviour {
 		yield return new WaitForSeconds (second);
 		part1Panel.SetActive (true);
 		joyStick.SetActive (true);
+		part2Button.SetActive (true);
 
 		//turns off PlayerControl script to prevent shooting
 		GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerControl> ().enabled = true;
