@@ -10,6 +10,7 @@ public class TutorialScript : MonoBehaviour {
 	public GameObject joyStick;
 	public GameObject part2Button;
 	public GameObject part3Button;
+	public GameObject hummingBird;
 
 
 	public void CloseTutorialPanel()
@@ -32,12 +33,21 @@ public class TutorialScript : MonoBehaviour {
 		joyStick.SetActive (false);
 		part2Button.SetActive (false);
 		part3Button.SetActive (true);
+		hummingBird.SetActive (true);
 
+		//Invoke ("StopHummingbird", 3);//Invoke keeps calling it every 3 seconds, only wanted to call it once.
+		StartCoroutine ("StopHummingbird", 2);
 	}
 
 	public void Part3 ()
 	{
 		part3Button.SetActive (false);
+	}
+
+	IEnumerator StopHummingbird(float second)
+	{
+		yield return new WaitForSeconds (second);
+		hummingBird.GetComponent<TranslateLeftScript> ().enabled = false;
 	}
 
 	IEnumerator LoadLevel(float second)

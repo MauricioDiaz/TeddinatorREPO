@@ -61,10 +61,10 @@ public class EnemyHealthScript : MonoBehaviour
 
 					if (Hp <= 0)
 					{
-						SpecialEffectsHelper.Instance.Explosion(transform.position);
-						SoundEffectsHelper.Instance.MakeExplosionSound();
 						//Destroy the enemy 
 						Destroy(gameObject);
+						SpecialEffectsHelper.Instance.Explosion(transform.position);
+						SoundEffectsHelper.Instance.MakeExplosionSound();
 
 
 					}
@@ -78,7 +78,7 @@ public class EnemyHealthScript : MonoBehaviour
 			if (shot1.isEnemyShot != isEnemy)
 			{
 				Hp -= shot1.damage;
-				
+
 				if (Hp <= 0)
 				{
 					SpecialEffectsHelper.Instance.Explosion(transform.position);
