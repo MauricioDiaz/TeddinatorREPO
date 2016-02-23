@@ -11,6 +11,7 @@ public class TutorialScript : MonoBehaviour {
 	public GameObject part2Button;
 	public GameObject part3Button;
 	public GameObject hummingBird;
+	public SpriteRenderer[] joystickRenders;
 
 
 	public void CloseTutorialPanel()
@@ -29,8 +30,13 @@ public class TutorialScript : MonoBehaviour {
 
 	public void Part2 ()
 	{
+		//Turns off the sprite renders in the joystick
+		foreach(SpriteRenderer sr in joystickRenders)
+		{
+			sr.enabled = false;
+		}
+
 		part1Panel.SetActive (false);
-		joyStick.SetActive (false);
 		part2Button.SetActive (false);
 		part3Button.SetActive (true);
 		hummingBird.SetActive (true);
