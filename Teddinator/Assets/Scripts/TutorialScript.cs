@@ -4,11 +4,13 @@ using System.Collections;
 public class TutorialScript : MonoBehaviour {
 
 	public Animator panelClosingAnim;
+	public Animator TeddyAnim;
 
 	public void CloseTutorialPanel()
 	{
 		//calls mecanim transition to close panel
 		panelClosingAnim.SetBool("ClosePanel",true);
+		StartCoroutine ("TeddyFlyIn", 3);
 	}
 
 	public void Quit()
@@ -22,5 +24,11 @@ public class TutorialScript : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (second);
 		Application.LoadLevel ("Start");
+	}
+
+	IEnumerator TeddyFlyIn(float second)
+	{
+		yield return new WaitForSeconds (second);
+		TeddyAnim.SetBool ("FlyIn", true);
 	}
 }
