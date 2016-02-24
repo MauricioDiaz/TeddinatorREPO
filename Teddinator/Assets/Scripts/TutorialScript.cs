@@ -6,6 +6,7 @@ public class TutorialScript : MonoBehaviour {
 
 	public Animator panelClosingAnim;
 	public Animator teddyAnim;
+	public GameObject teddyPlayer;
 	public GameObject hummingBird;
 	public GameObject joyStick;
 	public GameObject part1Panel;
@@ -15,7 +16,7 @@ public class TutorialScript : MonoBehaviour {
 	public GameObject part3Panel;
 	public GameObject part4Panel;
 	public SpriteRenderer[] joystickRenders;
-
+	public GameObject[] powerUps;
 
 	public void CloseTutorialPanel()
 	{
@@ -56,6 +57,12 @@ public class TutorialScript : MonoBehaviour {
 		part3Panel.SetActive (false);
 		part4Panel.SetActive (true);
 		part4Button.SetActive (true);
+		teddyPlayer.SetActive (false);
+
+		foreach(GameObject powerups in powerUps)
+		{
+			powerups.SetActive(true);
+		}
 	}
 
 	public void Part4()
