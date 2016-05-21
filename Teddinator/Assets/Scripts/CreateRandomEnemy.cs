@@ -23,8 +23,8 @@ public class CreateRandomEnemy : MonoBehaviour {
 			for(int i = 0; i < numEnemies; i++)
 			{
 				Vector3 newPos = new Vector3(Random.Range(xMin, xMax), Random.Range(yMin, yMax), 0);
-				GameObject octo = Instantiate(enemyPrefab, newPos, Quaternion.identity) as GameObject;
-				octo.transform.parent = newParent.transform;
+				GameObject enemy = Instantiate(enemyPrefab, newPos, Quaternion.identity) as GameObject;
+				enemy.transform.parent = newParent.transform;
 				timer = newTimer;
 			}
 
