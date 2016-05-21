@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Ads.cs" />
      <Compile Include="Assets\Scripts\ButtonScript.cs" />
      <Compile Include="Assets\Scripts\CoinScripts.cs" />
+     <Compile Include="Assets\Scripts\CountDownScript.cs" />
      <Compile Include="Assets\Scripts\CreateCoinScript.cs" />
      <Compile Include="Assets\Scripts\CreateHealthSpawn.cs" />
      <Compile Include="Assets\Scripts\CreateRandomEnemy.cs" />
