@@ -8,6 +8,7 @@ public class CountDownScript : MonoBehaviour {
 	public Text two;
 	public Text three;
 	public Text go;
+	public GameObject script;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class CountDownScript : MonoBehaviour {
 		go.enabled = true;
 		yield return new WaitForSeconds (sec);
 		go.enabled = false;
+		script.SetActive (true);
 	
 	}
 }
