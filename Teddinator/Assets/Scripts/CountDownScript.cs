@@ -31,6 +31,6 @@ public class CountDownScript : MonoBehaviour {
 		yield return new WaitForSeconds (sec);
 		go.enabled = false;
 		script.SetActive (true);
-	
+		this.gameObject.SetActive (false);
 	}
 }
