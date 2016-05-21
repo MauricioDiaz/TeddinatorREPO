@@ -13,10 +13,13 @@ public class TutorialScript : MonoBehaviour {
 	public GameObject part2Button;
 	public GameObject part3Button;
 	public GameObject part4Button;
+	public GameObject part5Button;
 	public GameObject part3Panel;
 	public GameObject part4Panel;
+	public GameObject part5Panel;
 	public SpriteRenderer[] joystickRenders;
 	public GameObject[] powerUps;
+	public GameObject laserPowerSliderUI;
 
 	public void CloseTutorialPanel()
 	{
@@ -67,7 +70,18 @@ public class TutorialScript : MonoBehaviour {
 
 	public void Part4()
 	{
+		foreach(GameObject powerups in powerUps)
+		{
+			powerups.SetActive(false);
+		}
+		part4Panel.SetActive (false);
+		part5Panel.SetActive (true);
+		part5Button.SetActive (true);
+	}
 
+	public void Part5()
+	{
+		Application.LoadLevel ("Level1");
 	}
 
 	IEnumerator StopHummingbird(float second)
