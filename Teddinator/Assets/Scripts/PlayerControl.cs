@@ -278,9 +278,10 @@ public class PlayerControl : MonoBehaviour
 					SoundEffectsHelper.Instance.MakeExplosionSound();
 					
 					//Hides the player
+					fireButton.enabled = false;
 					gameObject.SetActive(false);
 					OnDead();
-					fireButton.enabled = false;
+					fireButton.enabled = false;//twice to try to fix the glitch where it keeps shooting after dead.
 				}
 				
 			}
