@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
 	public Text ScoreText;
 	public Text LivesText;
 	public Text currentScore;
+	public Button fireButton;
 	
 	
 	public static float speedLimit = 20;
@@ -279,6 +280,7 @@ public class PlayerControl : MonoBehaviour
 					//Hides the player
 					gameObject.SetActive(false);
 					OnDead();
+					fireButton.enabled = false;
 				}
 				
 			}
