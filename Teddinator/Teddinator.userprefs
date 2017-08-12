@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TutorialScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CNControls\Scripts\CNJoystick.cs">
     <Files>
-      <File FileName="Assets\Scripts\TutorialScript.cs" Line="84" Column="33" />
-      <File FileName="Assets\Scripts\PlayerControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerControl.cs" Line="185" Column="1" />
+      <File FileName="Assets\CNControls\Scripts\CNJoystick.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StoreScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

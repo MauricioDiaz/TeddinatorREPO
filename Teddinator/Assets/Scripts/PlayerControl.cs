@@ -32,8 +32,11 @@ public class PlayerControl : MonoBehaviour
 	public Vector2 movement;
 	public GameObject bulletLocation;
 	public GameObject bullet;
-	private float shootCooldown;
-	public float shootingRate;
+	//private float shootCooldown;
+	//public float shootingRate;
+
+	public bool isShot;
+
 	public AudioClip sound;
 	
 	private GameObject ParticleEffect;
@@ -54,8 +57,7 @@ public class PlayerControl : MonoBehaviour
 		shieldTimerReset = shieldTimer;
 		gameOverPoint = 0;
 		pointsTracked = 0;
-		
-		
+		isShot = true;
 	}
 	
 	void Update()
@@ -112,18 +114,44 @@ public class PlayerControl : MonoBehaviour
 		
 		if (isMobile == true)
 		{
-			if (shootCooldown > 0) 
+//			if (shootCooldown > 0) 
+//			{
+//				shootCooldown -= Time.deltaTime;
+//			}
+
+			if(isShot == true)
 			{
-				shootCooldown -= Time.deltaTime;
-			}
-			if (CanAttack)
-			{
-				shootCooldown = shootingRate;
-				if(Input.GetButton ("Fire1"))
+				
+				if(Input.GetButtonDown ("Fire1"))//GetButton is the original 8/11/2017
 				{
+					
 					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+					isShot = false;
+					if(isShot == false)
+					{
+						isShot = true;
+						Debug.Log("UP");
+					}
 				}
+				
 			}
+
+//			if (CanAttack)
+//			{
+//				//shootCooldown = shootingRate;
+//				if(Input.GetButtonDown ("Fire1"))//GetButton is the original 8/11/2017
+//				{
+//					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+//
+//				}
+////				else if (Input.GetButtonUp ("Fire1")) 
+////				{
+////					Debug.Log("UP");
+////					shootingRate = 0;
+////
+////				}
+//
+//			}
 			
 			//On cellphone
 			float inputX = CNcont.GetAxis ("Horizontal");
@@ -133,21 +161,43 @@ public class PlayerControl : MonoBehaviour
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 			
 		} 
-		else 
+		else//On the computer 
 		{
 			
-			if (shootCooldown > 0) 
+//			if (shootCooldown > 0) 
+//			{
+//				shootCooldown -= Time.deltaTime;
+//			}
+
+
+
+			if(isShot == true)
 			{
-				shootCooldown -= Time.deltaTime;
-			}
-			if (CanAttack)
-			{
-				shootCooldown = shootingRate;
-				if(Input.GetButton ("Fire1"))
+				
+				if(Input.GetButtonDown ("Fire1"))//GetButton is the original 8/11/2017
 				{
+					
 					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+					isShot = false;
+					if(isShot == false)
+					{
+						isShot = true;
+						Debug.Log("UP");
+					}
 				}
+
 			}
+
+
+//			if (CanAttack)
+//			{
+//				//shootCooldown = shootingRate;
+//				if(Input.GetButton ("Fire1"))
+//				{
+//					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+//
+//				}
+//			}
 			
 			//player movement
 			float inputX = Input.GetAxis ("Horizontal");
@@ -280,12 +330,12 @@ public class PlayerControl : MonoBehaviour
 		}
 	}
 	
-	public bool CanAttack
-	{
-		get
-		{
-			return shootCooldown <= 0f;
-		}
-	}
+//	public bool CanAttack
+//	{
+//		get
+//		{
+//			return shootCooldown <= 0f;
+//		}
+//	}
 	
 }
