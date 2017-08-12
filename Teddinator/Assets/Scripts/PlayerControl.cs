@@ -67,7 +67,7 @@ public class PlayerControl : MonoBehaviour
 		
 		Debug.Log ("POINTS: " + points);
 		Debug.Log ("POINTSTRACKED: " + pointsTracked);
-		
+
 		//Shield Bool
 		if (shieldToggle == true)
 		{
@@ -112,29 +112,14 @@ public class PlayerControl : MonoBehaviour
 			OnDead ();
 		}
 		
-		if (isMobile == true)
+		if (isMobile == true)///On cellphone ***************
 		{
 //			if (shootCooldown > 0) 
 //			{
 //				shootCooldown -= Time.deltaTime;
 //			}
 
-			if(isShot == true)
-			{
-				
-				if(Input.GetButtonDown ("Fire1"))//GetButton is the original 8/11/2017
-				{
-					
-					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-					isShot = false;
-					if(isShot == false)
-					{
-						isShot = true;
-						Debug.Log("UP");
-					}
-				}
-				
-			}
+
 
 //			if (CanAttack)
 //			{
@@ -161,7 +146,7 @@ public class PlayerControl : MonoBehaviour
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 			
 		} 
-		else//On the computer 
+		else//On the computer ***********
 		{
 			
 //			if (shootCooldown > 0) 
@@ -170,23 +155,6 @@ public class PlayerControl : MonoBehaviour
 //			}
 
 
-
-			if(isShot == true)
-			{
-				
-				if(Input.GetButtonDown ("Fire1"))//GetButton is the original 8/11/2017
-				{
-					
-					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-					isShot = false;
-					if(isShot == false)
-					{
-						isShot = true;
-						Debug.Log("UP");
-					}
-				}
-
-			}
 
 
 //			if (CanAttack)
@@ -212,7 +180,12 @@ public class PlayerControl : MonoBehaviour
 		}
 		
 	}
-	
+
+	public void Shoot()
+	{
+		Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+	}
+
 	
 	
 	

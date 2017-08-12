@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\DoubleShotScript.cs" />
      <Compile Include="Assets\Scripts\EnemyHealthScript.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
+     <Compile Include="Assets\Scripts\FireButtonScript.cs" />
      <Compile Include="Assets\Scripts\GameInformation.cs" />
      <Compile Include="Assets\Scripts\GameOverScore.cs" />
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
