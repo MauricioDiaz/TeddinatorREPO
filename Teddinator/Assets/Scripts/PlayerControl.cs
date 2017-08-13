@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
 	public Text ScoreText;
 	public Text LivesText;
 	public Text currentScore;
+	public Button fireButton;
 	
 	
 	public static float speedLimit = 20;
@@ -277,8 +278,10 @@ public class PlayerControl : MonoBehaviour
 					SoundEffectsHelper.Instance.MakeExplosionSound();
 					
 					//Hides the player
+					fireButton.enabled = false;
 					gameObject.SetActive(false);
 					OnDead();
+					fireButton.enabled = false;//twice to try to fix the glitch where it keeps shooting after dead.
 				}
 				
 			}
