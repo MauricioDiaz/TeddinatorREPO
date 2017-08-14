@@ -7,6 +7,8 @@ Project("{61B9DEC8-9A26-41BE-51D2-47EE4CE3D290}") = "Teddinator", "Assembly-CSha
 EndProject
 Project("{61B9DEC8-9A26-41BE-51D2-47EE4CE3D290}") = "Teddinator", "Assembly-CSharp-Editor.csproj", "{56C7DA2F-45EA-BC0E-00FF-0A0BE791B173}"
 EndProject
+Project("{61B9DEC8-9A26-41BE-51D2-47EE4CE3D290}") = "Teddinator", "Assembly-UnityScript.unityproj", "{0696E24D-CE6C-3B93-E309-26F564BCE465}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,11 +27,15 @@ Global
 		{56C7DA2F-45EA-BC0E-00FF-0A0BE791B173}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C7DA2F-45EA-BC0E-00FF-0A0BE791B173}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C7DA2F-45EA-BC0E-00FF-0A0BE791B173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0696E24D-CE6C-3B93-E309-26F564BCE465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0696E24D-CE6C-3B93-E309-26F564BCE465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0696E24D-CE6C-3B93-E309-26F564BCE465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0696E24D-CE6C-3B93-E309-26F564BCE465}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																			GlobalSection(MonoDevelopProperties) = preSolution
+																																				GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
