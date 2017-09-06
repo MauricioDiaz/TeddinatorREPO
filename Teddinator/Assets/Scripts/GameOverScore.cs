@@ -8,11 +8,14 @@ public class GameOverScore : MonoBehaviour {
 
 	public Text currentScore;
 	public Text coinScore;
+	public Text distanceText;
 	public float score = 0;
 	public float coins = 0;
 	public float timerAmount;
 	private bool scoreBool;
 	private bool coinsBool;
+
+	public DistanceTraveledScript _distance;
 
 	void Awake()
 	{
@@ -26,6 +29,7 @@ public class GameOverScore : MonoBehaviour {
 		SoundEffectsHelper.Instance.MakeErrorSound ();
 		StartCoroutine ("AddScore");
 		StartCoroutine ("AddCoins");
+		distanceText.text = ("Highscore: " + _distance.distanceHighsScore.ToString("F2"));
 
 	}
 

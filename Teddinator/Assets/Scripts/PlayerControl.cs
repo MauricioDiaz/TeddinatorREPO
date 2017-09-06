@@ -41,6 +41,7 @@ public class PlayerControl : MonoBehaviour
 	public AudioClip sound;
 	
 	private GameObject ParticleEffect;
+
 	
 	void Awake(){
 		instance = this;
@@ -294,7 +295,7 @@ public class PlayerControl : MonoBehaviour
 		//pointsTracked += gameOverPoint;
 		
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
-		
+
 		
 	}
 	
