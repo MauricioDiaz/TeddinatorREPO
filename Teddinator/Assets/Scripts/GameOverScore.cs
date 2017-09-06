@@ -29,7 +29,7 @@ public class GameOverScore : MonoBehaviour {
 		SoundEffectsHelper.Instance.MakeErrorSound ();
 		StartCoroutine ("AddScore");
 		StartCoroutine ("AddCoins");
-		distanceText.text = ("Distance: " + _distance.timer.ToString("F2"));
+		distanceText.text = ("Highscore: " + _distance.distanceHighsScore.ToString("F2"));
 
 	}
 
