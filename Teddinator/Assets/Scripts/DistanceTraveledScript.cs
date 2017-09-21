@@ -12,7 +12,6 @@ public class DistanceTraveledScript : MonoBehaviour {
 	public float distanceHighsScore;
 
 
-
 	// Use this for initialization
 	void Start () 
 	{

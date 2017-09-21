@@ -12,7 +12,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 	public static SpecialEffectsHelper Instance;
 	
 	public ParticleSystem smokeEffect;
-	public ParticleSystem fireEffect;
+	//public ParticleSystem fireEffect;
 	
 	void Awake()
 	{
@@ -37,7 +37,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 		// Tu tu tu, tu tu tudu
 		
 		// Fire in the sky
-		instantiate(fireEffect, position);
+		//instantiate(fireEffect, position);
 	}
 	
 	/// <summary>

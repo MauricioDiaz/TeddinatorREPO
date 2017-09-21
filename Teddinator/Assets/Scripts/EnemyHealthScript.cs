@@ -12,7 +12,8 @@ public class EnemyHealthScript : MonoBehaviour
 	public int Sp = 0;
 	public int Hp = 1;
 
-
+	public static int enemiesDestroyed;
+	//enemiesDestroyed++;//Adds to enemies destroyed count
 	
 	/// <summary>
 	/// Enemy or player?
@@ -55,6 +56,7 @@ public class EnemyHealthScript : MonoBehaviour
 				if(collider.gameObject.tag == "PlayerBullet")
 				{
 					Hp -= shot.damage;
+					enemiesDestroyed++;//Adds to enemies destroyed count
 
 					// Destroy the players shot
 					Destroy(shot.gameObject);

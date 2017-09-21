@@ -9,13 +9,16 @@ public class GameOverScore : MonoBehaviour {
 	public Text currentScore;
 	public Text coinScore;
 	public Text distanceText;
+	public Text enemysDesText;
 	public float score = 0;
 	public float coins = 0;
 	public float timerAmount;
+	public int enemiesDes = 0;
 	private bool scoreBool;
 	private bool coinsBool;
 
 	public DistanceTraveledScript _distance;
+
 
 	void Awake()
 	{
@@ -29,8 +32,8 @@ public class GameOverScore : MonoBehaviour {
 		SoundEffectsHelper.Instance.MakeErrorSound ();
 		StartCoroutine ("AddScore");
 		StartCoroutine ("AddCoins");
-		distanceText.text = ("Highscore: " + _distance.distanceHighsScore.ToString("F2"));
-
+		//distanceText.text = ("Distance: " + _distance.distanceHighsScore.ToString("F2"));//Displays the HighScore info
+		distanceText.text = ("Distance: " + _distance.timer.ToString("F2"));
 	}
 
 	void Update()
@@ -41,7 +44,7 @@ public class GameOverScore : MonoBehaviour {
 		{
 //			StartCoroutine ("AddCoins", .001f);
 			currentScore.text = ("+" + score);
-			coinScore.text = ("" + coins);
+			coinScore.text = ("Coins: " + coins);
 		}
 
 		if(score >= PlayerControl.instance.gameOverPoint)//enemies destroyed
@@ -54,7 +57,7 @@ public class GameOverScore : MonoBehaviour {
 
 		if(coins >= PlayerControl.instance.points)//coins collected
 		{
-			coinScore.text = ("" + coins);
+			coinScore.text = ("Coins: " + coins);
 			coinsBool = false;
 			StopCoroutine("AddCoins");
 		}
