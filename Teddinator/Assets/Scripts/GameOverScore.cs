@@ -33,7 +33,7 @@ public class GameOverScore : MonoBehaviour {
 		StartCoroutine ("AddScore");
 		StartCoroutine ("AddCoins");
 		//distanceText.text = ("Distance: " + _distance.distanceHighsScore.ToString("F2"));//Displays the HighScore info
-		distanceText.text = ("Distance: " + _distance.timer.ToString("F2"));
+		distanceText.text = ("Distance: " + _distance.timer.ToString("F0"));
 		enemysDesText.text = ("Enemies Destroyed: " + EnemyHealthScript.enemiesDestroyed);
 	}
 
