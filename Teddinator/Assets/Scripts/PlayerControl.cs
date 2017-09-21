@@ -20,6 +20,7 @@ public class PlayerControl : MonoBehaviour
 	
 	public int hp;
 	public int points;
+	//public static int enemiesDestroyed;
 	public static int pointsTracked;
 	public int gameOverPoint;
 	public Text ScoreText;
@@ -107,7 +108,7 @@ public class PlayerControl : MonoBehaviour
 			
 		}
 		
-		if (hp < 0) 
+		if (hp <= 0) 
 		{
 			//Hides the player
 			gameObject.SetActive (false);
@@ -222,6 +223,7 @@ public class PlayerControl : MonoBehaviour
 				Destroy(collider.gameObject);
 				SpecialEffectsHelper.Instance.Explosion(collider.transform.position);
 				SoundEffectsHelper.Instance.MakeExplosionSound();
+
 			}
 		}
 		
@@ -233,8 +235,11 @@ public class PlayerControl : MonoBehaviour
 			{
 				Destroy(collider.gameObject);
 				hp--;
+				LivesText.text = ("" + hp);
+				//LivesText
 				SpecialEffectsHelper.Instance.Explosion(collider.transform.position);
 				SoundEffectsHelper.Instance.MakeExplosionSound();
+
 			}
 			
 		}
@@ -273,17 +278,17 @@ public class PlayerControl : MonoBehaviour
 				ParticleEffect.transform.SetParent(newParent1.transform, true);
 				SoundEffectsHelper.Instance.MakeExplosionSound();
 				
-				if (hp <= 0 && collider.gameObject.tag != "PlayerBullet")
-				{
-					SpecialEffectsHelper.Instance.Explosion(transform.position);
-					SoundEffectsHelper.Instance.MakeExplosionSound();
-					
-					//Hides the player
-					fireButton.enabled = false;
-					gameObject.SetActive(false);
-					OnDead();
-					fireButton.enabled = false;//twice to try to fix the glitch where it keeps shooting after dead.
-				}
+//				if (hp <= 0 && collider.gameObject.tag != "PlayerBullet")//Not really sure what this if statement did. Seems to work without it.
+//				{
+//					SpecialEffectsHelper.Instance.Explosion(transform.position);
+//					SoundEffectsHelper.Instance.MakeExplosionSound();
+//					
+////					//Hides the player
+////					fireButton.enabled = false;
+////					gameObject.SetActive(false);
+////					OnDead();
+////					fireButton.enabled = false;//twice to try to fix the glitch where it keeps shooting after dead.
+//				}
 				
 			}
 		}
@@ -293,7 +298,7 @@ public class PlayerControl : MonoBehaviour
 	{
 		points = pointsTracked;
 		//pointsTracked += gameOverPoint;
-		
+		fireButton.enabled = false;
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
 
 		
