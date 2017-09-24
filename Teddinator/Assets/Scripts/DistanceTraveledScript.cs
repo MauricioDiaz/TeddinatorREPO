@@ -40,12 +40,12 @@ public class DistanceTraveledScript : MonoBehaviour {
 		if(PlayerControl.instance.points > coinsHighScore)//Coins
 		{
 			coinsHighScore = PlayerControl.instance.points;
-			PlayerPrefs.SetFloat("Most Coins", coinsHighScore);
+			PlayerPrefs.SetInt("Most Coins", coinsHighScore);
 		}
 		if(score > enemiesDesHighScore)//Enemies Destroyed
 		{
 			enemiesDesHighScore = EnemyHealthScript.enemiesDestroyed;
-			PlayerPrefs.SetFloat("Most Enemies Destroyed", enemiesDesHighScore);
+			PlayerPrefs.SetInt("Most Enemies Destroyed", enemiesDesHighScore);
 		}
 	}
 }
