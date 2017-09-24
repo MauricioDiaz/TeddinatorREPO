@@ -25,6 +25,7 @@ public class GameOverScore : MonoBehaviour {
 		instance = this;
 	}
 
+
 	void OnEnable()
 	{
 		scoreBool = true;
@@ -32,15 +33,15 @@ public class GameOverScore : MonoBehaviour {
 		SoundEffectsHelper.Instance.MakeErrorSound ();
 		StartCoroutine ("AddScore");
 		StartCoroutine ("AddCoins");
-		//distanceText.text = ("Distance: " + _distance.distanceHighsScore.ToString("F2"));//Displays the HighScore info
 		distanceText.text = ("Distance: " + _distance.timer.ToString("F0"));
-		enemysDesText.text = ("Enemies Destroyed: " + EnemyHealthScript.enemiesDestroyed);
-		EnemyHealthScript.enemiesDestroyed = 0;//Resets enemies destroyed count;
+//		enemiesDes = 0;
+		enemiesDes = EnemyHealthScript.enemiesDestroyed;
+		enemysDesText.text = ("Enemies Destroyed: " + enemiesDes);
+		EnemyHealthScript.enemiesDestroyed = 0;
 	}
 
 	void Update()
 	{
-
 
 		if(scoreBool == true || coinsBool == true)
 		{
