@@ -35,6 +35,7 @@ public class GameOverScore : MonoBehaviour {
 		//distanceText.text = ("Distance: " + _distance.distanceHighsScore.ToString("F2"));//Displays the HighScore info
 		distanceText.text = ("Distance: " + _distance.timer.ToString("F0"));
 		enemysDesText.text = ("Enemies Destroyed: " + EnemyHealthScript.enemiesDestroyed);
+		EnemyHealthScript.enemiesDestroyed = 0;//Resets enemies destroyed count;
 	}
 
 	void Update()
