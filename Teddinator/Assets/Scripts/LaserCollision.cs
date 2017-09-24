@@ -7,8 +7,9 @@ public class LaserCollision : MonoBehaviour {
 	{
 		if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "EnemyBullet")
 		{
-			Destroy(col.gameObject);
+
 			PlayerControl.instance.hp++;//prevents player from loosing hp
+			Destroy(col.gameObject);
 			if(PlayerControl.instance.shieldToggle == true)
 			{
 				PlayerControl.instance.hp--;//This is so the player wont get Hp while shiled and laser are active

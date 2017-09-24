@@ -12,7 +12,6 @@ public class DistanceTraveledScript : MonoBehaviour {
 	public float distanceHighsScore;
 
 
-
 	// Use this for initialization
 	void Start () 
 	{
@@ -25,7 +24,7 @@ public class DistanceTraveledScript : MonoBehaviour {
 	{
 
 		timer += Time.deltaTime;
-		distance_text.text = ("Distance: " + timer.ToString("F2"));//Keeps decimal number to the tenths
+		distance_text.text = ("Distance: " + timer.ToString("F0"));//Keeps decimal number to the tenths
 		//Debug.Log (timer.ToString ());
 
 		score = timer;
