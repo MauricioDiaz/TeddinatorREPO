@@ -68,8 +68,8 @@ public class PlayerControl : MonoBehaviour
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
 		
-		Debug.Log ("POINTS: " + points);
-		Debug.Log ("POINTSTRACKED: " + pointsTracked);
+		//Debug.Log ("POINTS: " + points);
+		//Debug.Log ("POINTSTRACKED: " + pointsTracked);
 
 		//Shield Bool
 		if (shieldToggle == true)

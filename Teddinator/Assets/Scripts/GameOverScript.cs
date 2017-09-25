@@ -51,6 +51,11 @@ public class GameOverScript : MonoBehaviour
 		LoadInformation.LoadAllInfo ();
 		Debug.Log ("Name " + GameInformation.PlayerName);
 		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+
+		//*****************************FUCK YEA!!! THESE LINES BELOW FIXED THE HIGHSCORE BUG!!!!!!!!!!!!!!!!!!!!!
+		EnemyHealthScript.tempEnemiesDestroyed = 0;//resets enemies destroyed count when retry is pressed
+		EnemyHealthScript.enemiesDestroyed = 0;//resets enemies destroyed count when retry is pressed
+		Debug.Log("PlayerPrefs Enemies Destoryed Gameoverscript: " + EnemyHealthScript.tempEnemiesDestroyed);
 		//Debug.Log ("Lives " + GameInformation.PlayerLives);
 	}
 
