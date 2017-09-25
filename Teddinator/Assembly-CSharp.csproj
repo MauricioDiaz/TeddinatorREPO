@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\GameOverScore.cs" />
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\HealthPickUp.cs" />
+     <Compile Include="Assets\Scripts\HighScoresScript.cs" />
      <Compile Include="Assets\Scripts\LaserCollision.cs" />
      <Compile Include="Assets\Scripts\LaserPowerUP.cs" />
      <Compile Include="Assets\Scripts\LoadInformation.cs" />

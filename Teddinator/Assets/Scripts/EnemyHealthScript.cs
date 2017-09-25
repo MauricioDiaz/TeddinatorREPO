@@ -13,6 +13,7 @@ public class EnemyHealthScript : MonoBehaviour
 	public int Hp = 1;
 
 	public static int enemiesDestroyed;
+	public static int tempEnemiesDestroyed;
 	//enemiesDestroyed++;//Adds to enemies destroyed count
 	
 	/// <summary>
@@ -56,7 +57,8 @@ public class EnemyHealthScript : MonoBehaviour
 				if(collider.gameObject.tag == "PlayerBullet")
 				{
 					Hp -= shot.damage;
-					enemiesDestroyed++;//Adds to enemies destroyed count
+					enemiesDestroyed++;//Adds to enemies destroyed count, never resets(highScore)
+					tempEnemiesDestroyed++;//this temp one gets reset everytime player dies
 
 					// Destroy the players shot
 					Destroy(shot.gameObject);

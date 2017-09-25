@@ -24,6 +24,7 @@ public class StoreScript : MBSingleton<StoreScript> {
 	{
 		//LOAD
 		LoadInformation.LoadAllInfo ();
+		//PlayerPrefs.DeleteAll ();//Resets player prefs for testing purpose only on editor
 		Debug.Log ("Name " + GameInformation.PlayerName);
 		Debug.Log ("Coins " + GameInformation.PlayerCoins);
 		//Debug.Log ("Lives " + GameInformation.PlayerLives);

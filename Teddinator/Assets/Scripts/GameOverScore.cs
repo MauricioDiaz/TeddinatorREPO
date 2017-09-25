@@ -18,30 +18,35 @@ public class GameOverScore : MonoBehaviour {
 	private bool coinsBool;
 
 	public DistanceTraveledScript _distance;
-
+	public HighScoresScript _displayHS;
 
 	void Awake()
 	{
 		instance = this;
 	}
 
+
 	void OnEnable()
 	{
+		//PlayerPrefs.DeleteAll ();
+
 		scoreBool = true;
 		coinsBool = true;
 		SoundEffectsHelper.Instance.MakeErrorSound ();
 		StartCoroutine ("AddScore");
 		StartCoroutine ("AddCoins");
-		//distanceText.text = ("Distance: " + _distance.distanceHighsScore.ToString("F2"));//Displays the HighScore info
+
+
+		//Statistics
 		distanceText.text = ("Distance: " + _distance.timer.ToString("F0"));
-		enemysDesText.text = ("Enemies Destroyed: " + EnemyHealthScript.enemiesDestroyed);
-		EnemyHealthScript.enemiesDestroyed = 0;//Resets enemies destroyed count;
+		enemiesDes = EnemyHealthScript.tempEnemiesDestroyed;
+		enemysDesText.text = ("Enemies Destroyed: " + enemiesDes);
+
 	}
 
 	void Update()
 	{
-
-
+		Debug.Log("PlayerPrefs Enemies Destoryed Gameoverscore enemiesDes: " + enemiesDes);
 		if(scoreBool == true || coinsBool == true)
 		{
 //			StartCoroutine ("AddCoins", .001f);

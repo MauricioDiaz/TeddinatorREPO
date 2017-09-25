@@ -12,10 +12,10 @@ public class DistanceTraveledScript : MonoBehaviour {
 	public float distanceHighsScore;
 
 
+
 	// Use this for initialization
 	void Start () 
 	{
-		//distance_text.text = "";
 		distanceHighsScore = PlayerPrefs.GetFloat ("Best Distance");
 	}
 	
@@ -25,10 +25,9 @@ public class DistanceTraveledScript : MonoBehaviour {
 
 		timer += Time.deltaTime;
 		distance_text.text = ("Distance: " + timer.ToString("F0"));//Keeps decimal number to the tenths
-		//Debug.Log (timer.ToString ());
 
 		score = timer;
-		if(score > distanceHighsScore)
+		if(score > distanceHighsScore)//Distance
 		{
 			distanceHighsScore = score;
 			PlayerPrefs.SetFloat("Best Distance", distanceHighsScore);

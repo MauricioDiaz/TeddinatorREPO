@@ -9,9 +9,11 @@ public class GameOverScript : MonoBehaviour
 {
 
 	public GameObject GOPanel;
+	public GameObject HSPanel;
 
 	public Button retry;
 	public Button goToStore;
+	public Button highScore;
 
 
 	//SAVED METHOD
@@ -49,6 +51,11 @@ public class GameOverScript : MonoBehaviour
 		LoadInformation.LoadAllInfo ();
 		Debug.Log ("Name " + GameInformation.PlayerName);
 		Debug.Log ("Coins " + GameInformation.PlayerCoins);
+
+		//*****************************FUCK YEA!!! THESE LINES BELOW FIXED THE HIGHSCORE BUG!!!!!!!!!!!!!!!!!!!!!
+		EnemyHealthScript.tempEnemiesDestroyed = 0;//resets enemies destroyed count when retry is pressed
+		EnemyHealthScript.enemiesDestroyed = 0;//resets enemies destroyed count when retry is pressed
+		Debug.Log("PlayerPrefs Enemies Destoryed Gameoverscript: " + EnemyHealthScript.tempEnemiesDestroyed);
 		//Debug.Log ("Lives " + GameInformation.PlayerLives);
 	}
 
@@ -62,6 +69,16 @@ public class GameOverScript : MonoBehaviour
 		Debug.Log ("Name " + GameInformation.PlayerName);
 		Debug.Log ("Coins " + GameInformation.PlayerCoins);
 		//Debug.Log ("Lives " + GameInformation.PlayerLives);
+	}
+
+	public void HighScore()
+	{
+		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+
+		GameObject gameOverPanel = GameObject.Find ("GameOverPanel");
+		gameOverPanel.SetActive (false);
+
+		HSPanel.SetActive (true);
 	}
 
 }
