@@ -33,5 +33,7 @@ public class CountDownScript : MonoBehaviour {
 		script.SetActive (true);
 		AudioSource audio = GetComponent<AudioSource> ();
 		Destroy (audio);
+		//this.gameObject.SetActive (false);
+
 	}
 }

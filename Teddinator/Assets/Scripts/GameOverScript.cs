@@ -10,6 +10,7 @@ public class GameOverScript : MonoBehaviour
 
 	public GameObject GOPanel;
 	public GameObject HSPanel;
+	public GameObject PauseButton;
 
 	public Button retry;
 	public Button goToStore;
@@ -37,7 +38,7 @@ public class GameOverScript : MonoBehaviour
 	{
 		yield return new WaitForSeconds (time);
 		GOPanel.SetActive (true);
-		
+		PauseButton.SetActive (false);
 		retry = GameObject.Find ("Retry").GetComponent<Button>();
 		goToStore = GameObject.Find ("GoToStore").GetComponent<Button> ();
 	}
