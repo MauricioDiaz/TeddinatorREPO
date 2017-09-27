@@ -12,7 +12,7 @@ public class CountDownScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (StartCountDown (1));	
+		StartCoroutine (StartCountDown (1));
 	}
 	
 	IEnumerator StartCountDown(float sec)
@@ -31,6 +31,7 @@ public class CountDownScript : MonoBehaviour {
 		yield return new WaitForSeconds (sec);
 		go.enabled = false;
 		script.SetActive (true);
-		this.gameObject.SetActive (false);
+		AudioSource audio = GetComponent<AudioSource> ();
+		Destroy (audio);
 	}
 }
