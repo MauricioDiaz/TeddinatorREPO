@@ -25,6 +25,14 @@ public class LaserPowerUP : MonoBehaviour {
 		timer = timer + blastTimer;
 		blastLength -= Time.deltaTime; 
 
+		//**************************************************************************
+		if(PauseGameScript.instance.paused == true)//if statements pauses laser bar
+		{
+			mySlider.value = timer;
+			timer = timer - blastTimer;
+			blastLength += Time.deltaTime; 
+		}
+
 		if(timer >= 1.0f)
 		{
 			isfalse = true;

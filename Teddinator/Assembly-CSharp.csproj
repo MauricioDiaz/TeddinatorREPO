@@ -80,6 +80,7 @@
      <Compile Include="Assets\Scripts\MoveScript.cs" />
      <Compile Include="Assets\Scripts\ParentScript.cs" />
      <Compile Include="Assets\Scripts\ParticleParentScript.cs" />
+     <Compile Include="Assets\Scripts\PauseGameScript.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\PlayerPrefSerialization.cs" />
      <Compile Include="Assets\Scripts\PlayerScoreList.cs" />

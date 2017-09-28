@@ -82,6 +82,9 @@ public class TutorialScript : MonoBehaviour {
 	public void Part5()
 	{
 		Application.LoadLevel ("Level1");
+		//**********************************************************
+		AudioSource gameMusic = GameObject.Find("MusicGameObject").GetComponent<AudioSource>();//Fixes bug where music wasnt playing when you load level1 after you exit
+		gameMusic.UnPause();
 	}
 
 	IEnumerator StopHummingbird(float second)
