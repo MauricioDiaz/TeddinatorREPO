@@ -31,9 +31,6 @@ public class CountDownScript : MonoBehaviour {
 		yield return new WaitForSeconds (sec);
 		go.enabled = false;
 		script.SetActive (true);
-		AudioSource audio = GetComponent<AudioSource> ();
-		Destroy (audio);
-		//this.gameObject.SetActive (false);
 
 	}
 }

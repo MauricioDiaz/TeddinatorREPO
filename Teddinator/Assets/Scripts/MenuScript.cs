@@ -18,6 +18,10 @@ public class MenuScript : MonoBehaviour
 
 		Application.LoadLevel ("Level1");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+
+		//**********************************************************
+		AudioSource gameMusic = GameObject.Find("MusicGameObject").GetComponent<AudioSource>();//Fixes bug where music wasnt playing when you load level1 after you exit
+		gameMusic.UnPause();
 	}
 
 	public void Store()
@@ -31,6 +35,10 @@ public class MenuScript : MonoBehaviour
 
 		Application.LoadLevel ("Store");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+
+		//**********************************************************
+		AudioSource gameMusic = GameObject.Find("MusicGameObject").GetComponent<AudioSource>();//Fixes bug where music wasnt playing when you load level1 after you exit
+		gameMusic.UnPause();
 	}
 
 	public void ExitGame()
@@ -49,6 +57,7 @@ public class MenuScript : MonoBehaviour
 		
 		Application.LoadLevel ("Tutorial");
 		SoundEffectsHelper.Instance.MakeOnHoverButtonSound ();
+
 	}
 
 

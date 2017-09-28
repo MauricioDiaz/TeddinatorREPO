@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PauseGameScript : MonoBehaviour {
 
 	public static PauseGameScript instance;
-
-	public AudioSource[] music;
+//
+//	public AudioSource[] music;
+//	public GameObject menu;
 	public bool paused;
 
 	void Awake()
@@ -27,18 +29,43 @@ public class PauseGameScript : MonoBehaviour {
 		if(paused)
 		{
 			Time.timeScale = 0;
-			music[0].Pause();
-			music[1].Pause();
-//			music.Pause();
-			//countdown.Pause();
+			AudioSource gameMusic = GameObject.Find("MusicGameObject").GetComponent<AudioSource>();
+			gameMusic.Pause();
+			AudioSource countDown = GameObject.Find("CountDownPanel").GetComponent<AudioSource>();
+			countDown.Pause();
+//			music[0].Pause();
+//			music[1].Pause();
+			CanvasGroup panel = GameObject.Find("PauseMenu").GetComponent<CanvasGroup>();
+			panel.alpha = 1;
+			panel.interactable = true;
+			panel.blocksRaycasts = true;
+			AudioSource beep = GameObject.Find("PauseMenu").GetComponent<AudioSource>();
+			beep.Play();
+			this.gameObject.SetActive(false);
+			//menu.SetActive(true);
 		}
 		else if(!paused)
 		{
 			Time.timeScale = 1;
-			music[0].UnPause ();
-			music[1].UnPause();
-//			music.Play();
-			//countdown.Play();
+			AudioSource gameMusic = GameObject.Find("MusicGameObject").GetComponent<AudioSource>();
+			gameMusic.UnPause();
+			AudioSource countDown = GameObject.Find("CountDownPanel").GetComponent<AudioSource>();
+			countDown.UnPause();
+//			music[0].UnPause ();
+//			music[1].UnPause();
+			CanvasGroup panel = GameObject.Find("PauseMenu").GetComponent<CanvasGroup>();
+			panel.alpha = 0;
+			panel.interactable = false;
+			panel.blocksRaycasts = false;
+			this.gameObject.SetActive(true);
+			//menu.SetActive(false);
 		}
 	}
+
+	public void ExitToStart()
+	{
+		Application.LoadLevel ("Start");
+		Time.timeScale = 1;//Fixes bug where when you start again everything is frozen
+	}
+
 }
