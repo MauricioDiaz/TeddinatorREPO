@@ -11,9 +11,7 @@ public class MoveScript : MonoBehaviour
 		
 	void Start()
 	{
-
-		SetMovemenetUp ();
-
+		StartCoroutine (WaitTime ());
 	}
 
 
@@ -28,16 +26,21 @@ public class MoveScript : MonoBehaviour
 //
 //	}
 
+	IEnumerator WaitTime()
+	{
+		yield return new WaitForSeconds (2);
+		SetMovemenetUp ();
+	}
 	void SetMovemenetUp()
 	{
 
 		movement = new Vector2(speed.x * direction.x,8);
-		Invoke ("SetMovemenetDown", 1f);
+		Invoke ("SetMovemenetDown", Random.Range(.1f,1f));
 	}
 	void SetMovemenetDown()
 	{
 		movement = new Vector2(speed.x * direction.x,-8);
-		Invoke ("SetMovemenetUp", 1f);
+		Invoke ("SetMovemenetUp", Random.Range(.1f,1f));
 	}
 
 	void FixedUpdate()
