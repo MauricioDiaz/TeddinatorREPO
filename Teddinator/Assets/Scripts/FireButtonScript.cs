@@ -3,10 +3,9 @@ using System.Collections;
 
 public class FireButtonScript : MonoBehaviour {
 
-	public PlayerControl shoot;
-
 	public void Fire()
 	{
-		shoot.Shoot ();
+		PlayerControl p = GameObject.Find ("Player").GetComponent<PlayerControl> ();
+		p.Shoot ();
 	}
 }

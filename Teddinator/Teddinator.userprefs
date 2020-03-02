@@ -1,14 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MoveScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FireButtonScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\MoveScript.cs" Line="37" Column="48" />
-      <File FileName="Assets\Scripts\PlayerControl.cs" Line="324" Column="1" />
-      <File FileName="Assets\Scripts\FireButtonScript.cs" Line="13" Column="1" />
-      <File FileName="Assets\Scripts\ShotScript.cs" Line="40" Column="1" />
-      <File FileName="Assets\Scripts\Turret.cs" Line="25" Column="1" />
-      <File FileName="Assets\Scripts\PlayerScript.cs" Line="74" Column="1" />
-      <File FileName="Assets\Scripts\WeaponScript.cs" Line="87" Column="1" />
+      <File FileName="Assets\Scripts\WeaponUpgradeScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerControl.cs" Line="15" Column="2" />
+      <File FileName="Assets\Scripts\LaserPowerUP.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WeaponScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Turret.cs" Line="14" Column="22" />
+      <File FileName="Assets\Scripts\FireButtonScript.cs" Line="11" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
