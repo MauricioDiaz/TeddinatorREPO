@@ -27,6 +27,10 @@ public class DestroyWallScript : MonoBehaviour {
 		{
 			Destroy(col.gameObject);
 		}
+		else if(col.gameObject.tag == "ShieldUpgrade")
+		{
+			Destroy(col.gameObject);
+		}
 	}
 
 }
