@@ -28,7 +28,8 @@ public class CreateIteamScript : MonoBehaviour {
 		if (timer <= 0.0f) {
 			for(int i = 0; i < numIteams; i++)
 			{
-				GameObject newParent = GameObject.Find ("1_midground-S");
+//				GameObject newParent = GameObject.Find ("1_midground-S");
+				GameObject newParent = GameObject.FindWithTag ("SpawnTag");
 				Vector3 newPos = new Vector3(Random.Range(xMin, xMax), Random.Range(yMin, yMax), 0);
 				
 				GameObject coin = Instantiate(iteamPrefab, newPos, Quaternion.identity) as GameObject;
