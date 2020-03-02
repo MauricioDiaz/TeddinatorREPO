@@ -17,8 +17,8 @@ public class CreateRandomEnemy : MonoBehaviour {
 	void Update()
 	{
 		timer -= Time.deltaTime;
-		GameObject newParent = GameObject.Find ("1_midground-S");
-
+//		GameObject newParent = GameObject.Find ("1_midground-S");
+		GameObject newParent = GameObject.FindWithTag ("SpawnTag");
 		if (timer <= 0.0f) {
 			for(int i = 0; i < numEnemies; i++)
 			{
