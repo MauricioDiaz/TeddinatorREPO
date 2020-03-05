@@ -13,6 +13,7 @@ public class CountDownScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (StartCountDown (1));
+		StartCoroutine (SlowDown (1));
 	}
 	
 	IEnumerator StartCountDown(float sec)
@@ -31,6 +32,37 @@ public class CountDownScript : MonoBehaviour {
 		yield return new WaitForSeconds (sec);
 		go.enabled = false;
 		script.SetActive (true);
+	}
 
+	IEnumerator SlowDown(float timer)
+	{
+		timer -= Time.deltaTime;
+		ScrollingScript ss = GameObject.Find ("_background_trees").GetComponent<ScrollingScript> ();
+		ScrollingScript sss = GameObject.Find ("_Floor").GetComponent<ScrollingScript> ();
+		yield return new WaitForSeconds (2f);
+		ss.speed.x -= 10;
+		ss.speed.y -= 10;
+		sss.speed.x -= 10;
+		sss.speed.y -= 10;
+		yield return new WaitForSeconds (.5f);
+		ss.speed.x -= 20;
+		ss.speed.y -= 20;
+		sss.speed.x -= 20;
+		sss.speed.y -= 20;
+		yield return new WaitForSeconds (.5f);
+		ss.speed.x -= 20;
+		ss.speed.y -= 20;
+		sss.speed.x -= 20;
+		sss.speed.y -= 20;
+		yield return new WaitForSeconds (.5f);
+		ss.speed.x -= 20;
+		ss.speed.y -= 20;
+		sss.speed.x -= 20;
+		sss.speed.y -= 20;
+		yield return new WaitForSeconds (.5f);
+		ss.speed.x -= 20;
+		ss.speed.y -= 20;
+		sss.speed.x -= 20;
+		sss.speed.y -= 20;
 	}
 }
