@@ -1,3 +1,5 @@
 Base path: E:/Program Files/Unity/Editor/Data
 Pipe name: \\.\pipe\UnityShaderCompiler-64bit-7-26500
 Cmd: getPlatforms
+Cmd: compileSnippet
+  api=5 type=1 insize=1589 outsize=6 kw=SOFTPARTICLES_ON pd=UNITY_NO_DXT5nm UNITY_NO_RGBM UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
