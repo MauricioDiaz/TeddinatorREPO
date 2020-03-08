@@ -45,6 +45,7 @@ public class LaserPowerUP : MonoBehaviour {
 				shoot.transform.SetParent(newParent.transform, true);
 				shoot.transform.localScale = new Vector3(10, 10, 10);
 				SoundEffectsHelper.Instance.MakeLaserBlastSound();
+
 			}
 			if(isFiring == true)
 			{
