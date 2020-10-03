@@ -12,29 +12,19 @@ using UnityEngine;
 /// </summary>
 public class ScrollingScript : MonoBehaviour
 {
-	/// <summary>
 	/// Scrolling speed
-	/// </summary>
 	public Vector2 speed = new Vector2(10, 10);
-	
-	/// <summary>
+
 	/// Moving direction
-	/// </summary>
 	public Vector2 direction = new Vector2(-1, 0);
-	
-	/// <summary>
+
 	/// Movement should be applied to camera
-	/// </summary>
 	public bool isLinkedToCamera = false;
-	
-	/// <summary>
+
 	/// 1 - Background is infinite
-	/// </summary>
 	public bool isLooping = false;
-	
-	/// <summary>
+
 	/// 2 - List of children with a renderer.
-	/// </summary>
 	private List<Transform> backgroundPart;
 	
 	// 3 - Get all the children

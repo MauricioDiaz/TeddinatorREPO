@@ -7,5 +7,7 @@ public class FireButtonScript : MonoBehaviour {
 	{
 		PlayerControl p = GameObject.Find ("Player").GetComponent<PlayerControl> ();
 		p.Shoot ();
+		AudioSource fireSound = this.GetComponent<AudioSource> ();
+		fireSound.Play ();
 	}
 }

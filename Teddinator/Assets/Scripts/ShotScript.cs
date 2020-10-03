@@ -19,7 +19,7 @@ public class ShotScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		Destroy(gameObject, 2);
+		Destroy(gameObject, 4);
 	}
 	
 	// Update is called once per frame

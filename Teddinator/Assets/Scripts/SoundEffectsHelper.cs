@@ -105,9 +105,10 @@ public class SoundEffectsHelper : MonoBehaviour
 	/// <param name="originalClip"></param>
 	private void MakeSound(AudioClip originalClip)
 	{
+
 		// As it is not 3D audio clip, position doesn't matter.
 		AudioSource.PlayClipAtPoint(originalClip, transform.position);
-
+		this.GetComponent<AudioSource> ().volume = 3f;
 
 	}
 
