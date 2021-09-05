@@ -31,8 +31,8 @@ public class PauseGameScript : MonoBehaviour {
 			Time.timeScale = 0;
 			AudioSource gameMusic = GameObject.Find("MusicGameObject").GetComponent<AudioSource>();
 			gameMusic.Pause();
-			AudioSource gameMusic1 = GameObject.Find("Music").GetComponent<AudioSource>();
-			gameMusic.Pause();
+//			AudioSource gameMusic1 = GameObject.Find("Music").GetComponent<AudioSource>();
+//			gameMusic.Pause();
 			AudioSource countDown = GameObject.Find("CountDownPanel").GetComponent<AudioSource>();
 			countDown.Pause();
 //			music[0].Pause();
@@ -45,14 +45,16 @@ public class PauseGameScript : MonoBehaviour {
 			beep.Play();
 			this.gameObject.SetActive(false);
 			//menu.SetActive(true);
+
+
 		}
 		else if(!paused)
 		{
 			Time.timeScale = 1;
 			AudioSource gameMusic = GameObject.Find("MusicGameObject").GetComponent<AudioSource>();
 			gameMusic.UnPause();
-			AudioSource gameMusic1 = GameObject.Find("Music").GetComponent<AudioSource>();
-			gameMusic.UnPause();
+//			AudioSource gameMusic1 = GameObject.Find("Music").GetComponent<AudioSource>();
+//			gameMusic.UnPause();
 			AudioSource countDown = GameObject.Find("CountDownPanel").GetComponent<AudioSource>();
 			countDown.UnPause();
 //			music[0].UnPause ();

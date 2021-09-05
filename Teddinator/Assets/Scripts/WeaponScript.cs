@@ -14,19 +14,13 @@ public class WeaponScript : MonoBehaviour
 	/// <summary>
 	/// Cooldown in seconds between two shots
 	/// </summary>
-	public float shootingRate = 0.25f;
+	public float shootingRate;
 
 	//--------------------------------
 	// 2 - Cooldown
 	//--------------------------------
-	private float shootCooldown;
+	public float shootCooldown;
 
-	// Use this for initialization
-	void Start () 
-	{
-		shootCooldown = 0f;
-	}
-	
 	// Update is called once per frame
 	void Update () 
 	{
