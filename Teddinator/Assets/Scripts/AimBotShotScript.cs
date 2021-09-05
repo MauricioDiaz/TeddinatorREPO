@@ -18,7 +18,7 @@ public class AimBotShotScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		Destroy(gameObject, 4);
+		Destroy(gameObject, 3);
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 	}
 
