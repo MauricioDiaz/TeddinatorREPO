@@ -3,30 +3,12 @@ using System.Collections;
 
 public class AimBotWeaponScript : MonoBehaviour 
 {
-	//--------------------------------
-	// 1 - Designer variables
-	//--------------------------------
-	/// <summary>
-	/// Launch projectile
-	/// </summary>
+
 	public Transform shotPrefab;
-
-	/// <summary>
-	/// Cooldown in seconds between two shots
-	/// </summary>
 	public float shootingRate;
-
-	//--------------------------------
-	// 2 - Cooldown
-	//--------------------------------
-	private float shootCooldown;
-
-	// Use this for initialization
-	void Start () 
-	{
-		shootCooldown = 0f;
-	}
+	public float shootCooldown;
 	
+
 	// Update is called once per frame
 	void Update () 
 	{

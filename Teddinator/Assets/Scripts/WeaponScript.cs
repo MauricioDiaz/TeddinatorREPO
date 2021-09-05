@@ -19,14 +19,8 @@ public class WeaponScript : MonoBehaviour
 	//--------------------------------
 	// 2 - Cooldown
 	//--------------------------------
-	private float shootCooldown;
+	public float shootCooldown;
 
-	// Use this for initialization
-	void Start () 
-	{
-		shootCooldown = 0f;
-	}
-	
 	// Update is called once per frame
 	void Update () 
 	{
