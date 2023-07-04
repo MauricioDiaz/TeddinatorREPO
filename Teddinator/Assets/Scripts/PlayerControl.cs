@@ -43,6 +43,9 @@ public class PlayerControl : MonoBehaviour
 	
 	private GameObject ParticleEffect;
 
+	public int tempSkinNub;
+	public Sprite skin;
+
 	
 	void Awake(){
 		instance = this;
@@ -61,10 +64,39 @@ public class PlayerControl : MonoBehaviour
 		gameOverPoint = 0;
 		pointsTracked = 0;
 		isShot = true;
+
+		//Tedy skins
+		GameObject skinObj = GameObject.Find ("_StoreScripts");
+		GameObject skinRef = GameObject.Find ("_StoreScripts");	
+		tempSkinNub = skinObj.GetComponent<StoreScript>().skinNub;
+		skin = skinRef.GetComponent<StoreScript> ().skinOne;
+		Debug.Log (tempSkinNub);
+		
+		if (tempSkinNub == 1)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+			Debug.Log(tempSkinNub);
+			Debug.Log(this.gameObject);
+			Debug.Log(skinObj);
+			
+			if (PlayerPrefs.GetInt("Skin") == 1 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+
 	}
 	
 	void Update()
 	{
+
+
+
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
 		
@@ -179,9 +211,11 @@ public class PlayerControl : MonoBehaviour
 			//points += PointPopUps.instance._point;
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 			//StoreScript.Instance.myCoins = pointsTracked;//tracks coins throughout game
+
+
 			
 		}
-		
+
 	}
 
 	public void Shoot()

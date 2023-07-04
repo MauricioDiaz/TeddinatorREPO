@@ -5,6 +5,9 @@ using UnityEngine.Advertisements;
 
 [System.Serializable]
 public class StoreScript : MBSingleton<StoreScript> {
+
+	public static StoreScript instance;
+
 	public Text Coins;
 	public int myCoins;
 
@@ -19,6 +22,10 @@ public class StoreScript : MBSingleton<StoreScript> {
 
 	public static int MachineAmmo;
 	public int _ammo;
+
+	public Sprite skinOne;
+	public int skinNub;
+
 
 	void Awake()
 	{
@@ -41,6 +48,10 @@ public class StoreScript : MBSingleton<StoreScript> {
 	void Start()
 	{
 		Coins.text = ("" + myCoins);
+
+		//test to try to save tedy skin between scenes
+		DontDestroyOnLoad(this.gameObject);
+		DontDestroyOnLoad (this);
 	}
 
 
@@ -127,6 +138,23 @@ public class StoreScript : MBSingleton<StoreScript> {
 			SaveInformation.SaveAllInfo ();
 			Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
 		}
+	}
+
+
+	//function to update skin
+	public void TedyCamoOne()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		
+		PlayerPrefs.SetInt ("Skin",1);
+		int skinTempNub = PlayerPrefs.GetInt ("Skin");
+		skinNub = skinTempNub;
+
+		Debug.Log (skinNub);
+
+		//Save
+		SaveInformation.SaveAllInfo ();
+		Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
 	}
 
 	public void DebugFunc()
