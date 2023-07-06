@@ -23,9 +23,11 @@ public class StoreScript : MBSingleton<StoreScript> {
 	public static int MachineAmmo;
 	public int _ammo;
 
-	public Sprite skinOne;
+	//tedy skins
+	//public Sprite skinOne;
+	public Sprite skinChoice;
 	public int skinNub;
-
+	public Sprite[] skinSprites;
 
 	void Awake()
 	{
@@ -50,8 +52,40 @@ public class StoreScript : MBSingleton<StoreScript> {
 		Coins.text = ("" + myCoins);
 
 		//test to try to save tedy skin between scenes
-		DontDestroyOnLoad(this.gameObject);
 		DontDestroyOnLoad (this);
+		skinChoice = skinSprites [skinNub];
+
+
+
+	}
+
+	void Update()
+	{
+		if (skinNub == 1) 
+		{
+			skinChoice = skinSprites[0];
+		}
+		else if (skinNub == 2) 
+		{
+			skinChoice = skinSprites[1];
+		}
+		else if (skinNub == 3) 
+		{
+			skinChoice = skinSprites[2];
+		}
+		else if (skinNub == 4) 
+		{
+			skinChoice = skinSprites[3];
+		}
+		else if (skinNub == 5) 
+		{
+			skinChoice = skinSprites[4];
+		}
+		else if (skinNub == 6) 
+		{
+			skinChoice = skinSprites[5];
+		}
+
 	}
 
 
@@ -152,6 +186,78 @@ public class StoreScript : MBSingleton<StoreScript> {
 
 		Debug.Log (skinNub);
 
+		//Save
+		SaveInformation.SaveAllInfo ();
+		Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
+	}
+	//function to update skin
+	public void TedyCamoTwo()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		
+		PlayerPrefs.SetInt ("Skin",2);
+		int skinTempNub = PlayerPrefs.GetInt ("Skin");
+		skinNub = skinTempNub;
+		
+		Debug.Log (skinNub);
+		
+		//Save
+		SaveInformation.SaveAllInfo ();
+		Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
+	}
+	//function to update skin
+	public void TedyCamoThree()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		
+		PlayerPrefs.SetInt ("Skin",3);
+		int skinTempNub = PlayerPrefs.GetInt ("Skin");
+		skinNub = skinTempNub;
+		
+		Debug.Log (skinNub);
+		
+		//Save
+		SaveInformation.SaveAllInfo ();
+		Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
+	}
+	public void TedyChewbaca()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		
+		PlayerPrefs.SetInt ("Skin",4);
+		int skinTempNub = PlayerPrefs.GetInt ("Skin");
+		skinNub = skinTempNub;
+		
+		Debug.Log (skinNub);
+		
+		//Save
+		SaveInformation.SaveAllInfo ();
+		Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
+	}
+	public void TedyR2D2()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		
+		PlayerPrefs.SetInt ("Skin",5);
+		int skinTempNub = PlayerPrefs.GetInt ("Skin");
+		skinNub = skinTempNub;
+		
+		Debug.Log (skinNub);
+		
+		//Save
+		SaveInformation.SaveAllInfo ();
+		Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);
+	}
+	public void TedyVader()
+	{
+		SoundEffectsHelper.Instance.MakeStoreButtonSound ();
+		
+		PlayerPrefs.SetInt ("Skin",6);
+		int skinTempNub = PlayerPrefs.GetInt ("Skin");
+		skinNub = skinTempNub;
+		
+		Debug.Log (skinNub);
+		
 		//Save
 		SaveInformation.SaveAllInfo ();
 		Debug.Log("GameInformation Coins" + GameInformation.PlayerCoins);

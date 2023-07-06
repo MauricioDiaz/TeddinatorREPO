@@ -69,18 +69,85 @@ public class PlayerControl : MonoBehaviour
 		GameObject skinObj = GameObject.Find ("_StoreScripts");
 		GameObject skinRef = GameObject.Find ("_StoreScripts");	
 		tempSkinNub = skinObj.GetComponent<StoreScript>().skinNub;
-		skin = skinRef.GetComponent<StoreScript> ().skinOne;
+		skin = skinRef.GetComponent<StoreScript> ().skinChoice;
 		Debug.Log (tempSkinNub);
 		
 		if (tempSkinNub == 1)
 		{
 			
 			PlayerPrefs.GetInt("Skin", tempSkinNub);
-			Debug.Log(tempSkinNub);
-			Debug.Log(this.gameObject);
-			Debug.Log(skinObj);
-			
+
 			if (PlayerPrefs.GetInt("Skin") == 1 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 2)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+
+			if (PlayerPrefs.GetInt("Skin") == 2 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 3)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+
+			if (PlayerPrefs.GetInt("Skin") == 3 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 4)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+			
+			if (PlayerPrefs.GetInt("Skin") == 4 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 5)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+			
+			if (PlayerPrefs.GetInt("Skin") == 5 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 6)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+
+			if (PlayerPrefs.GetInt("Skin") == 6 )
 			{
 				Debug.Log("Skin Changed!");
 				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
