@@ -48,7 +48,8 @@ public class WeaponUpgradeScript : MonoBehaviour {
 				bulletAmount--;
 				if(bulletAmount <= 0)
 				{
-					Destroy(GameObject.Find("One shot audio)"));
+
+					GetComponent<AudioSource>().Stop();
 					Upgrade1 = false;
 					BulletText.enabled = false;
 					Destroy(Upgrade);//weapon sprite
@@ -60,15 +61,16 @@ public class WeaponUpgradeScript : MonoBehaviour {
 			}
 			if(Input.GetButtonDown ("Fire2"))
 			{
-				SoundEffectsHelper.Instance.MakeMachineGunSound();
+				//SoundEffectsHelper.Instance.MakeMachineGunSound();
 				GetComponent<AudioSource>().PlayOneShot(machineGunSound);
 			}
 			if(Input.GetButtonUp("Fire2"))
 			{
-				Destroy(GameObject.Find("One shot audio"));
+				GetComponent<AudioSource>().Stop();
+				//Destroy(GameObject.Find("One shot audio"));
 				if(bulletAmount <= 0)
 				{
-					Destroy(GameObject.Find("One shot audio"));
+					GetComponent<AudioSource>().Stop();
 				}
 			}
 		}
