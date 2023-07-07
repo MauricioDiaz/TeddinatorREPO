@@ -51,7 +51,6 @@
      <Compile Include="Assets\CNControls\Scripts\CNJoystick.cs" />
      <Compile Include="Assets\CNControls\Scripts\CNThrowableTouchpad.cs" />
      <Compile Include="Assets\CNControls\Scripts\CNTouchpad.cs" />
-     <Compile Include="Assets\CreateIteamScript.cs" />
      <Compile Include="Assets\Scripts\Ads.cs" />
      <Compile Include="Assets\Scripts\AimBotEnemyScript.cs" />
      <Compile Include="Assets\Scripts\AimBotShotScript.cs" />
@@ -61,6 +60,7 @@
      <Compile Include="Assets\Scripts\CountDownScript.cs" />
      <Compile Include="Assets\Scripts\CreateCoinScript.cs" />
      <Compile Include="Assets\Scripts\CreateHealthSpawn.cs" />
+     <Compile Include="Assets\Scripts\CreateIteamScript.cs" />
      <Compile Include="Assets\Scripts\CreateRandomEnemy.cs" />
      <Compile Include="Assets\Scripts\DestroyPrefabScript.cs" />
      <Compile Include="Assets\Scripts\DestroyWallScript.cs" />
@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\FireButtonScript.cs" />
      <Compile Include="Assets\Scripts\GameInformation.cs" />
+     <Compile Include="Assets\Scripts\GameInformationStartMenuOnly.cs" />
      <Compile Include="Assets\Scripts\GameOverScore.cs" />
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\HealthPickUp.cs" />

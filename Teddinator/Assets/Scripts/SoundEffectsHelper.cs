@@ -65,8 +65,7 @@ public class SoundEffectsHelper : MonoBehaviour
 	}
 	public void MakeMachineGunSound()
 	{
-		MakeSound1 (MachineGunSound);
-		//audio.PlayOneShot (MachineGunSound);
+		MakeSound (MachineGunSound);
 	}
 	public void MakeReloadGunSound()
 	{
@@ -108,17 +107,27 @@ public class SoundEffectsHelper : MonoBehaviour
 
 		// As it is not 3D audio clip, position doesn't matter.
 		AudioSource.PlayClipAtPoint(originalClip, transform.position);
-		this.GetComponent<AudioSource> ().volume = 3f;
+		this.GetComponent<AudioSource> ().volume = 1.0f;
 
 	}
 
-	private void MakeSound1(AudioClip originalClip)
-	{
-		// As it is not 3D audio clip, position doesn't matter.
-		AudioSource.PlayClipAtPoint(originalClip, transform.position);
-		GetComponent<AudioSource>().pitch = .01f;//should change the speed of the sound;
-		
-		
-	}
+//	private void MakeSoundAudioSource(AudioSource originalClip)
+//	{
+//		
+//		// As it is not 3D audio clip, position doesn't matter.
+//		AudioSource.Instantiate (originalClip);
+//		//AudioSource.PlayClipAtPoint(originalClip, transform.position);
+//		this.GetComponent<AudioSource> ().volume = 3f;
+//		
+//	}
+
+//	private void MakeSound1(AudioClip originalClip)
+//	{
+//		// As it is not 3D audio clip, position doesn't matter.
+//		AudioSource.PlayClipAtPoint(originalClip, transform.position);
+//		GetComponent<AudioSource>().pitch = .01f;//should change the speed of the sound;
+//		
+//		
+//	}
 
 }

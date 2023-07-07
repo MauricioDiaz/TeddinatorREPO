@@ -7,7 +7,7 @@ using System.Collections;
 public class EnemyScript : MonoBehaviour
 {
 	private bool hasSpawn;
-	private MoveScript moveScript;
+	//private MoveScript moveScript;
 	private WeaponScript[] weapons;
 	
 	void Awake()
@@ -16,7 +16,7 @@ public class EnemyScript : MonoBehaviour
 		weapons = GetComponentsInChildren<WeaponScript>();
 		
 		// Retrieve scripts to disable when not spawn
-		moveScript = GetComponent<MoveScript>();
+		//moveScript = GetComponent<MoveScript>();
 	}
 	
 	// 1 - Disable everything
@@ -29,7 +29,7 @@ public class EnemyScript : MonoBehaviour
 		// -- collider
 		GetComponent<Collider2D>().enabled = false;
 		// -- Moving
-		moveScript.enabled = false;
+		//moveScript.enabled = false;
 		// -- Shooting
 		foreach (WeaponScript weapon in weapons)
 		{
@@ -79,7 +79,7 @@ public class EnemyScript : MonoBehaviour
 		GetComponent<Collider2D>().enabled = true;
 		// -- Moving
 		// -- Collider
-		GetComponent<MoveScript>().enabled = true;
+		//GetComponent<MoveScript>().enabled = true;
 		//moveScript.enabled = true;
 		// -- Shooting
 		foreach (WeaponScript w in weapons)

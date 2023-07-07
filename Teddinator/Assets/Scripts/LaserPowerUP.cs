@@ -44,7 +44,7 @@ public class LaserPowerUP : MonoBehaviour {
 				GameObject shoot = (Instantiate(LaserBlast, blastLocation.transform.position, transform.rotation)) as GameObject;
 				shoot.transform.SetParent(newParent.transform, true);
 				shoot.transform.localScale = new Vector3(10, 10, 10);
-
+				Debug.Log("Laser Sound Made");
 				SoundEffectsHelper.Instance.MakeLaserBlastSound();
 
 			}

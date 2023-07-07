@@ -46,7 +46,7 @@ public class GameOverScore : MonoBehaviour {
 
 	void Update()
 	{
-		Debug.Log("PlayerPrefs Enemies Destoryed Gameoverscore enemiesDes: " + enemiesDes);
+		//Debug.Log("PlayerPrefs Enemies Destoryed Gameoverscore enemiesDes: " + enemiesDes);
 		if(scoreBool == true || coinsBool == true)
 		{
 //			StartCoroutine ("AddCoins", .001f);
@@ -74,7 +74,7 @@ public class GameOverScore : MonoBehaviour {
 	{
 		SoundEffectsHelper.Instance.MakeScoreSound();
 		score++;
-		Debug.Log ("AddScore");
+		//Debug.Log ("AddScore");
 		yield return new WaitForSeconds (.001f);
 		StartCoroutine ("AddScore");
 	}
@@ -82,7 +82,7 @@ public class GameOverScore : MonoBehaviour {
 	{
 		SoundEffectsHelper.Instance.MakeScoreSound();
 		coins++;
-		Debug.Log ("AddCoins");
+		//Debug.Log ("AddCoins");
 		yield return new WaitForSeconds (.001f);
 		StartCoroutine ("AddCoins");
 	}

@@ -19,7 +19,7 @@ public class AimBotShotScript : MonoBehaviour
 	void Start () 
 	{
 		Destroy(gameObject, 3);
-		player = GameObject.FindGameObjectWithTag ("Player").transform;
+		player = GameObject.Find("Player").transform;
 	}
 
 	// Update is called once per frame

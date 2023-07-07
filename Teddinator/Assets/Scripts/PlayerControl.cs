@@ -38,10 +38,11 @@ public class PlayerControl : MonoBehaviour
 	//public float shootingRate;
 
 	public bool isShot;
-
-	public AudioClip sound;
-	
 	private GameObject ParticleEffect;
+
+	public AudioClip coinSound;
+	public AudioClip playerShotSound;
+	public AudioClip powerupSound;
 
 	public int tempSkinNub;
 	public Sprite skin;
@@ -59,7 +60,7 @@ public class PlayerControl : MonoBehaviour
 		speedLimit += StoreScript.Instance._speed;
 		shieldTimer += StoreScript.Instance._shieldTimer;
 		speed = new Vector2 (speedLimit, speedLimit);
-		GetComponent<AudioSource>().clip = sound;
+		//GetComponent<AudioSource>().clip = sound;//not sure what this audiosource clip is for
 		shieldTimerReset = shieldTimer;
 		gameOverPoint = 0;
 		pointsTracked = 0;
@@ -178,7 +179,7 @@ public class PlayerControl : MonoBehaviour
 			shieldTimer -= Time.deltaTime;
 			GetComponent<CircleCollider2D>().enabled = true;
 			
-			Debug.Log("Renderer color: " + shieldGO.GetComponent<Renderer>().material.color);
+//			Debug.Log("Renderer color: " + shieldGO.GetComponent<Renderer>().material.color);
 			
 			
 			if(shieldTimer <= 3.0f)
@@ -187,8 +188,8 @@ public class PlayerControl : MonoBehaviour
 				float lerptime = Mathf.PingPong(Time.time, 1) / 1;
 				shieldGO.GetComponent<ParticleSystem>().GetComponent<Renderer>().material.Lerp(whiteshield,redshield, lerptime);
 
-				Debug.Log("Renderer name: " + shieldGO.GetComponent<Renderer>().material.name);
-				Debug.Log("Renderer color: " + shieldGO.GetComponent<Renderer>().material.color);
+//				Debug.Log("Renderer name: " + shieldGO.GetComponent<Renderer>().material.name);
+//				Debug.Log("Renderer color: " + shieldGO.GetComponent<Renderer>().material.color);
 				
 			}
 			
@@ -359,7 +360,7 @@ public class PlayerControl : MonoBehaviour
 			
 			points++;
 			pointsTracked++;
-			GetComponent<AudioSource>().PlayOneShot(sound);
+			GetComponent<AudioSource>().PlayOneShot(coinSound);
 			
 		}
 		
@@ -403,6 +404,12 @@ public class PlayerControl : MonoBehaviour
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
 
 		
+	}
+
+	public void Fire()
+	{
+		Shoot ();
+		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
 	}
 	
 	public bool isMobile//bool to set controls for mobile
