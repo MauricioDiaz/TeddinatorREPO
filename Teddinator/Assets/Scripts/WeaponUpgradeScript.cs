@@ -21,6 +21,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 	public Text BulletText;
 
 	public AudioClip machineGunSound;
+	public AudioClip powerupSound;
 
 	// Use this for initialization
 	void Start () {
@@ -104,6 +105,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 		if (col.gameObject.tag == "Weapon") 
 		{
 			Debug.Log ("TriggerEnter");
+			GetComponent<AudioSource>().PlayOneShot(powerupSound);
 			Upgrade1 = true;
 			Destroy (col.gameObject);//blue floating ballon
 			GameObject newParent = GameObject.Find ("UpgradeWeaponLocation");

@@ -9,7 +9,7 @@ public class HealthPickUp : MonoBehaviour
 	/// Total hitpoints
 	/// </summary>
 	//public Text LivesText;
-
+	public AudioClip healthPackSound;
 	
 	void OnTriggerEnter2D (Collider2D col)
 	{
@@ -17,12 +17,13 @@ public class HealthPickUp : MonoBehaviour
 	
 		if(col.gameObject.tag == "Player")
 		{
-
+			GetComponent<AudioSource>().PlayOneShot(healthPackSound);
 			health.hp++;
-			SoundEffectsHelper.Instance.MakeHealthPackSound();
+			//SoundEffectsHelper.Instance.MakeHealthPackSound();
 			//LivesText.text = ("Health: " + hp);
-
-			Destroy(gameObject);
+			GetComponent<CircleCollider2D>().enabled = false;
+			GetComponent<SpriteRenderer>().enabled = false;
+			//Destroy(gameObject);//if destroyed it wont play the audioclip
 		}
 	}
 }

@@ -13,6 +13,7 @@ public class LaserPowerUP : MonoBehaviour {
 	public GameObject LaserBlast;
 	public GameObject blastLocation;
 	private EnemyScript bullet;
+	public AudioClip laserBlastSound;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +40,7 @@ public class LaserPowerUP : MonoBehaviour {
 
 			if(isfalse == true)
 			{
+				GetComponent<AudioSource>().PlayOneShot(laserBlastSound);
 				isFiring = true;
 				GameObject newParent = GameObject.Find("LaserLocation");
 				GameObject shoot = (Instantiate(LaserBlast, blastLocation.transform.position, transform.rotation)) as GameObject;

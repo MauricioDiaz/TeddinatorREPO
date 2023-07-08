@@ -43,6 +43,8 @@ public class PlayerControl : MonoBehaviour
 	public AudioClip coinSound;
 	public AudioClip playerShotSound;
 	public AudioClip powerupSound;
+	public AudioClip explosionSound;
+
 
 	public int tempSkinNub;
 	public Sprite skin;
@@ -308,6 +310,7 @@ public class PlayerControl : MonoBehaviour
 		{
 			shieldToggle = true;
 			Destroy(collider.gameObject);
+			GetComponent<AudioSource>().PlayOneShot(powerupSound);
 		}
 		
 		//When Shield is active
@@ -316,7 +319,8 @@ public class PlayerControl : MonoBehaviour
 			if (collider.gameObject.tag == "EnemyBullet")
 			{
 				Destroy(collider.gameObject);
-				SoundEffectsHelper.Instance.MakeExplosionSound();
+				//SoundEffectsHelper.Instance.MakeExplosionSound();
+				GetComponent<AudioSource>().PlayOneShot(explosionSound);
 			}
 			
 			//If Player crashes with Enemy, enemies dies  if crash with shield
@@ -324,7 +328,8 @@ public class PlayerControl : MonoBehaviour
 			{
 				Destroy(collider.gameObject);
 				SpecialEffectsHelper.Instance.Explosion(collider.transform.position);
-				SoundEffectsHelper.Instance.MakeExplosionSound();
+				//SoundEffectsHelper.Instance.MakeExplosionSound();
+				GetComponent<AudioSource>().PlayOneShot(explosionSound);
 
 			}
 		}
@@ -340,7 +345,8 @@ public class PlayerControl : MonoBehaviour
 				LivesText.text = ("" + hp);
 				//LivesText
 				SpecialEffectsHelper.Instance.Explosion(collider.transform.position);
-				SoundEffectsHelper.Instance.MakeExplosionSound();
+				//SoundEffectsHelper.Instance.MakeExplosionSound();
+				GetComponent<AudioSource>().PlayOneShot(explosionSound);
 
 			}
 			
@@ -378,7 +384,8 @@ public class PlayerControl : MonoBehaviour
 				GameObject newParent1 = GameObject.FindGameObjectWithTag("Player");
 				ParticleEffect = (Instantiate(particleEffect, collider.transform.position,transform.rotation)) as GameObject;
 				ParticleEffect.transform.SetParent(newParent1.transform, true);
-				SoundEffectsHelper.Instance.MakeExplosionSound();
+				//SoundEffectsHelper.Instance.MakeExplosionSound();
+				GetComponent<AudioSource>().PlayOneShot(explosionSound);
 				
 //				if (hp <= 0 && collider.gameObject.tag != "PlayerBullet")//Not really sure what this if statement did. Seems to work without it.
 //				{
@@ -410,6 +417,7 @@ public class PlayerControl : MonoBehaviour
 	{
 		Shoot ();
 		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
+		//SoundEffectsHelper.Instance.MakePlayerShotSound();
 	}
 	
 	public bool isMobile//bool to set controls for mobile
