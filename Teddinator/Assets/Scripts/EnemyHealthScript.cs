@@ -20,10 +20,14 @@ public class EnemyHealthScript : MonoBehaviour
 	/// Enemy or player?
 	/// </summary>
 	public bool isEnemy = true;
-	
+
+	public AudioClip explosionSound;
+
 	//public TextMesh scoreText;
 	//public Text ScoreText;
 	//public Canvas canvas;
+
+
 
 	void Start()
 	{
@@ -65,11 +69,15 @@ public class EnemyHealthScript : MonoBehaviour
 
 					if (Hp <= 0)
 					{
+
+						SpecialEffectsHelper.Instance.Explosion(transform.position);
+						//SoundEffectsHelper.Instance.MakeExplosionSound();
+						AudioSource audio = GameObject.Find("Player").GetComponent<AudioSource>();
+						audio.PlayOneShot(explosionSound);
+						Debug.Log(enemiesDestroyed);
+
 						//Destroy the enemy 
 						Destroy(gameObject);
-						SpecialEffectsHelper.Instance.Explosion(transform.position);
-						SoundEffectsHelper.Instance.MakeExplosionSound();
-
 
 					}
 				}
@@ -82,11 +90,17 @@ public class EnemyHealthScript : MonoBehaviour
 			if (shot1.isEnemyShot != isEnemy)
 			{
 				Hp -= shot1.damage;
+				enemiesDestroyed++;//Adds to enemies destroyed count, never resets(highScore)
+				tempEnemiesDestroyed++;//this temp one gets reset everytime player dies
 
 				if (Hp <= 0)
 				{
 					SpecialEffectsHelper.Instance.Explosion(transform.position);
-					SoundEffectsHelper.Instance.MakeExplosionSound();
+					//SoundEffectsHelper.Instance.MakeExplosionSound();
+					AudioSource audio = GameObject.Find("Player").GetComponent<AudioSource>();
+					audio.PlayOneShot(explosionSound);
+					Debug.Log(enemiesDestroyed);
+
 					//Destroy the enemy 
 					Destroy(gameObject);	
 				}			
