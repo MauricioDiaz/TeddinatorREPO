@@ -407,7 +407,11 @@ public class PlayerControl : MonoBehaviour
 	{
 		points = pointsTracked;
 		//pointsTracked += gameOverPoint;
-		fireButton.enabled = false;
+		//fireButton.enabled = false;
+		fireButton.gameObject.SetActive (false);
+		//laserButton.gameObject.SetActive (false);
+		LaserPowerUP.instance.laserButton.gameObject.SetActive(false);
+		Destroy(GameObject.Find("LaserPrefab(Clone)"), 3f);
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
 
 		

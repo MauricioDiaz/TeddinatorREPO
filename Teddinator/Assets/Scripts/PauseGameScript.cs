@@ -47,7 +47,7 @@ public class PauseGameScript : MonoBehaviour {
 
 			this.gameObject.SetActive(false);
 			//menu.SetActive(true);
-
+			PlayerControl.instance.fireButton.gameObject.SetActive (false);
 
 		}
 		else if(!paused)
@@ -69,6 +69,7 @@ public class PauseGameScript : MonoBehaviour {
 			panel.blocksRaycasts = false;
 			this.gameObject.SetActive(true);
 			//menu.SetActive(false);
+			PlayerControl.instance.fireButton.gameObject.SetActive (true);
 		}
 	}
 
