@@ -130,6 +130,7 @@ public class EnemyHealthScript : MonoBehaviour
 		if (collider.gameObject.CompareTag("PlayerBullet"))
 		{
 			ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
+			ShotMachineGunScript machineshot = collider.gameObject.GetComponent<ShotMachineGunScript> ();
 			if (shot != null && shot.isEnemyShot != isEnemy) // Ensure it's the player's shot
 			{
 				LaserPowerUP.instance.IncreaseSliderValue(0.1f);
@@ -151,6 +152,31 @@ public class EnemyHealthScript : MonoBehaviour
 					// Destroy the enemy
 					Destroy(gameObject);
 				}
+
+			}
+
+			if (machineshot != null && machineshot.isEnemyShot != isEnemy) // Machine Gun collision check
+			{
+				LaserPowerUP.instance.IncreaseSliderValue(0.1f);
+
+				Hp -= machineshot.damage;
+				enemiesDestroyed++; // Adds to enemies destroyed count
+				tempEnemiesDestroyed++; // This temp one resets when the player dies
+
+				if (Hp <= 0)
+				{
+					SpecialEffectsHelper.Instance.Explosion(transform.position);
+					AudioSource audio = GameObject.Find("Player").GetComponent<AudioSource>();
+					audio.PlayOneShot(explosionSound);
+
+					Debug.Log(enemiesDestroyed);
+
+					// Destroy the enemy
+					Destroy(gameObject);
+					Debug.Log ("Teaetsa;lskdjfl;askdjflkasjdf");
+				}
+
+
 			}
 		}
 	}
