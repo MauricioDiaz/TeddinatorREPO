@@ -133,7 +133,7 @@ public class EnemyHealthScript : MonoBehaviour
 			ShotMachineGunScript machineshot = collider.gameObject.GetComponent<ShotMachineGunScript> ();
 			if (shot != null && shot.isEnemyShot != isEnemy) // Ensure it's the player's shot
 			{
-				LaserPowerUP.instance.IncreaseSliderValue(0.1f);
+				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
 
 				Hp -= shot.damage;
 				enemiesDestroyed++; // Adds to enemies destroyed count
@@ -157,7 +157,7 @@ public class EnemyHealthScript : MonoBehaviour
 
 			if (machineshot != null && machineshot.isEnemyShot != isEnemy) // Machine Gun collision check
 			{
-				LaserPowerUP.instance.IncreaseSliderValue(0.1f);
+				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
 
 				Hp -= machineshot.damage;
 				enemiesDestroyed++; // Adds to enemies destroyed count

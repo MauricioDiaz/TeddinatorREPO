@@ -14,7 +14,6 @@ public class EnemyScript : MonoBehaviour
 	{
 		// Retrieve the weapon only once
 		weapons = GetComponentsInChildren<WeaponScript>();
-		
 		// Retrieve scripts to disable when not spawn
 		//moveScript = GetComponent<MoveScript>();
 	}

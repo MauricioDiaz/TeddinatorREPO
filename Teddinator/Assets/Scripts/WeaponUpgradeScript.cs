@@ -104,7 +104,7 @@ public class WeaponUpgradeScript : MonoBehaviour {
 
 		if (col.gameObject.tag == "Weapon") 
 		{
-			Debug.Log ("TriggerEnter");
+			//Debug.Log ("TriggerEnter");
 			GetComponent<AudioSource>().PlayOneShot(powerupSound);
 			Upgrade1 = true;
 			Destroy (col.gameObject);//blue floating ballon
