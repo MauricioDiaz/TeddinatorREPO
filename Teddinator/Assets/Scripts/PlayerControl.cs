@@ -469,7 +469,8 @@ public class PlayerControl : MonoBehaviour
 	private void FirePoweredBullet()
 	{
 		// Instantiate powered-up bullet
-		Instantiate(poweredBullet, bulletLocation.transform.position, bulletLocation.transform.rotation);
+		//Instantiate(poweredBullet, bulletLocation.transform.position, bulletLocation.transform.rotation);
+		Instantiate(poweredBullet, bulletLocation.transform.position, Quaternion.Euler(0, 0, 90));
 		// Add sound effect, etc.
 		GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
 	}
