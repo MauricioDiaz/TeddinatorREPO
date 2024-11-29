@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\AimBotEnemyScript.cs" />
      <Compile Include="Assets\Scripts\AimBotShotScript.cs" />
      <Compile Include="Assets\Scripts\AimBotWeaponScript.cs" />
+     <Compile Include="Assets\Scripts\BarrelScript.cs" />
      <Compile Include="Assets\Scripts\ButtonScript.cs" />
      <Compile Include="Assets\Scripts\CoinScripts.cs" />
      <Compile Include="Assets\Scripts\CountDownScript.cs" />

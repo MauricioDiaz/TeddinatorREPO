@@ -42,6 +42,8 @@ public class PlayerControl : MonoBehaviour
 
 	public AudioClip coinSound;
 	public AudioClip playerShotSound;
+	public AudioClip playerSuperShotSound;
+	public AudioClip chargeShotSound;
 	public AudioClip powerupSound;
 	public AudioClip explosionSound;
 
@@ -49,7 +51,16 @@ public class PlayerControl : MonoBehaviour
 	public int tempSkinNub;
 	public Sprite skin;
 
-	
+
+	public float maxPowerUpCharge = 3.0f; // Maximum charge time
+	private float powerUpCharge = 0f;    // Current charge
+	public GameObject poweredBullet;    // Reference to powered-up bullet prefab
+	private bool isCharging = false;
+	private bool shotFired = false;
+	private bool hasPlayedChargeSound = false; // Ensure sound plays only once during charging
+
+
+
 	void Awake(){
 		instance = this;
 	}
@@ -165,13 +176,10 @@ public class PlayerControl : MonoBehaviour
 	void Update()
 	{
 
-
-
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
 		
-		//Debug.Log ("POINTS: " + points);
-		//Debug.Log ("POINTSTRACKED: " + pointsTracked);
+	
 
 		//Shield Bool
 		if (shieldToggle == true)
@@ -219,29 +227,7 @@ public class PlayerControl : MonoBehaviour
 		
 		if (isMobile == true)///On cellphone ***************
 		{
-//			if (shootCooldown > 0) 
-//			{
-//				shootCooldown -= Time.deltaTime;
-//			}
 
-
-
-//			if (CanAttack)
-//			{
-//				//shootCooldown = shootingRate;
-//				if(Input.GetButtonDown ("Fire1"))//GetButton is the original 8/11/2017
-//				{
-//					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-//
-//				}
-////				else if (Input.GetButtonUp ("Fire1")) 
-////				{
-////					Debug.Log("UP");
-////					shootingRate = 0;
-////
-////				}
-//
-//			}
 			
 			//On cellphone
 			float inputX = CNcont.GetAxis ("Horizontal");
@@ -254,24 +240,6 @@ public class PlayerControl : MonoBehaviour
 		else//On the computer ***********
 		{
 			
-//			if (shootCooldown > 0) 
-//			{
-//				shootCooldown -= Time.deltaTime;
-//			}
-
-
-
-
-//			if (CanAttack)
-//			{
-//				//shootCooldown = shootingRate;
-//				if(Input.GetButton ("Fire1"))
-//				{
-//					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-//
-//				}
-//			}
-			
 			//player movement
 			float inputX = Input.GetAxis ("Horizontal");
 			float inputY = Input.GetAxis ("Vertical");
@@ -280,22 +248,57 @@ public class PlayerControl : MonoBehaviour
 			
 			//points += PointPopUps.instance._point;
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
-			//StoreScript.Instance.myCoins = pointsTracked;//tracks coins throughout game
-
-
-			
+	
 		}
 
+		//TEST Mouse down click---------
+//		if (Input.GetMouseButtonDown (0)) 
+//		{
+//			StartCharging ();
+//		}
+//
+//		if (Input.GetMouseButtonUp (0)) 
+//		{
+//			StopChargingAndShoot ();
+//		}
+
+		if (isCharging) 
+		{
+			//Debug.Log ("hasPlayedChargeSound = " + hasPlayedChargeSound);
+			// Play charge sound once when charging starts
+			if (!hasPlayedChargeSound)
+			{
+				GetComponent<AudioSource>().PlayOneShot(chargeShotSound);//plays audio when button pressed
+				hasPlayedChargeSound = true; // Prevent multiple plays
+			}
+
+			powerUpCharge += Time.deltaTime;
+//			Debug.Log ("Charging.... Current charge: " + powerUpCharge.ToString("0"));
+
+			if (powerUpCharge >= maxPowerUpCharge) {
+				powerUpCharge = maxPowerUpCharge;
+//				Debug.Log ("MaxPowerUpCharge= " + maxPowerUpCharge.ToString ("0"));
+//				Debug.Log ("powerUpCharge= " + powerUpCharge.ToString ("0"));
+				//FirePoweredBullet ();//if you turn this back on it will shott an infinite amount until you let go off the button
+				//Debug.Log ("Charge reached Max level!");
+
+			} 
+//			else 
+//			{
+//				hasPlayedChargeSound = false;
+//			}
+//			if(charge >= maxChargeTime)
+//			{
+//				charge = maxChargeTime;
+//				FirePoweredBullet ();
+//				Debug.Log ("Charge reached Max level!");
+//
+//			}
+
+		}
 	}
 
-	public void Shoot()
-	{
-		Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-	}
 
-	
-	
-	
 	void OnTriggerEnter2D(Collider2D collider)
 	{
 		// Is this a shot?
@@ -351,15 +354,7 @@ public class PlayerControl : MonoBehaviour
 			}
 			
 		}
-		
-		//		//Enemys *Try placing this code in shield
-		//		if (collider.gameObject.tag == "Coin") 
-		//		{
-		//			points += 10;
-		//			pointsTracked++;
-		//			GetComponent<AudioSource>().PlayOneShot(sound);
-		//		}
-		
+	
 		//Coins
 		if (collider.gameObject.tag == "Coin") 
 		{
@@ -386,21 +381,10 @@ public class PlayerControl : MonoBehaviour
 				ParticleEffect.transform.SetParent(newParent1.transform, true);
 				//SoundEffectsHelper.Instance.MakeExplosionSound();
 				GetComponent<AudioSource>().PlayOneShot(explosionSound);
-				
-//				if (hp <= 0 && collider.gameObject.tag != "PlayerBullet")//Not really sure what this if statement did. Seems to work without it.
-//				{
-//					SpecialEffectsHelper.Instance.Explosion(transform.position);
-//					SoundEffectsHelper.Instance.MakeExplosionSound();
-//					
-////					//Hides the player
-////					fireButton.enabled = false;
-////					gameObject.SetActive(false);
-////					OnDead();
-////					fireButton.enabled = false;//twice to try to fix the glitch where it keeps shooting after dead.
-//				}
-				
+							
 			}
 		}
+
 	}
 	
 	void OnDead()
@@ -413,16 +397,98 @@ public class PlayerControl : MonoBehaviour
 		LaserPowerUP.instance.laserButton.gameObject.SetActive(false);
 		Destroy(GameObject.Find("LaserPrefab(Clone)"), 3f);
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
-
-		
+	
 	}
 
-	public void Fire()
+	public void StartCharging()
 	{
-		Shoot ();
-		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
-		//SoundEffectsHelper.Instance.MakePlayerShotSound();
+		//hasPlayedChargeSound = false;
+		//hasPlayedChargeSound = true; // Prevent multiple plays
+
+
+		isCharging = true;
+		powerUpCharge = 0f; // Reset charge when starting
+		shotFired = false;
+		//Debug.Log("Charging Started"); // Debug log to confirm charging
+		//GetComponent<AudioSource>().PlayOneShot(chargeShotSound);
+	
 	}
+
+	public void StopChargingAndShoot()
+	{
+		if (isCharging && !shotFired)
+		{
+			hasPlayedChargeSound = false;
+
+			isCharging = false;  // Stop charging
+			shotFired = true;    // Prevent shooting again until charged
+
+			//hasPlayedChargeSound = false;
+			//Debug.Log("Charging Stopped, power up charge: " + powerUpCharge.ToString("0")); // Debug log to check charge
+
+			//Destroy (chargeShotSound);
+			//GetComponent<AudioSource> ().PlayOneShot (chargeShotSound);
+//			GetComponent<AudioSource> ().mute = true;
+//			Destroy (chargeShotSound);
+//
+
+			// Determine bullet type based on charge
+			if (powerUpCharge >= maxPowerUpCharge)
+			{
+				// Fire powered-up bullet
+				FirePoweredBullet();
+				//Debug.Log("Fired Powered Bullet!");
+				//GetComponent<AudioSource> ().PlayOneShot (chargeShotSound);
+				//GetComponent<AudioSource> ().Stop();
+				//Destroy (chargeShotSound);
+				hasPlayedChargeSound = false;
+			}
+			else
+			{
+				// Fire normal bullet (implement your firing logic here)
+				FireNormalBullet();
+				GetComponent<AudioSource> ().Stop();
+				//Debug.Log("Fired Normal Bullet!");
+
+			}
+
+			// Reset the charge after firing
+			powerUpCharge = 0f;
+		}
+	}
+
+	public void FireNormalBullet()
+	{
+		// Instantiate normal bullet
+		Instantiate(bullet, bulletLocation.transform.position, bulletLocation.transform.rotation);
+		// Add sound effect, etc.
+		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
+
+	}
+
+	private void FirePoweredBullet()
+	{
+		// Instantiate powered-up bullet
+		Instantiate(poweredBullet, bulletLocation.transform.position, bulletLocation.transform.rotation);
+		// Add sound effect, etc.
+		GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
+	}
+
+
+	public void Shoot()
+	{
+		//Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+		Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+		shoot.velocity = new Vector2(speed.x, 0); // Regular bullet speed
+		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
+	}
+//
+//	public void Fire()
+//	{
+//		Shoot ();
+//		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
+//		//SoundEffectsHelper.Instance.MakePlayerShotSound();
+//	}
 	
 	public bool isMobile//bool to set controls for mobile
 	{
@@ -431,13 +497,4 @@ public class PlayerControl : MonoBehaviour
 			return(Application.platform == RuntimePlatform.Android);
 		}
 	}
-	
-//	public bool CanAttack
-//	{
-//		get
-//		{
-//			return shootCooldown <= 0f;
-//		}
-//	}
-	
 }

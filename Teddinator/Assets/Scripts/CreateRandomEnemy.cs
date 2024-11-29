@@ -41,7 +41,7 @@ public class CreateRandomEnemy : MonoBehaviour
 		{
 			yield return new WaitForSeconds(increaseInterval); // Wait for the specified interval
 			numEnemies++; // Increase the number of enemies
-			Debug.Log("Number of enemies increased to: " + numEnemies);
+			//Debug.Log("Number of enemies increased to: " + numEnemies);
 		}
 	}
 }
