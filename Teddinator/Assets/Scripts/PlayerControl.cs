@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
 	public int hp;
 	public int points;
 	//public static int enemiesDestroyed;
-	public static int pointsTracked;
+	public int pointsTracked;
 	public int gameOverPoint;
 	public Text ScoreText;
 	public Text LivesText;
@@ -86,9 +86,9 @@ public class PlayerControl : MonoBehaviour
 		GameObject skinRef = GameObject.Find ("_StoreScripts");	
 		tempSkinNub = skinObj.GetComponent<StoreScript>().skinNub;
 		skin = skinRef.GetComponent<StoreScript> ().skinChoice;
-		Debug.Log (tempSkinNub);
+		Debug.Log ("Player Skin #: " + tempSkinNub);
 
-
+		//points = PlayerPrefs.GetInt("Most Coins");//Saves Coins info
 		
 		if (tempSkinNub == 1)
 		{
@@ -182,8 +182,10 @@ public class PlayerControl : MonoBehaviour
 
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
-		
-	
+
+		//loads and updates the coins high score 
+		points = PlayerPrefs.GetInt ("Most Coins");
+
 
 		//Shield Bool
 		if (shieldToggle == true)
@@ -222,7 +224,7 @@ public class PlayerControl : MonoBehaviour
 			
 		}
 		
-		if (hp <= 0) 
+		if (hp <= 0) //when the Player dies
 		{
 			//Hides the player
 			gameObject.SetActive (false);
@@ -254,33 +256,7 @@ public class PlayerControl : MonoBehaviour
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 	
 		}
-			
-		//Checking if button is being held down or not
-//		if (isCharging) 
-//		{
-//
-//			// Play charge sound once when charging starts
-//			if (!hasPlayedChargeSound)
-//			{
-////				StartCoroutine(PlayAudioAfterDelay(10)); // Replace `3` with the number of frames you want to wait
-//				//GetComponent<AudioSource>().PlayOneShot(chargeShotSound);//plays audio when button pressed
-//				hasPlayedChargeSound = true; // Prevent multiple plays
-//			}
-//
-//			powerUpCharge += Time.deltaTime;
-//
-//			if (powerUpCharge >= maxPowerUpCharge) 
-//			{
-//				powerUpCharge = maxPowerUpCharge;
-//				//StartCoroutine(PlayAudioAfterDelay(1)); // Replace `3` with the number of frames you want to wait
-//				//powerUpCharge = maxPowerUpCharge;
-//
-//			} 
-//		}
-//		{
-//			// Reset charge sound status if not charging
-//			hasPlayedChargeSound = false;
-//		}
+
 
 		// Update method
 		if (isCharging)
@@ -381,10 +357,14 @@ public class PlayerControl : MonoBehaviour
 		if (collider.gameObject.tag == "Coin") 
 		{
 			
-			points++;
+			//points++;
 			pointsTracked++;
 			GetComponent<AudioSource>().PlayOneShot(coinSound);
-			
+			if(pointsTracked > points)
+			{
+				points = pointsTracked;
+				PlayerPrefs.SetInt("Most Coins", points);
+			}
 		}
 		
 		if (shot != null)
@@ -411,14 +391,17 @@ public class PlayerControl : MonoBehaviour
 	
 	void OnDead()
 	{
-		points = pointsTracked;
-		//pointsTracked += gameOverPoint;
-		//fireButton.enabled = false;
+
 		fireButton.gameObject.SetActive (false);
 		//laserButton.gameObject.SetActive (false);
 		LaserPowerUP.instance.laserButton.gameObject.SetActive(false);
 		Destroy(GameObject.Find("LaserPrefab(Clone)"), 3f);
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
+
+		//Disable _Scripts Gamebject in the scene that has all the enemy spawn scripts
+		//It prevents enemies from spawning once the player is dead.
+		GameObject disableScript = GameObject.Find("_Scripts");
+		disableScript.SetActive (false);
 	
 	}
 
@@ -457,18 +440,6 @@ public class PlayerControl : MonoBehaviour
 			{
 				// Fire normal bullet
 				FireNormalBullet();
-
-				//Need to play the chargin sound here but
-//				if(Button is pressed down but not let go before the 3 seconds)
-//				{
-//					play the chargingup sound
-//				}
-//				if(button is pressed and let go before 3 seconds)
-//				{
-//					play the regular shot sound
-//				}
-	
-
 			}
 
 			// Reset the charge after firing
@@ -493,22 +464,6 @@ public class PlayerControl : MonoBehaviour
 		GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
 	}
 
-
-//	public void Shoot()
-//	{
-//		//Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-//		Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-//		shoot.velocity = new Vector2(speed.x, 0); // Regular bullet speed
-//		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
-//	}
-//
-//	public void Fire()
-//	{
-//		Shoot ();
-//		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
-//		//SoundEffectsHelper.Instance.MakePlayerShotSound();
-//	}
-	
 	public bool isMobile//bool to set controls for mobile
 	{
 		get

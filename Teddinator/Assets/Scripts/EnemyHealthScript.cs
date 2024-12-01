@@ -30,77 +30,21 @@ public class EnemyHealthScript : MonoBehaviour
 
 	void Start()
 	{
-		//HealthScript addPoint = GetComponent<HealthScript>();
+		instance = this;
 	}
 
+	void Update()
+	{
+		//loads and updates the enemies kill high score 
+		enemiesDestroyed = PlayerPrefs.GetInt ("Most Enemies Destroyed");
 
-//	void OnTriggerEnter2D(Collider2D collider)
-//	{
-//		// Check if the collider belongs to a PlayerBullet
-//		if (collider.gameObject.CompareTag("PlayerBullet") && collider.gameObject.name != "Supershotprefab")
-//		{
-//			ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
-//			ShotMachineGunScript machineshot = collider.gameObject.GetComponent<ShotMachineGunScript> ();
-//			if (shot != null && shot.isEnemyShot != isEnemy) // Ensure it's the player's shot
-//			{
-//				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
-//
-//				Hp -= shot.damage;
-//				enemiesDestroyed++; // Adds to enemies destroyed count
-//				tempEnemiesDestroyed++; // This temp one resets when the player dies
-//				//Debug.Log("Collider Name = " + collider.gameObject.name);
-//				//Debug.Log("Collider Tag = " + collider.gameObject.tag);
-//				//if (collider.gameObject.name != "Supershotprefab" && collider.gameObject.tag != "Barricade") 
-//					
-//				Destroy (shot.gameObject); // Destroy the player's shot
-//				 
-//
-//				if (Hp <= 0)
-//				{
-//					SpecialEffectsHelper.Instance.Explosion(transform.position);
-//					AudioSource audio = GameObject.Find("Player").GetComponent<AudioSource>();
-//					audio.PlayOneShot(explosionSound);
-//
-//					//Debug.Log(enemiesDestroyed);Count of enemies destoryed
-//					Destroy (gameObject);
-////					if (collider.gameObject.tag != "Barricade") 
-////					{
-////						// Destroy the enemy
-////						Destroy (gameObject);
-////
-////					}
-//				}
-//
-//			}
-//
-//			if (machineshot != null && machineshot.isEnemyShot != isEnemy) // Machine Gun collision check
-//			{
-//				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
-//
-//				Hp -= machineshot.damage;
-//				enemiesDestroyed++; // Adds to enemies destroyed count
-//				tempEnemiesDestroyed++; // This temp one resets when the player dies
-//
-//				if (Hp <= 0)
-//				{
-//					SpecialEffectsHelper.Instance.Explosion(transform.position);
-//					AudioSource audio = GameObject.Find("Player").GetComponent<AudioSource>();
-//					audio.PlayOneShot(explosionSound);
-//
-//					Debug.Log(enemiesDestroyed);
-//
-//					// Destroy the enemy
-//					if (collider.gameObject.tag != "Barricade") 
-//					{
-//						Destroy (gameObject);
-//					}
-//				}
-//
-//
-//			}
-//		}
-//
-//	}
+		if(tempEnemiesDestroyed > enemiesDestroyed)
+		{
+			enemiesDestroyed = tempEnemiesDestroyed;
+			PlayerPrefs.SetInt("Most Enemies Destroyed", enemiesDestroyed);
+		}
+	}
+
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
@@ -110,14 +54,17 @@ public class EnemyHealthScript : MonoBehaviour
 			ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
 			ShotMachineGunScript machineshot = collider.gameObject.GetComponent<ShotMachineGunScript>();
 
+
+
 			// Special handling for Supershotprefab
 			if (collider.gameObject.name == "Supershotprefab(Clone)")
 			{
+				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
 				// Ensure it's the player's shot and does not damage enemies
 				if (shot != null && shot.isEnemyShot != isEnemy)
 				{
 					Hp -= shot.damage; // Inflict damage
-					enemiesDestroyed++; // Update destroyed count
+					//enemiesDestroyed++; // Update destroyed count
 					tempEnemiesDestroyed++;
 
 					// Handle enemy destruction
@@ -141,7 +88,7 @@ public class EnemyHealthScript : MonoBehaviour
 				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
 
 				Hp -= shot.damage; // Inflict damage
-				enemiesDestroyed++;
+				//enemiesDestroyed++;
 				tempEnemiesDestroyed++;
 
 				Destroy(shot.gameObject); // Destroy regular player's shots
@@ -161,7 +108,7 @@ public class EnemyHealthScript : MonoBehaviour
 				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
 
 				Hp -= machineshot.damage; // Inflict damage
-				enemiesDestroyed++;
+				//enemiesDestroyed++;
 				tempEnemiesDestroyed++;
 
 				if (Hp <= 0)
@@ -175,6 +122,7 @@ public class EnemyHealthScript : MonoBehaviour
 			}
 		}
 	}
+
 
 
 }

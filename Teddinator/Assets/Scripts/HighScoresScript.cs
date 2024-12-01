@@ -12,35 +12,46 @@ public class HighScoresScript : MonoBehaviour {
 //	public int enemies;
 	public int coinsHighScore;
 	public int enemiesDesHighScore;
+	public float distanceHighScore;
 
 
-	public DistanceTraveledScript _distance;
-	public GameOverScore _GOScore;
-
-	// Use this for initialization
-	void Start () 
+	void Awake()
 	{
-		///PlayerPrefs.DeleteAll ();//Resets player prefs for testing purpose only on editor
-		coinsHighScore = PlayerPrefs.GetInt ("Most Coins");
-		enemiesDesHighScore = PlayerPrefs.GetInt ("Most Enemies Destroyed");
-
+		coinsHighScore = PlayerPrefs.GetInt ("Most Coins", 0);
+		enemiesDesHighScore = PlayerPrefs.GetInt ("Most Enemies Destroyed",0 );
+		distanceHighScore = PlayerPrefs.GetFloat ("Best Distance", 0);
+		Debug.Log("Enemies : " + enemiesDesHighScore);
+		Debug.Log("Coins : " + coinsHighScore);
+		Debug.Log("Distance: " + distanceHighScore);
 	}
+
+//	// Use this for initialization
+//	void Start () 
+//	{
+//		//PlayerPrefs.DeleteAll ();//Resets player prefs for testing purpose only on editor
+//		coinsHighScore = PlayerPrefs.GetInt ("Most Coins", 0);
+//		enemiesDesHighScore = PlayerPrefs.GetInt ("Most Enemies Destroyed",0 );
+//		distanceHighScore = PlayerPrefs.GetFloat ("Best Distance", 0);
+//
+//	}
 
 	void Update()
 	{
-		distance_text.text = ("Distance: " + _distance.distanceHighsScore.ToString("F0"));
+		distance_text.text = ("Distance: " + distanceHighScore.ToString("0"));
 		coins_text.text = ("Coins: " + coinsHighScore);
 		enemiesDes_text.text = ("Enemies Destroyed: " + enemiesDesHighScore);
 		DisplayHighScores ();
-		Debug.Log("PlayerPrefs Enemies Destoryed Highscorescript enemiesDesHighScore: " + enemiesDesHighScore);
 	}
 
 	public void DisplayHighScores()
 	{
-		if(PlayerControl.instance.points > coinsHighScore)//Coins
+		
+		if(PlayerControl.instance.points > coinsHighScore)//Coins Collected
 		{
 			coinsHighScore = PlayerControl.instance.points;
 			PlayerPrefs.SetInt("Most Coins", coinsHighScore);
+			PlayerPrefs.Save();
+			Debug.Log("Updated Coins High Score: " + coinsHighScore);
 		}
 
 		if(EnemyHealthScript.enemiesDestroyed > enemiesDesHighScore)//Enemies Destroyed
@@ -48,17 +59,19 @@ public class HighScoresScript : MonoBehaviour {
 			//EnemyHealthScript.enemiesDestroyed = EnemyHealthScript.tempEnemiesDestroyed;
 			enemiesDesHighScore = EnemyHealthScript.enemiesDestroyed;
 			PlayerPrefs.SetInt("Most Enemies Destroyed", enemiesDesHighScore);
-//			EnemyHealthScript.tempEnemiesDestroyed = 0;
-			Debug.Log("PlayerPrefs Enemies Destoryed Highscorescript: " + enemiesDesHighScore);
-			Debug.Log("PlayerPrefs Enemies Destoryed Highscorescript: " + EnemyHealthScript.tempEnemiesDestroyed);
+			PlayerPrefs.Save();
+			Debug.Log("Updated Enemies Destroyed High Score: " + enemiesDesHighScore);
+//			Debug.Log("PlayerPrefs Enemies Destoryed Highscorescript: " + enemiesDesHighScore);
+//			Debug.Log("PlayerPrefs Enemies Destoryed Highscorescript: " + EnemyHealthScript.tempEnemiesDestroyed);
 		}
 
-//		else if(EnemyHealthScript.enemiesDestroyed < enemiesDesHighScore)
-//		{
-//			enemiesDesHighScore -= EnemyHealthScript.tempEnemiesDestroyed;
-//			PlayerPrefs.SetInt("Most Enemies Destroyed", enemiesDesHighScore);
-//			Debug.Log("PlayerPrefs Enemies Destoryed Highscorescript else if: " + enemiesDesHighScore);
-//			Debug.Log("PlayerPrefs Enemies Destoryed Highscorescript else if: " + EnemyHealthScript.tempEnemiesDestroyed);
-//		}
+
+		if (DistanceTraveledScript.instance.score >  distanceHighScore)//Distance Traveled
+		{
+			distanceHighScore = DistanceTraveledScript.instance.distanceHighsScore;
+			PlayerPrefs.SetFloat ("Most Distance Traveled", DistanceTraveledScript.instance.distanceHighsScore);
+			PlayerPrefs.Save();
+			Debug.Log("Updated Distance High Score: " + distanceHighScore);
+		}
 	}
 }
