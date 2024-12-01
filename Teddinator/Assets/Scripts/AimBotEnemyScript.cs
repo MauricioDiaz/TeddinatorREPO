@@ -29,7 +29,7 @@ public class AimBotEnemyScript : MonoBehaviour
 		// -- collider
 		GetComponent<Collider2D>().enabled = false;
 		// -- Moving
-		moveScript.enabled = false;
+		//moveScript.enabled = false;
 		// -- Shooting
 		foreach (AimBotWeaponScript weapon in weapons)
 		{
@@ -79,7 +79,7 @@ public class AimBotEnemyScript : MonoBehaviour
 		GetComponent<Collider2D>().enabled = true;
 		// -- Moving
 		// -- Collider
-		GetComponent<MoveScript>().enabled = true;
+		//GetComponent<MoveScript>().enabled = true;
 		//moveScript.enabled = true;
 		// -- Shooting
 		foreach (AimBotWeaponScript w in weapons)

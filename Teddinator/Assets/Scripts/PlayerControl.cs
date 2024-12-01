@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
 	public int hp;
 	public int points;
 	//public static int enemiesDestroyed;
-	public static int pointsTracked;
+	public int pointsTracked;
 	public int gameOverPoint;
 	public Text ScoreText;
 	public Text LivesText;
@@ -38,38 +38,154 @@ public class PlayerControl : MonoBehaviour
 	//public float shootingRate;
 
 	public bool isShot;
-
-	public AudioClip sound;
-	
 	private GameObject ParticleEffect;
 
-	
+	public AudioClip coinSound;
+	public AudioClip playerShotSound;//regular player shot
+	public AudioClip playerSuperShotSound;//charged player shot
+	[SerializeField] private AudioSource chargeShotSound;//charging shot when butten is being pressed
+
+	public AudioClip powerupSound;//shield activation
+	public AudioClip explosionSound;
+
+
+	public int tempSkinNub;
+	public Sprite skin;
+
+
+	public float maxPowerUpCharge = 3.0f; // Maximum charge time
+	private float powerUpCharge = 0f;    // Current charge
+	public GameObject poweredBullet;    // Reference to powered-up bullet prefab
+	private bool isCharging = false;
+	private bool shotFired = false;
+	private bool hasPlayedChargeSound = false; // Ensure sound plays only once during charging
+
+
+
 	void Awake(){
 		instance = this;
 	}
 	
 	
-	void Start(){
+	void Start()
+	{
 		shieldToggle = false;
 		//points = 0;
 		hp += StoreScript.Instance._hp;
 		speedLimit += StoreScript.Instance._speed;
 		shieldTimer += StoreScript.Instance._shieldTimer;
 		speed = new Vector2 (speedLimit, speedLimit);
-		GetComponent<AudioSource>().clip = sound;
+		//GetComponent<AudioSource>().clip = sound;//not sure what this audiosource clip is for
 		shieldTimerReset = shieldTimer;
 		gameOverPoint = 0;
 		pointsTracked = 0;
 		isShot = true;
+
+		//Tedy skins
+		GameObject skinObj = GameObject.Find ("_StoreScripts");
+		GameObject skinRef = GameObject.Find ("_StoreScripts");	
+		tempSkinNub = skinObj.GetComponent<StoreScript>().skinNub;
+		skin = skinRef.GetComponent<StoreScript> ().skinChoice;
+		Debug.Log ("Player Skin #: " + tempSkinNub);
+
+		//points = PlayerPrefs.GetInt("Most Coins");//Saves Coins info
+		
+		if (tempSkinNub == 1)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+
+			if (PlayerPrefs.GetInt("Skin") == 1 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 2)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+
+			if (PlayerPrefs.GetInt("Skin") == 2 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 3)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+
+			if (PlayerPrefs.GetInt("Skin") == 3 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 4)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+			
+			if (PlayerPrefs.GetInt("Skin") == 4 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 5)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+			
+			if (PlayerPrefs.GetInt("Skin") == 5 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}
+			
+		}
+		else if (tempSkinNub == 6)
+		{
+			
+			PlayerPrefs.GetInt("Skin", tempSkinNub);
+
+			if (PlayerPrefs.GetInt("Skin") == 6 )
+			{
+				Debug.Log("Skin Changed!");
+				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
+				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
+				GetComponent<SpriteRenderer>().sprite = skin;
+			}			
+		}
 	}
+
+
 	
 	void Update()
 	{
+
 		//movement
 		GetComponent<Rigidbody2D> ().velocity = movement;
-		
-		//Debug.Log ("POINTS: " + points);
-		//Debug.Log ("POINTSTRACKED: " + pointsTracked);
+
+		//loads and updates the coins high score 
+		points = PlayerPrefs.GetInt ("Most Coins");
+
 
 		//Shield Bool
 		if (shieldToggle == true)
@@ -79,7 +195,7 @@ public class PlayerControl : MonoBehaviour
 			shieldTimer -= Time.deltaTime;
 			GetComponent<CircleCollider2D>().enabled = true;
 			
-			Debug.Log("Renderer color: " + shieldGO.GetComponent<Renderer>().material.color);
+//			Debug.Log("Renderer color: " + shieldGO.GetComponent<Renderer>().material.color);
 			
 			
 			if(shieldTimer <= 3.0f)
@@ -88,8 +204,8 @@ public class PlayerControl : MonoBehaviour
 				float lerptime = Mathf.PingPong(Time.time, 1) / 1;
 				shieldGO.GetComponent<ParticleSystem>().GetComponent<Renderer>().material.Lerp(whiteshield,redshield, lerptime);
 
-				Debug.Log("Renderer name: " + shieldGO.GetComponent<Renderer>().material.name);
-				Debug.Log("Renderer color: " + shieldGO.GetComponent<Renderer>().material.color);
+//				Debug.Log("Renderer name: " + shieldGO.GetComponent<Renderer>().material.name);
+//				Debug.Log("Renderer color: " + shieldGO.GetComponent<Renderer>().material.color);
 				
 			}
 			
@@ -108,7 +224,7 @@ public class PlayerControl : MonoBehaviour
 			
 		}
 		
-		if (hp <= 0) 
+		if (hp <= 0) //when the Player dies
 		{
 			//Hides the player
 			gameObject.SetActive (false);
@@ -117,29 +233,7 @@ public class PlayerControl : MonoBehaviour
 		
 		if (isMobile == true)///On cellphone ***************
 		{
-//			if (shootCooldown > 0) 
-//			{
-//				shootCooldown -= Time.deltaTime;
-//			}
 
-
-
-//			if (CanAttack)
-//			{
-//				//shootCooldown = shootingRate;
-//				if(Input.GetButtonDown ("Fire1"))//GetButton is the original 8/11/2017
-//				{
-//					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-//
-//				}
-////				else if (Input.GetButtonUp ("Fire1")) 
-////				{
-////					Debug.Log("UP");
-////					shootingRate = 0;
-////
-////				}
-//
-//			}
 			
 			//On cellphone
 			float inputX = CNcont.GetAxis ("Horizontal");
@@ -152,24 +246,6 @@ public class PlayerControl : MonoBehaviour
 		else//On the computer ***********
 		{
 			
-//			if (shootCooldown > 0) 
-//			{
-//				shootCooldown -= Time.deltaTime;
-//			}
-
-
-
-
-//			if (CanAttack)
-//			{
-//				//shootCooldown = shootingRate;
-//				if(Input.GetButton ("Fire1"))
-//				{
-//					Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-//
-//				}
-//			}
-			
 			//player movement
 			float inputX = Input.GetAxis ("Horizontal");
 			float inputY = Input.GetAxis ("Vertical");
@@ -178,20 +254,49 @@ public class PlayerControl : MonoBehaviour
 			
 			//points += PointPopUps.instance._point;
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
-			//StoreScript.Instance.myCoins = pointsTracked;//tracks coins throughout game
-			
+	
 		}
-		
+
+
+		// Update method
+		if (isCharging)
+		{
+			//Debug.Log (hasPlayedChargeSound);
+			//hasPlayedChargeSound = false;
+			powerUpCharge += Time.deltaTime; // Increment charge time
+
+			if (hasPlayedChargeSound == false && powerUpCharge >= 0.3f)//0.3 is enough time to hold down to make the charging noise.
+			{
+				//GetComponent<AudioSource>().PlayOneShot(chargeShotSound); // Play charge sound
+				chargeShotSound.Play();
+
+				hasPlayedChargeSound = true;
+				powerUpCharge = 0f;
+			}
+		}
+		else
+		{
+			// Button is released
+			if (powerUpCharge > 0 && powerUpCharge <= 3f)
+			{
+				GetComponent<AudioSource>().PlayOneShot(playerShotSound); // Play player shot sound
+			}
+
+			// Stop charge sound and reset variables
+			if(chargeShotSound.isPlaying)
+			{
+				chargeShotSound.Stop(); // Immediately stop any playing sounds
+			}
+			// Reset variables when the button is no longer pressed
+			powerUpCharge = 0f;
+			hasPlayedChargeSound = false;
+
+
+		}
+
 	}
 
-	public void Shoot()
-	{
-		Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-	}
 
-	
-	
-	
 	void OnTriggerEnter2D(Collider2D collider)
 	{
 		// Is this a shot?
@@ -206,6 +311,7 @@ public class PlayerControl : MonoBehaviour
 		{
 			shieldToggle = true;
 			Destroy(collider.gameObject);
+			GetComponent<AudioSource>().PlayOneShot(powerupSound);
 		}
 		
 		//When Shield is active
@@ -214,7 +320,8 @@ public class PlayerControl : MonoBehaviour
 			if (collider.gameObject.tag == "EnemyBullet")
 			{
 				Destroy(collider.gameObject);
-				SoundEffectsHelper.Instance.MakeExplosionSound();
+				//SoundEffectsHelper.Instance.MakeExplosionSound();
+				GetComponent<AudioSource>().PlayOneShot(explosionSound);
 			}
 			
 			//If Player crashes with Enemy, enemies dies  if crash with shield
@@ -222,7 +329,8 @@ public class PlayerControl : MonoBehaviour
 			{
 				Destroy(collider.gameObject);
 				SpecialEffectsHelper.Instance.Explosion(collider.transform.position);
-				SoundEffectsHelper.Instance.MakeExplosionSound();
+				//SoundEffectsHelper.Instance.MakeExplosionSound();
+				GetComponent<AudioSource>().PlayOneShot(explosionSound);
 
 			}
 		}
@@ -238,28 +346,25 @@ public class PlayerControl : MonoBehaviour
 				LivesText.text = ("" + hp);
 				//LivesText
 				SpecialEffectsHelper.Instance.Explosion(collider.transform.position);
-				SoundEffectsHelper.Instance.MakeExplosionSound();
+				//SoundEffectsHelper.Instance.MakeExplosionSound();
+				GetComponent<AudioSource>().PlayOneShot(explosionSound);
 
 			}
 			
 		}
-		
-		//		//Enemys *Try placing this code in shield
-		//		if (collider.gameObject.tag == "Coin") 
-		//		{
-		//			points += 10;
-		//			pointsTracked++;
-		//			GetComponent<AudioSource>().PlayOneShot(sound);
-		//		}
-		
+	
 		//Coins
 		if (collider.gameObject.tag == "Coin") 
 		{
 			
-			points++;
+			//points++;
 			pointsTracked++;
-			GetComponent<AudioSource>().PlayOneShot(sound);
-			
+			GetComponent<AudioSource>().PlayOneShot(coinSound);
+			if(pointsTracked > points)
+			{
+				points = pointsTracked;
+				PlayerPrefs.SetInt("Most Coins", points);
+			}
 		}
 		
 		if (shot != null)
@@ -276,34 +381,89 @@ public class PlayerControl : MonoBehaviour
 				GameObject newParent1 = GameObject.FindGameObjectWithTag("Player");
 				ParticleEffect = (Instantiate(particleEffect, collider.transform.position,transform.rotation)) as GameObject;
 				ParticleEffect.transform.SetParent(newParent1.transform, true);
-				SoundEffectsHelper.Instance.MakeExplosionSound();
-				
-//				if (hp <= 0 && collider.gameObject.tag != "PlayerBullet")//Not really sure what this if statement did. Seems to work without it.
-//				{
-//					SpecialEffectsHelper.Instance.Explosion(transform.position);
-//					SoundEffectsHelper.Instance.MakeExplosionSound();
-//					
-////					//Hides the player
-////					fireButton.enabled = false;
-////					gameObject.SetActive(false);
-////					OnDead();
-////					fireButton.enabled = false;//twice to try to fix the glitch where it keeps shooting after dead.
-//				}
-				
+				//SoundEffectsHelper.Instance.MakeExplosionSound();
+				GetComponent<AudioSource>().PlayOneShot(explosionSound);
+							
 			}
 		}
+
 	}
 	
 	void OnDead()
 	{
-		points = pointsTracked;
-		//pointsTracked += gameOverPoint;
-		fireButton.enabled = false;
+
+		fireButton.gameObject.SetActive (false);
+		//laserButton.gameObject.SetActive (false);
+		LaserPowerUP.instance.laserButton.gameObject.SetActive(false);
+		Destroy(GameObject.Find("LaserPrefab(Clone)"), 3f);
 		transform.parent.gameObject.GetComponent<GameOverScript> ().enabled = true;// Calls the gameover buttons, gets parented to parent because player gets disabled
 
-		
-	}
+		//Disable _Scripts Gamebject in the scene that has all the enemy spawn scripts
+		//It prevents enemies from spawning once the player is dead.
+		GameObject disableScript = GameObject.Find("_Scripts");
+		disableScript.SetActive (false);
 	
+	}
+
+
+	public void StartCharging()
+	{
+
+		isCharging = true;
+		powerUpCharge = 0f; // Reset charge when starting
+		shotFired = false;
+
+	}
+
+
+
+	public void StopChargingAndShoot()
+	{
+		if (isCharging && !shotFired)
+		{
+			//hasPlayedChargeSound = false;
+
+			isCharging = false;  // Stop charging
+			shotFired = true;    // Prevent shooting again until charged
+
+
+			// Determine bullet type based on charge
+			if (powerUpCharge >= maxPowerUpCharge)
+			{
+				// Fire powered-up bullet
+				FirePoweredBullet();
+				//GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
+				//GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
+				//hasPlayedChargeSound = false;
+			}
+			if (powerUpCharge <= maxPowerUpCharge)
+			{
+				// Fire normal bullet
+				FireNormalBullet();
+			}
+
+			// Reset the charge after firing
+			powerUpCharge = 0f;
+
+		}
+	}
+
+
+	public void FireNormalBullet()
+	{
+		// Instantiate normal bullet
+		Instantiate(bullet, bulletLocation.transform.position, bulletLocation.transform.rotation);
+		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
+
+	}
+
+	public void FirePoweredBullet()
+	{
+		// Instantiate powered-up bullet
+		Instantiate(poweredBullet, bulletLocation.transform.position, Quaternion.Euler(0, 0, 90));
+		GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
+	}
+
 	public bool isMobile//bool to set controls for mobile
 	{
 		get
@@ -311,13 +471,4 @@ public class PlayerControl : MonoBehaviour
 			return(Application.platform == RuntimePlatform.Android);
 		}
 	}
-	
-//	public bool CanAttack
-//	{
-//		get
-//		{
-//			return shootCooldown <= 0f;
-//		}
-//	}
-	
 }

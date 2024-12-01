@@ -11,7 +11,8 @@ public class GameOverScore : MonoBehaviour {
 	public Text distanceText;
 	public Text enemysDesText;
 	public float score = 0;
-	public float coins = 0;
+	public int coins = 0;
+	public int coinsHS = 0;
 	public float timerAmount;
 	public int enemiesDes = 0;
 	private bool scoreBool;
@@ -23,6 +24,9 @@ public class GameOverScore : MonoBehaviour {
 	void Awake()
 	{
 		instance = this;
+
+		PlayerControl.instance.points = PlayerPrefs.GetInt("Most Coins");//Saves Coins info
+
 	}
 
 
@@ -39,6 +43,7 @@ public class GameOverScore : MonoBehaviour {
 
 		//Statistics
 		distanceText.text = ("Distance: " + _distance.timer.ToString("F0"));
+
 		enemiesDes = EnemyHealthScript.tempEnemiesDestroyed;
 		enemysDesText.text = ("Enemies Destroyed: " + enemiesDes);
 
@@ -46,7 +51,7 @@ public class GameOverScore : MonoBehaviour {
 
 	void Update()
 	{
-		Debug.Log("PlayerPrefs Enemies Destoryed Gameoverscore enemiesDes: " + enemiesDes);
+		//Debug.Log("PlayerPrefs Enemies Destoryed Gameoverscore enemiesDes: " + enemiesDes);
 		if(scoreBool == true || coinsBool == true)
 		{
 //			StartCoroutine ("AddCoins", .001f);
@@ -62,8 +67,10 @@ public class GameOverScore : MonoBehaviour {
 		}
 
 
-		if(coins >= PlayerControl.instance.points)//coins collected
+		if(coins >= PlayerControl.instance.pointsTracked)//coins collected
 		{
+//			coinsHS = coins;
+//			PlayerPrefs.SetInt("Most Coins", coinsHS);
 			coinScore.text = ("Coins: " + coins);
 			coinsBool = false;
 			StopCoroutine("AddCoins");
@@ -74,7 +81,7 @@ public class GameOverScore : MonoBehaviour {
 	{
 		SoundEffectsHelper.Instance.MakeScoreSound();
 		score++;
-		Debug.Log ("AddScore");
+		//Debug.Log ("AddScore");
 		yield return new WaitForSeconds (.001f);
 		StartCoroutine ("AddScore");
 	}
@@ -82,7 +89,7 @@ public class GameOverScore : MonoBehaviour {
 	{
 		SoundEffectsHelper.Instance.MakeScoreSound();
 		coins++;
-		Debug.Log ("AddCoins");
+		//Debug.Log ("AddCoins");
 		yield return new WaitForSeconds (.001f);
 		StartCoroutine ("AddCoins");
 	}

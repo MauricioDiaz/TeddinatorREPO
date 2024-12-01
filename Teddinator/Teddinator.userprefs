@@ -1,10 +1,13 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AimBotWeaponScript.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BarrelScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\AimBotEnemyScript.cs" Line="85" Column="30" />
-      <File FileName="Assets\Scripts\AimBotShotScript.cs" Line="28" Column="87" />
-      <File FileName="Assets\Scripts\AimBotWeaponScript.cs" Line="11" Column="2" />
+      <File FileName="Assets\Scripts\PlayerControl.cs" Line="267" Column="6" />
+      <File FileName="Assets\Scripts\FireButtonScript.cs" Line="21" Column="17" />
+      <File FileName="Assets\Scripts\CreateIteamScript.cs" Line="32" Column="56" />
+      <File FileName="Assets\Scripts\ShotScript.cs" Line="4" Column="20" />
+      <File FileName="Assets\Scripts\EnemyHealthScript.cs" Line="136" Column="5" />
+      <File FileName="Assets\Scripts\BarrelScript.cs" Line="37" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

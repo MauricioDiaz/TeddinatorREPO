@@ -13,7 +13,7 @@ public class SoundEffectsHelper : MonoBehaviour
 	public static SoundEffectsHelper Instance;
 
 
-	public AudioClip explosionSound;
+//	public AudioClip explosionSound;
 	public AudioClip playerShotSound;
 	public AudioClip enemyShotSound;
 	public AudioClip onHoverButtonSound;
@@ -37,10 +37,10 @@ public class SoundEffectsHelper : MonoBehaviour
 		Instance = this;
 	}
 	
-	public void MakeExplosionSound()
-	{
-		MakeSound(explosionSound);
-	}
+//	public void MakeExplosionSound()
+//	{
+//		MakeSound(explosionSound);
+//	}
 	
 	public void MakePlayerShotSound()
 	{
@@ -65,8 +65,7 @@ public class SoundEffectsHelper : MonoBehaviour
 	}
 	public void MakeMachineGunSound()
 	{
-		MakeSound1 (MachineGunSound);
-		//audio.PlayOneShot (MachineGunSound);
+		MakeSound (MachineGunSound);
 	}
 	public void MakeReloadGunSound()
 	{
@@ -107,18 +106,28 @@ public class SoundEffectsHelper : MonoBehaviour
 	{
 
 		// As it is not 3D audio clip, position doesn't matter.
-		AudioSource.PlayClipAtPoint(originalClip, transform.position);
-		this.GetComponent<AudioSource> ().volume = 3f;
+		AudioSource.PlayClipAtPoint(originalClip, transform.position, 1f);
+
 
 	}
 
-	private void MakeSound1(AudioClip originalClip)
-	{
-		// As it is not 3D audio clip, position doesn't matter.
-		AudioSource.PlayClipAtPoint(originalClip, transform.position);
-		GetComponent<AudioSource>().pitch = .01f;//should change the speed of the sound;
-		
-		
-	}
+//	private void MakeSoundAudioSource(AudioSource originalClip)
+//	{
+//		
+//		// As it is not 3D audio clip, position doesn't matter.
+//		AudioSource.Instantiate (originalClip);
+//		//AudioSource.PlayClipAtPoint(originalClip, transform.position);
+//		this.GetComponent<AudioSource> ().volume = 3f;
+//		
+//	}
+
+//	private void MakeSound1(AudioClip originalClip)
+//	{
+//		// As it is not 3D audio clip, position doesn't matter.
+//		AudioSource.PlayClipAtPoint(originalClip, transform.position);
+//		GetComponent<AudioSource>().pitch = .01f;//should change the speed of the sound;
+//		
+//		
+//	}
 
 }

@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class EnemyHealthScript : MonoBehaviour 
 {
-	/// <summary>
-	/// Total hitpoints
-	/// </summary>
 
-	public int Sp = 0;
+	public static EnemyHealthScript instance;
+
+	//public int Sp = 0;
 	public int Hp = 1;
 
 	public static int enemiesDestroyed;
@@ -20,77 +19,110 @@ public class EnemyHealthScript : MonoBehaviour
 	/// Enemy or player?
 	/// </summary>
 	public bool isEnemy = true;
-	
+
+	public AudioClip explosionSound;
+
 	//public TextMesh scoreText;
 	//public Text ScoreText;
 	//public Canvas canvas;
 
+
+
 	void Start()
 	{
-		//HealthScript addPoint = GetComponent<HealthScript>();
+		instance = this;
 	}
-	
-	
+
+	void Update()
+	{
+		//loads and updates the enemies kill high score 
+		enemiesDestroyed = PlayerPrefs.GetInt ("Most Enemies Destroyed");
+
+		if(tempEnemiesDestroyed > enemiesDestroyed)
+		{
+			enemiesDestroyed = tempEnemiesDestroyed;
+			PlayerPrefs.SetInt("Most Enemies Destroyed", enemiesDestroyed);
+		}
+	}
+
+
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		// Is this a shot?
-		ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
-		ShotMachineGunScript shot1 = collider.gameObject.GetComponent<ShotMachineGunScript> ();
-		//HealthScript shot2 = collider.gameObject.GetComponent<HealthScript> ();
-		//HealthScript Point = collider.gameObject.GetComponent<HealthScript>();
-
-		//If enemy crashes with player, enemies dies
-//		if(collider.gameObject.tag == "Player")
-//		{
-//
-//			Destroy(this.gameObject);
-//			SpecialEffectsHelper.Instance.Explosion(transform.position);
-//			SoundEffectsHelper.Instance.MakeExplosionSound();
-//
-//		}
-		
-		if (shot != null)
+		// Check if the collider belongs to a PlayerBullet
+		if (collider.gameObject.CompareTag("PlayerBullet"))
 		{
-			//Player shot, if player shot hits enemy
-			if (shot.isEnemyShot != isEnemy)
+			ShotScript shot = collider.gameObject.GetComponent<ShotScript>();
+			ShotMachineGunScript machineshot = collider.gameObject.GetComponent<ShotMachineGunScript>();
+
+
+
+			// Special handling for Supershotprefab
+			if (collider.gameObject.name == "Supershotprefab(Clone)")
 			{
-				if(collider.gameObject.tag == "PlayerBullet")
+				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
+				// Ensure it's the player's shot and does not damage enemies
+				if (shot != null && shot.isEnemyShot != isEnemy)
 				{
-					Hp -= shot.damage;
-					enemiesDestroyed++;//Adds to enemies destroyed count, never resets(highScore)
-					tempEnemiesDestroyed++;//this temp one gets reset everytime player dies
+					Hp -= shot.damage; // Inflict damage
+					//enemiesDestroyed++; // Update destroyed count
+					tempEnemiesDestroyed++;
 
-					// Destroy the players shot
-					Destroy(shot.gameObject);
-
+					// Handle enemy destruction
 					if (Hp <= 0)
 					{
-						//Destroy the enemy 
-						Destroy(gameObject);
 						SpecialEffectsHelper.Instance.Explosion(transform.position);
-						SoundEffectsHelper.Instance.MakeExplosionSound();
+						AudioSource audio = GameObject.Find("Player").GetComponent<AudioSource>();
+						audio.PlayOneShot(explosionSound);
 
-
+						Destroy(gameObject); // Destroy the enemy, NOT the Supershotprefab
 					}
 				}
-			}
-		}
 
-		else if (shot1 != null )
-		{
-			//if Playershot
-			if (shot1.isEnemyShot != isEnemy)
+				// Exit early to prevent further logic from affecting Supershotprefab
+				return;
+			}
+
+			// For all other PlayerBullets
+			if (shot != null && shot.isEnemyShot != isEnemy)
 			{
-				Hp -= shot1.damage;
+				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
+
+				Hp -= shot.damage; // Inflict damage
+				//enemiesDestroyed++;
+				tempEnemiesDestroyed++;
+
+				Destroy(shot.gameObject); // Destroy regular player's shots
 
 				if (Hp <= 0)
 				{
 					SpecialEffectsHelper.Instance.Explosion(transform.position);
-					SoundEffectsHelper.Instance.MakeExplosionSound();
-					//Destroy the enemy 
-					Destroy(gameObject);	
-				}			
+					AudioSource audio = GameObject.Find("Player").GetComponent<AudioSource>();
+					audio.PlayOneShot(explosionSound);
+
+					Destroy(gameObject); // Destroy the enemy
+				}
+			}
+
+			if (machineshot != null && machineshot.isEnemyShot != isEnemy)
+			{
+				LaserPowerUP.instance.IncreaseSliderValue(0.05f);
+
+				Hp -= machineshot.damage; // Inflict damage
+				//enemiesDestroyed++;
+				tempEnemiesDestroyed++;
+
+				if (Hp <= 0)
+				{
+					SpecialEffectsHelper.Instance.Explosion(transform.position);
+					AudioSource audio = GameObject.Find("Player").GetComponent<AudioSource>();
+					audio.PlayOneShot(explosionSound);
+
+					Destroy(gameObject); // Destroy the enemy
+				}
 			}
 		}
 	}
+
+
+
 }
