@@ -41,10 +41,11 @@ public class PlayerControl : MonoBehaviour
 	private GameObject ParticleEffect;
 
 	public AudioClip coinSound;
-	public AudioClip playerShotSound;
-	public AudioClip playerSuperShotSound;
-	public AudioClip chargeShotSound;
-	public AudioClip powerupSound;
+	public AudioClip playerShotSound;//regular player shot
+	public AudioClip playerSuperShotSound;//charged player shot
+	[SerializeField] private AudioSource chargeShotSound;//charging shot when butten is being pressed
+
+	public AudioClip powerupSound;//shield activation
 	public AudioClip explosionSound;
 
 
@@ -66,7 +67,8 @@ public class PlayerControl : MonoBehaviour
 	}
 	
 	
-	void Start(){
+	void Start()
+	{
 		shieldToggle = false;
 		//points = 0;
 		hp += StoreScript.Instance._hp;
@@ -85,6 +87,8 @@ public class PlayerControl : MonoBehaviour
 		tempSkinNub = skinObj.GetComponent<StoreScript>().skinNub;
 		skin = skinRef.GetComponent<StoreScript> ().skinChoice;
 		Debug.Log (tempSkinNub);
+
+
 		
 		if (tempSkinNub == 1)
 		{
@@ -167,11 +171,11 @@ public class PlayerControl : MonoBehaviour
 				//GetComponent<skin>().skinOne = this.gameObject.GetComponent<Sprite>();
 				//gameObject.GetComponent<SpriteRenderer>().sprite = StoreScript.instance.skinOne;
 				GetComponent<SpriteRenderer>().sprite = skin;
-			}
-			
+			}			
 		}
-
 	}
+
+
 	
 	void Update()
 	{
@@ -250,52 +254,70 @@ public class PlayerControl : MonoBehaviour
 			StoreScript.Instance.myCoins = points;//tracks coins throughout game
 	
 		}
-
-		//TEST Mouse down click---------
-//		if (Input.GetMouseButtonDown (0)) 
+			
+		//Checking if button is being held down or not
+//		if (isCharging) 
 //		{
-//			StartCharging ();
-//		}
 //
-//		if (Input.GetMouseButtonUp (0)) 
+//			// Play charge sound once when charging starts
+//			if (!hasPlayedChargeSound)
+//			{
+////				StartCoroutine(PlayAudioAfterDelay(10)); // Replace `3` with the number of frames you want to wait
+//				//GetComponent<AudioSource>().PlayOneShot(chargeShotSound);//plays audio when button pressed
+//				hasPlayedChargeSound = true; // Prevent multiple plays
+//			}
+//
+//			powerUpCharge += Time.deltaTime;
+//
+//			if (powerUpCharge >= maxPowerUpCharge) 
+//			{
+//				powerUpCharge = maxPowerUpCharge;
+//				//StartCoroutine(PlayAudioAfterDelay(1)); // Replace `3` with the number of frames you want to wait
+//				//powerUpCharge = maxPowerUpCharge;
+//
+//			} 
+//		}
 //		{
-//			StopChargingAndShoot ();
+//			// Reset charge sound status if not charging
+//			hasPlayedChargeSound = false;
 //		}
 
-		if (isCharging) 
+		// Update method
+		if (isCharging)
 		{
-			//Debug.Log ("hasPlayedChargeSound = " + hasPlayedChargeSound);
-			// Play charge sound once when charging starts
-			if (!hasPlayedChargeSound)
+			//Debug.Log (hasPlayedChargeSound);
+			//hasPlayedChargeSound = false;
+			powerUpCharge += Time.deltaTime; // Increment charge time
+
+			if (hasPlayedChargeSound == false && powerUpCharge >= 0.3f)//0.3 is enough time to hold down to make the charging noise.
 			{
-				GetComponent<AudioSource>().PlayOneShot(chargeShotSound);//plays audio when button pressed
-				hasPlayedChargeSound = true; // Prevent multiple plays
+				//GetComponent<AudioSource>().PlayOneShot(chargeShotSound); // Play charge sound
+				chargeShotSound.Play();
+
+				hasPlayedChargeSound = true;
+				powerUpCharge = 0f;
+			}
+		}
+		else
+		{
+			// Button is released
+			if (powerUpCharge > 0 && powerUpCharge <= 3f)
+			{
+				GetComponent<AudioSource>().PlayOneShot(playerShotSound); // Play player shot sound
 			}
 
-			powerUpCharge += Time.deltaTime;
-//			Debug.Log ("Charging.... Current charge: " + powerUpCharge.ToString("0"));
+			// Stop charge sound and reset variables
+			if(chargeShotSound.isPlaying)
+			{
+				chargeShotSound.Stop(); // Immediately stop any playing sounds
+			}
+			// Reset variables when the button is no longer pressed
+			powerUpCharge = 0f;
+			hasPlayedChargeSound = false;
 
-			if (powerUpCharge >= maxPowerUpCharge) {
-				powerUpCharge = maxPowerUpCharge;
-//				Debug.Log ("MaxPowerUpCharge= " + maxPowerUpCharge.ToString ("0"));
-//				Debug.Log ("powerUpCharge= " + powerUpCharge.ToString ("0"));
-				//FirePoweredBullet ();//if you turn this back on it will shott an infinite amount until you let go off the button
-				//Debug.Log ("Charge reached Max level!");
-
-			} 
-//			else 
-//			{
-//				hasPlayedChargeSound = false;
-//			}
-//			if(charge >= maxChargeTime)
-//			{
-//				charge = maxChargeTime;
-//				FirePoweredBullet ();
-//				Debug.Log ("Charge reached Max level!");
-//
-//			}
 
 		}
+
 	}
 
 
@@ -400,89 +422,85 @@ public class PlayerControl : MonoBehaviour
 	
 	}
 
+
 	public void StartCharging()
 	{
-		//hasPlayedChargeSound = false;
-		//hasPlayedChargeSound = true; // Prevent multiple plays
-
 
 		isCharging = true;
 		powerUpCharge = 0f; // Reset charge when starting
 		shotFired = false;
-		//Debug.Log("Charging Started"); // Debug log to confirm charging
-		//GetComponent<AudioSource>().PlayOneShot(chargeShotSound);
-	
+
 	}
+
+
 
 	public void StopChargingAndShoot()
 	{
 		if (isCharging && !shotFired)
 		{
-			hasPlayedChargeSound = false;
+			//hasPlayedChargeSound = false;
 
 			isCharging = false;  // Stop charging
 			shotFired = true;    // Prevent shooting again until charged
 
-			//hasPlayedChargeSound = false;
-			//Debug.Log("Charging Stopped, power up charge: " + powerUpCharge.ToString("0")); // Debug log to check charge
-
-			//Destroy (chargeShotSound);
-			//GetComponent<AudioSource> ().PlayOneShot (chargeShotSound);
-//			GetComponent<AudioSource> ().mute = true;
-//			Destroy (chargeShotSound);
-//
 
 			// Determine bullet type based on charge
 			if (powerUpCharge >= maxPowerUpCharge)
 			{
 				// Fire powered-up bullet
 				FirePoweredBullet();
-				//Debug.Log("Fired Powered Bullet!");
-				//GetComponent<AudioSource> ().PlayOneShot (chargeShotSound);
-				//GetComponent<AudioSource> ().Stop();
-				//Destroy (chargeShotSound);
-				hasPlayedChargeSound = false;
+				//GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
+				//GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
+				//hasPlayedChargeSound = false;
 			}
-			else
+			if (powerUpCharge <= maxPowerUpCharge)
 			{
-				// Fire normal bullet (implement your firing logic here)
+				// Fire normal bullet
 				FireNormalBullet();
-				GetComponent<AudioSource> ().Stop();
-				//Debug.Log("Fired Normal Bullet!");
+
+				//Need to play the chargin sound here but
+//				if(Button is pressed down but not let go before the 3 seconds)
+//				{
+//					play the chargingup sound
+//				}
+//				if(button is pressed and let go before 3 seconds)
+//				{
+//					play the regular shot sound
+//				}
+	
 
 			}
 
 			// Reset the charge after firing
 			powerUpCharge = 0f;
+
 		}
 	}
+
 
 	public void FireNormalBullet()
 	{
 		// Instantiate normal bullet
 		Instantiate(bullet, bulletLocation.transform.position, bulletLocation.transform.rotation);
-		// Add sound effect, etc.
 		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
 
 	}
 
-	private void FirePoweredBullet()
+	public void FirePoweredBullet()
 	{
 		// Instantiate powered-up bullet
-		//Instantiate(poweredBullet, bulletLocation.transform.position, bulletLocation.transform.rotation);
 		Instantiate(poweredBullet, bulletLocation.transform.position, Quaternion.Euler(0, 0, 90));
-		// Add sound effect, etc.
 		GetComponent<AudioSource>().PlayOneShot(playerSuperShotSound);
 	}
 
 
-	public void Shoot()
-	{
-		//Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-		Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
-		shoot.velocity = new Vector2(speed.x, 0); // Regular bullet speed
-		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
-	}
+//	public void Shoot()
+//	{
+//		//Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+//		Rigidbody2D shoot = (Instantiate(bullet, bulletLocation.transform.position, transform.rotation)) as Rigidbody2D;
+//		shoot.velocity = new Vector2(speed.x, 0); // Regular bullet speed
+//		GetComponent<AudioSource>().PlayOneShot(playerShotSound);
+//	}
 //
 //	public void Fire()
 //	{
